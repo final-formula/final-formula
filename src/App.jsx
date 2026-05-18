@@ -14,6 +14,7 @@ function App() {
             <Link to="/">Home</Link>
             <Link to="/drivers">Drivers</Link>
             <Link to="/races">Races</Link>
+            <Link to="/teams">Races</Link>
           </div>
 
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/drivers" element={<Drivers />} />
           <Route path="/races" element={<Races />} />
+          <Route path="/teams" element={<Teams />} />
 
         </Routes>
       </div>
