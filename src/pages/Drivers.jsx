@@ -18,7 +18,7 @@ export default function Drivers() {
     const getDrivers = async () => {
         const url = "https://api.jolpi.ca/ergast/f1/2013/driverstandings.json";
         const response = await axios.get(url);
-        setUsers(response.data.MRData);
+        setDrivers(response.data.MRData);
         setLoading(false);
     };
 
