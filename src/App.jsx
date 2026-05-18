@@ -15,7 +15,7 @@ function App() {
             <Link to="/">Home</Link>
             <Link to="/drivers">Drivers</Link>
             <Link to="/races">Races</Link>
-            <Link to="/teams">Races</Link>
+            <Link to="/teams">Teams</Link>
           </div>
 
 
