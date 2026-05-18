@@ -16,7 +16,7 @@ export default function Races() {
         const url = "https://api.jolpi.ca/ergast/f1/2013/results/1.json";
         console.log(url)
         const response = await axios.get(url);
-        console.log(response.data.MRData)
+        console.log("1", response.data.MRData)
         setRaces(response.data.MRData);
         setLoading(false);
 
