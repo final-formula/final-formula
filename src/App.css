@@ -6,10 +6,16 @@
 
 .wrapper {
   display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: antiquewhite;
 
 }
 
 .navbar {
   display: flex;
   flex-direction: column;
+  width: 20vw;
+  min-height: 100vh;
+  background-color: aqua;
 }
