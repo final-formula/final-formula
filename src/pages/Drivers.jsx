@@ -38,20 +38,38 @@ export default function Drivers() {
             <h1 style={{ textAlign: "center" }}>Drivers</h1>
 
 
-            {
-                drivers.map((driver) => {
-                    return (
-                        <div key={driver.Driver.driverId} >
-                            <p>Name: {driver.Driver.givenName}</p>
-                            <p>Family Name: {driver.Driver.familyName}</p>
-                            <p>Nationality: {driver.Driver.nationality}</p>
-                            <p>Driver Id: {driver.Driver.driverId}</p>
-                        </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Family Name</th>
+                        <th>Nationality</th>
+                        <th>Driver ID</th>
+                    </tr>
+                </thead>
 
-                    )
-                })
-            }
 
+                <tbody>
+
+
+                    {
+                        drivers.map((driver) => {
+                            return (
+                                <tr key={driver.Driver.driverId} >
+
+                                    <td>{driver.Driver.givenName}</td>
+                                    <td>{driver.Driver.familyName}</td>
+                                    <td> {driver.Driver.nationality}</td>
+                                    <td>{driver.Driver.driverId}</td>
+                                </tr>
+
+
+                            )
+                        })
+                    }
+
+                </tbody>
+            </table>
 
         </>
     )

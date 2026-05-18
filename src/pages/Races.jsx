@@ -17,19 +17,47 @@ export default function Races() {
         console.log(url)
         const response = await axios.get(url);
         console.log("1", response.data.MRData)
-        setRaces(response.data.MRData);
+        setRaces(response.data.MRData.RaceTable.Races);
         setLoading(false);
-
-
-
     };
-
 
     if (loading) {
         return <Loader />
     }
 
+console.log("races", races)
+
     return (
-        <h1>RACES</h1>
+        <div>
+            <h1>2013 F1 Race Winners</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Round</th>
+                        <th>Grand Prix</th>
+                        <th>Circuit</th>
+                        <th>Date</th>
+                        <th>Winner</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {races.map((race) => {
+                        return (
+                             <tr key={race.round}>
+                                <td>{race.round}</td>
+                                <td>{race.raceName}</td>
+                                <td>{race.Circuit.circuitName}</td>
+                                <td>{race.date}</td>
+                                <td>{race.Results[0].Driver.familyName}</td>
+                            </tr>
+
+
+                        );
+                    })}
+                </tbody>
+            </table>
+
+        </div>
     );
 }
