@@ -12,6 +12,7 @@ function App() {
           <div className="navbar">
             <Link to="/">Home</Link>
             <Link to="/drivers">Drivers</Link>
+            <Link to="/races">Races</Link>
           </div>
 
 
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/drivers" element={<Drivers />} />
+          <Route path="/races" element={<Races />} />
 
         </Routes>
       </div>
