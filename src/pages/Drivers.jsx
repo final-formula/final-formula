@@ -32,7 +32,6 @@ export default function Drivers() {
 
 
     return (
-<<<<<<< HEAD
         <>
             <h1 style={{ textAlign: "center" }}>Drivers-Search</h1>
 
@@ -51,8 +50,5 @@ export default function Drivers() {
 
 
         </>
-=======
-        <h1>Drivers</h1>
->>>>>>> 8c19fdb0753c75d68c1c48196724a44801271de4
     )
 }

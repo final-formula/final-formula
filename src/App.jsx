@@ -1,18 +1,11 @@
-<<<<<<< HEAD
-=======
 import { BrowserRouter, Routes, Route, Link } from "react-router"
 import Drivers from "./pages/Drivers"
 import Home from "./pages/Home"
 import './App.css'
->>>>>>> 8c19fdb0753c75d68c1c48196724a44801271de4
 
 function App() {
 
   return (
-<<<<<<< HEAD
-    <>
-    </>
-=======
     <BrowserRouter>
       <div className="wrapper">
         <nav>
@@ -32,7 +25,6 @@ function App() {
 
 
     </BrowserRouter>
->>>>>>> 8c19fdb0753c75d68c1c48196724a44801271de4
   )
 }
 
