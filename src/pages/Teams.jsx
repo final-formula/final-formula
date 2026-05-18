@@ -18,11 +18,11 @@ export default function Teams() {
         setTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
         setLoading(false);
     }
-console.log(response);
-    if(loading) {
+
+    if (loading) {
         return <Loader />
     }
-
+    console.log("teams", teams)
     return (
         <div>
             <h2>Constructors Championship</h2>
@@ -31,16 +31,16 @@ console.log(response);
                     <th>Constructors Championship Standings - 2013</th>
                 </tr>
                 <tbody>
-                {teams.map((team, i) => {
-                    return (
-                        <tr key={i}>
-                            <td>{team.position}</td>
-                            <td>{team.Constructor.name}</td>
-                            <td>detail</td>
-                            <td>{team.points}</td>
-                        </tr>
-                    );
-                })}
+                    {teams.map((team, i) => {
+                        return (
+                            <tr key={i}>
+                                <td>{team.position}</td>
+                                <td>{team.Constructor.name}</td>
+                                <td>detail</td>
+                                <td>{team.points}</td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
 
             </table>
