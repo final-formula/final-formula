@@ -18,7 +18,8 @@ export default function Drivers() {
     const getDrivers = async () => {
         const url = "https://api.jolpi.ca/ergast/f1/2013/driverstandings.json";
         const response = await axios.get(url);
-        setDrivers(response.data.MRData);
+        console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+        setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
         setLoading(false);
     };
 
@@ -33,20 +34,22 @@ export default function Drivers() {
 
     return (
         <>
-            <h1 style={{ textAlign: "center" }}>Drivers-Search</h1>
+            <h1 style={{ textAlign: "center" }}>Drivers</h1>
 
 
-            {/* {driver.map((user) => {
-                return (
-                    <div key={user.id} className="div-objekat">
-                        <p>Name: {user.givenName}</p>
-                        <p>Family Name: {user.familyName}</p>
-                        <p>Nationality: {user.nationality}</p>
-                        <p>Street: {user.address.street}</p>
-                    </div>
+            {
+                drivers.map((driver) => {
+                    return (
+                        <div key={driver.Driver.driverId} >
+                            <p>Name: {driver.Driver.givenName}</p>
+                            <p>Family Name: {driver.Driver.familyName}</p>
+                            <p>Nationality: {driver.Driver.nationality}</p>
+                            <p>Driver Id: {driver.Driver.driverId}</p>
+                        </div>
 
-                )
-            })} */}
+                    )
+                })
+            }
 
 
         </>
