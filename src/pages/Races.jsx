@@ -25,7 +25,6 @@ export default function Races() {
     };
 
 
-
     if (loading) {
         return <Loader />
     }
