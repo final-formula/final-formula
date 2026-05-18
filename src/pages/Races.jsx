@@ -15,7 +15,7 @@ const getRaces = async () => {
         const url ="https://api.jolpi.ca/ergast/f1/2013/results/1.json";
         console.log(url)
         const response = await axios.get(url);
-        console.log(response)
+        console.log(response.data.MRData)
         setRaces(response.data);
         setLoading(false);
         
