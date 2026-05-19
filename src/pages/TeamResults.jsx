@@ -24,20 +24,28 @@ export default function TeamResults() {
 
     console.log(teamResults);
 
-    if(loading) {
+    if (loading) {
         return <Loader />
     }
 
-    return(
+    return (
         <div>
             {teamResults.map((item) => {
-                return(
+                return (
                     <div>
-                        <img src={item.Constructor.nationality} />
+                        <img src="" />
+                        <div>
+                            <img src={ } />
+                            <h3>{item.Constructor.name}</h3>
+                        </div>
+                        <div>
+                            <p>Country: {item.Constructor.nationality}</p>
+                            <p>Position: {item.position}</p>
+                            <p>Points: {item.points}</p>
+                        </div>
                     </div>
                 );
             })}
         </div>
     );
 }
-            

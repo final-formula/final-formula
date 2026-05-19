@@ -50,7 +50,7 @@ export default function Teams() {
                         return (
                             <tr key={team.position}>
                                 <td>{team.position}</td>
-                                <td onClick={() => handleClick(team.Constructor.name)}>{team.Constructor.name}</td>
+                                <td>{team.Constructor.name}</td>
                                 <td onClick={() => handleClick (team.constructor.url)} className="details-column">Details</td>
                                 <td>{team.points}</td>
                             </tr>
