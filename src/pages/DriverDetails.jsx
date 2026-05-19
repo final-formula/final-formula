@@ -28,7 +28,7 @@ export default function DriverDetails() {
         const response2 = await axios.get(url2);
         console.log(response);
 
-        setDriverDetails(response.data.MRData);
+        setDriverDetails(response.data.MRData.StandingsTable);
         setDriverRaces(response2.data.MRData)
         setLoading(false);
 
@@ -49,7 +49,7 @@ export default function DriverDetails() {
 
                 <h2>Driver details</h2>
                 <p>Id: {driverDetails.id} </p>
-                <p>Name: {driverDetails.name} </p>
+                <p>Season: {driverDetails.name} </p>
                 <p>Email: {driverDetails.email} </p>
                 <p>Body: {driverDetails.body} </p>
 
