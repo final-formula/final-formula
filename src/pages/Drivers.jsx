@@ -66,9 +66,7 @@ export default function Drivers() {
                     {
                         drivers.map((driver) => {
                             return (
-                                <tr key={driver.Driver.driverId}
-                                    onClick={() => handleClick(driver.Driver.driverId)}
-                                >
+                                <tr key={driver.Driver.driverId} >
 
                                     <td>{driver.Driver.givenName}</td>
                                     <td>{driver.Driver.familyName}</td>
@@ -78,8 +76,7 @@ export default function Drivers() {
 
 
                             )
-                        })
-                    }
+                        })}
 
                 </tbody>
             </table>
