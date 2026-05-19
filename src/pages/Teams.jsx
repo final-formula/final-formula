@@ -2,10 +2,13 @@ import { useEffect, useState } from "react"
 import axios from "axios";
 import Loader from "../components/Loader";
 
+
 export default function Teams() {
 
     const [teams, setTeams] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         getTeams();
@@ -18,6 +21,13 @@ export default function Teams() {
         setTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
         setLoading(false);
     }
+
+    const handleClick = (id) => {
+
+        navigate(`/teams/details/${id}`);
+
+
+    };
 
     if (loading) {
         return <Loader />
