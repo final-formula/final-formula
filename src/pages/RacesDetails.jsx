@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
+import { useParams } from "react-router";
 
 
 export default function RacesDetails() {
@@ -8,6 +9,7 @@ export default function RacesDetails() {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const params = useParams();
 
     useEffect(() => {
         getRaceDetails();
@@ -15,19 +17,30 @@ export default function RacesDetails() {
 
 
     const getRaceDetails = async () => {
-        const urlQualifying = "https://api.jolpi.ca/ergast/f1/2013/qualifying.json";
-        const urlResults = "https://api.jolpi.ca/ergast/f1/2013/1/results.json";
+        const urlQualifying = `https://api.jolpi.ca/ergast/f1/2013/${params.raceName}/qualifying.json`;
+        const urlResults = `https://api.jolpi.ca/ergast/f1/2013/${params.raceName}/results.json`;
 
         const responseQualifying = await axios.get(urlQualifying);
         const responseResults = await axios.get(urlResults);
 
-        setQualifiers(responseQualifying.data.MRData.RaceTable.Races);
-        setResults(responseResults.data.MRData.RaceTable.Races);
+        setQualifiers(responseQualifying.data.MRData.RaceTable.Races[0].QualifyingResults);
+        setResults(responseResults.data.MRData.RaceTable.Races[0]);
 
         setLoading(false);
     };
 
+    const getFastestTime = ((time1, time2, time3) => {
+        const times = [];
+        times.push(time1, time2, time3);
 
+        times.sort();
+
+        return times[0] ? times[0] : "DNQ"
+
+
+    })
+
+    getFastestTime("2:36", "2:37", "1:25")
 
     if (loading) {
         return <Loader />
@@ -36,61 +49,85 @@ export default function RacesDetails() {
     console.log("qualifiers", qualifiers);
     console.log("results", results);
 
+
     return (
-        <div>
-            <h1>2013 qualifying results</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pos</th>
-                        <th>Driver</th>
-                        <th>Team</th>
-                        <th>Best Time</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    {qualifiers.map((driversResult) => {
-                        return (
-                            <tr key={driverResult.position}>
-                                <td>{driverResult.position}</td>
-                                <td>{driverResult.Driver.familyName}</td>
-                                <td>{driverResult.time}</td>
-                            </tr>
 
 
-                        );
-                    })}
-                </tbody>
-                <h1>Race Results</h1>
-                <thead>
-                    <tr>
-                        <th>Pos</th>
-                        <th>Driver</th>
-                        <th>Team</th>
-                        <th>Result</th>
-                        <th>points</th>
-                    </tr>
-                </thead>
-                <body>
-                    {results.map((driverResult) =>
-                        race.Results.map((driverResult) => (
-                            <tr key={driverResult.position}>
-                                <td>{driverResult.position}</td>
-                                <td>{driverResult.Driver.familyName}</td>
-                                <td>{driverResult.Constructor.name}</td>
-                              
-                            </tr>
-                        ))
-                    )}
+        <>
+            <div>
+                <h1>{results.Circuit.circuitName}</h1>
+                <p>Country: {results.Circuit.Location.country}</p>
+                <p>Location: {results.Circuit.Location.locality}</p>
+                <p>Date: {results.date}</p>
+                <p>Date: {results.url}</p>
+            </div>
+            <div>
+                <h1>2013 qualifying results</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Driver</th>
+                            <th>Team</th>
+                            <th>Best Time</th>
+                        </tr>
 
-
-                </body>
+                    </thead>
+                    <tbody>
+                        {qualifiers.map((position) => {
+                            return (
 
 
 
-            </table>
+                                <tr key={position.position}>
+                                    <td>{position.position}</td>
+                                    <td>{position.Driver.givenName} {position.Driver.familyName}</td>
+                                    <td>{position.Constructor.name}</td>
+                                    <td>{getFastestTime(position.Q1, position.Q2, position.Q3)}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
 
-        </div>
+            </div>
+            <div>
+                <h1>Race results</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Driver</th>
+                            <th>Team</th>
+                            <th>Result</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {results.Results.map((result) => {
+                            return (
+                                <tr>
+                                    <td>{result.position}</td>
+                                    <td>{result.Driver.familyName} </td>
+                                    <td>{result.Constructor.name}</td>
+                                    <td>{result.time}</td>
+                                    <td>{result.points}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+
+
+
+
+
+
+        </>
     );
 }     

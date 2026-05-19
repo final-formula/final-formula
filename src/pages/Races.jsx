@@ -36,7 +36,7 @@ export default function Races() {
         return <Loader />
     }
 
-    console.log("races", races)
+
 
     return (
         <div>
