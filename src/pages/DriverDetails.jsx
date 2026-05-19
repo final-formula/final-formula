@@ -83,9 +83,11 @@ export default function DriverDetails() {
                             return (
                                 <tr key={details.driverId} >
 
-                                    <td>{details.givenName}</td>
-                                    <td>{details.familyName}</td>
-                                    <td> {details.nationality}</td>
+                                    <td>{details.Results[0].round}</td>
+                                    <td>{details.Results[0].raceName}</td>
+                                    <td> {details.Results[0].Constructor.name}</td>
+                                    <td> {details.Results[0].grid}</td>
+                                    <td> {details.Results[0].position}</td>
 
                                 </tr>
 
