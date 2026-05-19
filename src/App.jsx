@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router"
-import Drivers from "./pages/Drivers"
-import Home from "./pages/Home"
-import Races from "./pages/Races"
-import Teams from "./pages/Teams"
-import DriverDetails from "./pages/DriverDetails"
-import './App.css'
+import { BrowserRouter, Routes, Route, Link } from "react-router";
+import Drivers from "./pages/Drivers";
+import Home from "./pages/Home";
+import Races from "./pages/Races";
+import Teams from "./pages/Teams";
+import TeamResults from "./pages/TeamResults";
+import DriverDetails from "./pages/DriverDetails";
+import './App.css';
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
           <Route path="/races" element={<Races />} />
 
           <Route path="/teams" element={<Teams />} />
-          {/* <Route path="/teams/details/:id" element={<TeamDetalis />} /> */}
+          <Route path="/teams/details/:id" element={<TeamResults />} />
 
         </Routes>
       </div>
