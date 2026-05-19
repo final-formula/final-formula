@@ -24,6 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/drivers" element={<Drivers />} />
           <Route path="/races" element={<Races />} />
+         
           <Route path="/teams" element={<Teams />} />
 
         </Routes>
