@@ -26,9 +26,9 @@ export default function DriverDetails() {
         const urlDriverRace = `https://api.jolpi.ca/ergast/f1/2013/drivers/${driver.Driver.driverId}/results.json`;
         const response = await axios.get(urlDriverDetails);
         const response2 = await axios.get(urlDriverRace);
-        console.log(response);
+        console.log(response2);
 
-        setDriverDetails(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+        setDriverDetails(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
         setDriverRaces(response2.data.MRData.Driver)
         setLoading(false);
 
@@ -39,6 +39,8 @@ export default function DriverDetails() {
     if (Loading) {
         return <Loader />;
     }
+    console.log("drivers" + driverDetails);
+
 
 
     return (
@@ -49,25 +51,29 @@ export default function DriverDetails() {
 
                 <h2>Driver details</h2>
                 <p>Name {driverDetails.givenName.familyName} </p>
+                <p>Country{driverDetails.nationality}</p>
                 <p>Team: {driverDetails.name} </p>
                 <p>Birth: {driverDetails.email} </p>
                 <p>Biography: {driverDetails.body} </p>
 
             </div>
-            console.log(driverDetails);
+
 
 
             <div>
                 <h2>Driver races</h2>
                 <div>Furmula results</div>
                 <table>
-                    <tr>
-                        <th>Round</th>
-                        <th>Grand Prix</th>
-                        <th>Team</th>
-                        <th>Grid</th>
-                        <th>Race</th>
-                    </tr>
+                    <thead>
+
+                        <tr>
+                            <th>Round</th>
+                            <th>Grand Prix</th>
+                            <th>Team</th>
+                            <th>Grid</th>
+                            <th>Race</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {driverRaces.map((details) => {
                             return (

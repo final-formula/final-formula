@@ -46,7 +46,7 @@ export default function Drivers() {
 
     return (
         <>
-            <h1 style={{ textAlign: "center" }}>Drivers</h1>
+            <h1 style={{ textAlign: "center" }}>Drivers Championship Standings</h1>
 
 
             <table>
@@ -54,7 +54,7 @@ export default function Drivers() {
                     <tr>
                         <th>Name</th>
                         <th>Family Name</th>
-                        <th>Nationality</th>
+                        <th>Country</th>
                     </tr>
                 </thead>
 
