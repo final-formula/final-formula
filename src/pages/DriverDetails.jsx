@@ -1,13 +1,16 @@
 import Loader from "../components/Loader";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router";
+import Drivers from "./Drivers";
+
 
 
 
 export default function DriverDetails() {
 
     const [driverDetails, setDriverDetails] = useState(null);
-    const [driverRaces, setDriverRaces] = useState([]);
+    const [driverRaces, setDriverRaces] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const params = useParams();
@@ -18,31 +21,33 @@ export default function DriverDetails() {
 
     useEffect(() => {
         getDriverDetails();
+
     }, []);
 
     const getDriverDetails = async () => {
         console.log("params ", params);
-        const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/2013/drivers/${driver.Driver.driverId}/driverStandings.json`;
-        const urlDriverRace = `https://api.jolpi.ca/ergast/f1/2013/drivers/${driver.Driver.driverId}/results.json`;
+        const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/2013/drivers/${params.driverId}/driverStandings.json`;
+        const urlDriverRace = `https://api.jolpi.ca/ergast/f1/2013/drivers/${params.driverId}/results.json`;
         const response = await axios.get(urlDriverDetails);
         const response2 = await axios.get(urlDriverRace);
         console.log(response2);
 
         setDriverDetails(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
-        setDriverRaces(response2.data.MRData.Driver)
+        setDriverRaces(response2.data.MRData.RaceTable.Races[0])
         setLoading(false);
 
     };
 
 
 
-    if (Loading) {
+    if (loading) {
         return <Loader />;
     }
     console.log("drivers" + driverDetails);
 
 
-
+    console.log("driverDetails", driverDetails)
+    console.log("driverRaces", driverRaces)
     return (
         <>
 
@@ -65,7 +70,6 @@ export default function DriverDetails() {
                 <div>Furmula results</div>
                 <table>
                     <thead>
-
                         <tr>
                             <th>Round</th>
                             <th>Grand Prix</th>
@@ -74,7 +78,8 @@ export default function DriverDetails() {
                             <th>Race</th>
                         </tr>
                     </thead>
-                    <tbody>
+
+                    {/* <tbody>
                         {driverRaces.map((details) => {
                             return (
                                 <tr key={details.driverId} >
@@ -89,7 +94,7 @@ export default function DriverDetails() {
                             )
                         })}
 
-                    </tbody>
+                    </tbody> */}
 
                 </table>
 
