@@ -3,7 +3,7 @@ import axios from "axios";
 import Loader from "../components/Loader";
 
 
-export default function Races() {
+export default function RacesDetails() {
     const [qualifiers, setQualifiers] = useState([]);
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);

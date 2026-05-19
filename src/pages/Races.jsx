@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
+import { useNavigate } from "react-router";
 
 export default function Races() {
     const [races, setRaces] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         getRaces();
@@ -21,11 +24,19 @@ export default function Races() {
         setLoading(false);
     };
 
+
+    const handleClick = (id) => {
+
+        navigate(`/races/details/${id}`);
+
+
+    };
+
     if (loading) {
         return <Loader />
     }
 
-console.log("races", races)
+    console.log("races", races)
 
     return (
         <div>
@@ -44,7 +55,9 @@ console.log("races", races)
                 <tbody>
                     {races.map((race) => {
                         return (
-                             <tr key={race.round}>
+                            <tr key={race.round}
+                                onClick={() => handleClick(race.round)}
+                            >
                                 <td>{race.round}</td>
                                 <td>{race.raceName}</td>
                                 <td>{race.Circuit.circuitName}</td>
