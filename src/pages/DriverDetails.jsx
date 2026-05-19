@@ -22,14 +22,14 @@ export default function DriverDetails() {
 
     const getDriverDetails = async () => {
         console.log("params ", params);
-        const url1 = `https://api.jolpi.ca/ergast/f1/2013/drivers/${driver.Driver.driverId}/driverStandings.json`;
-        const url2 = `https://api.jolpi.ca/ergast/f1/2013/drivers/${driver.Driver.driverId}/results.json`;
-        const response = await axios.get(url1);
-        const response2 = await axios.get(url2);
+        const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/2013/drivers/${driver.Driver.driverId}/driverStandings.json`;
+        const urlDriverRace = `https://api.jolpi.ca/ergast/f1/2013/drivers/${driver.Driver.driverId}/results.json`;
+        const response = await axios.get(urlDriverDetails);
+        const response2 = await axios.get(urlDriverRace);
         console.log(response);
 
-        setDriverDetails(response.data.MRData.StandingsTable);
-        setDriverRaces(response2.data.MRData)
+        setDriverDetails(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+        setDriverRaces(response2.data.MRData.Driver)
         setLoading(false);
 
     };
@@ -48,12 +48,14 @@ export default function DriverDetails() {
 
 
                 <h2>Driver details</h2>
-                <p>Id: {driverDetails.id} </p>
-                <p>Season: {driverDetails.name} </p>
-                <p>Email: {driverDetails.email} </p>
-                <p>Body: {driverDetails.body} </p>
+                <p>Name {driverDetails.givenName.familyName} </p>
+                <p>Team: {driverDetails.name} </p>
+                <p>Birth: {driverDetails.email} </p>
+                <p>Biography: {driverDetails.body} </p>
 
             </div>
+            console.log(driverDetails);
+
 
             <div>
                 <h2>Driver races</h2>
@@ -69,12 +71,12 @@ export default function DriverDetails() {
                     <tbody>
                         {driverRaces.map((details) => {
                             return (
-                                <tr key={details.Driver.driverId} >
+                                <tr key={details.driverId} >
 
-                                    <td>{details.Driver.givenName}</td>
-                                    <td>{details.Driver.familyName}</td>
-                                    <td> {details.Driver.nationality}</td>
-                                    <td>{details.Driver.driverId}</td>
+                                    <td>{details.givenName}</td>
+                                    <td>{details.familyName}</td>
+                                    <td> {details.nationality}</td>
+
                                 </tr>
 
 

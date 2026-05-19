@@ -41,7 +41,7 @@ export default function Drivers() {
 
 
 
-
+    console.log(drivers);
 
 
     return (
@@ -55,7 +55,6 @@ export default function Drivers() {
                         <th>Name</th>
                         <th>Family Name</th>
                         <th>Nationality</th>
-                        <th>Driver ID</th>
                     </tr>
                 </thead>
 
@@ -71,7 +70,7 @@ export default function Drivers() {
                                     <td>{driver.Driver.givenName}</td>
                                     <td>{driver.Driver.familyName}</td>
                                     <td> {driver.Driver.nationality}</td>
-                                    <td>{driver.Driver.driverId}</td>
+
                                 </tr>
 
 
