@@ -25,9 +25,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/drivers" element={<Drivers />} />
-          <Route path="/drivers/details/:id" element={<DriverDetails />} />
+          <Route path="/drivers/details/:driverId" element={<DriverDetails />} />
           <Route path="/races" element={<Races />} />
+<<<<<<< HEAD
+         
+=======
           {/* <Route path="/races/details/:id" element={<RaceDetalis />} /> */}
+>>>>>>> 552138f21c4d07e772d82fbc7d56855e1233ea5f
           <Route path="/teams" element={<Teams />} />
           <Route path="/teams/details/:id" element={<TeamResults />} />
 
