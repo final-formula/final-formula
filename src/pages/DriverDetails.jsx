@@ -33,7 +33,7 @@ export default function DriverDetails() {
         console.log(response2);
 
         setDriverDetails(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
-        setDriverRaces(response2.data.MRData.RaceTable.Races[0])
+        setDriverRaces(response2.data.MRData.RaceTable.Races)
         setLoading(false);
 
     };
@@ -56,8 +56,8 @@ export default function DriverDetails() {
 
                 <h2>Driver details</h2>
                 <p>Name {driverDetails.Driver.givenName} {driverDetails.Driver.familyName} </p>
-                <p>Team: {driverRaces.Results[0].Constructor.name} </p>
-                <p>Birth: {driverRaces.Results[0].Driver.dateOfBirth} </p>
+                <p>Team: {driverRaces[0].Results[0].Constructor.name} </p>
+                <p>Birth: {driverRaces[0].Results[0].Driver.dateOfBirth} </p>
                 <p>Biography: {driverDetails.Driver.url} </p>
 
             </div>
@@ -83,8 +83,8 @@ export default function DriverDetails() {
                             return (
                                 <tr key={details.driverId} >
 
-                                    <td>{details.Results[0].round}</td>
-                                    <td>{details.Results[0].raceName}</td>
+                                    <td>{details.round}</td>
+                                    <td>{details.raceName}</td>
                                     <td> {details.Results[0].Constructor.name}</td>
                                     <td> {details.Results[0].grid}</td>
                                     <td> {details.Results[0].position}</td>
