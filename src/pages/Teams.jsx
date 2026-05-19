@@ -30,6 +30,7 @@ export default function Teams() {
 
     };
 
+
     if (loading) {
         return <Loader />
     }
@@ -51,7 +52,7 @@ export default function Teams() {
                             <tr key={team.position}>
                                 <td>{team.position}</td>
                                 <td>{team.Constructor.name}</td>
-                                <td>Details</td>
+                                <td onClick={() => handleClick(team.Constructor.constructorId)} className="details-column">Details</td>
                                 <td>{team.points}</td>
                             </tr>
                         );

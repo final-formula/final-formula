@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router"
-import Drivers from "./pages/Drivers"
 import Home from "./pages/Home"
 import Races from "./pages/Races"
 import Teams from "./pages/Teams"
 import DriverDetails from "./pages/DriverDetails"
 import RacesDetalis from "./pages/RacesDetails"
 import './App.css'
+import Drivers from "./pages/Drivers";
+import TeamResults from "./pages/TeamResults";
 
 function App() {
-
   return (
     <BrowserRouter>
       <div className="wrapper">
@@ -27,16 +27,11 @@ function App() {
           <Route path="/drivers" element={<Drivers />} />
           <Route path="/drivers/details/:driverId" element={<DriverDetails />} />
           <Route path="/races" element={<Races />} />
-
           <Route path="/races/details/:raceName" element={<RacesDetalis />} />
-
           <Route path="/teams" element={<Teams />} />
-          {/* <Route path="/teams/details/:id" element={<TeamDetalis />} /> */}
-
+          <Route path="/teams/details/:id" element={<TeamResults />} />
         </Routes>
       </div>
-
-
     </BrowserRouter>
   )
 }
