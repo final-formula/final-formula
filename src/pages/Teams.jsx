@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
 import Loader from "../components/Loader";
+import { useNavigate } from "react-router";
 
 
 export default function Teams() {

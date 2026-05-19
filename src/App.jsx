@@ -3,6 +3,7 @@ import Drivers from "./pages/Drivers"
 import Home from "./pages/Home"
 import Races from "./pages/Races"
 import Teams from "./pages/Teams"
+import DriverDetails from "./pages/DriverDetails"
 import './App.css'
 
 function App() {
@@ -23,11 +24,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/drivers" element={<Drivers />} />
-          <Route path="/drivers/details/:id" element={<DriverDetalis />} />
+          <Route path="/drivers/details/:id" element={<DriverDetails />} />
           <Route path="/races" element={<Races />} />
-          <Route path="/races/details/:id" element={<RaceDetalis />} />
+          {/* <Route path="/races/details/:id" element={<RaceDetalis />} /> */}
           <Route path="/teams" element={<Teams />} />
-          <Route path="/teams/details/:id" element={<TeamDetalis />} />
+          {/* <Route path="/teams/details/:id" element={<TeamDetalis />} /> */}
 
         </Routes>
       </div>

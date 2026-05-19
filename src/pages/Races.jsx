@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
-
+import { useNavigate } from "react-router";
 
 export default function Races() {
     const [races, setRaces] = useState([]);
