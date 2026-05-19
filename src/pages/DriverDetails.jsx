@@ -58,7 +58,7 @@ export default function DriverDetails() {
                 <p>Name {driverDetails.givenName.familyName} </p>
                 <p>Country{driverDetails.nationality}</p>
                 <p>Team: {driverDetails.name} </p>
-                <p>Birth: {driverDetails.email} </p>
+                <p>Birth: {driverDetails.dateOfBirth} </p>
                 <p>Biography: {driverDetails.body} </p>
 
             </div>
@@ -79,7 +79,7 @@ export default function DriverDetails() {
                         </tr>
                     </thead>
 
-                    {/* <tbody>
+                    {<tbody>
                         {driverRaces.map((details) => {
                             return (
                                 <tr key={details.driverId} >
@@ -94,7 +94,7 @@ export default function DriverDetails() {
                             )
                         })}
 
-                    </tbody> */}
+                    </tbody>}
 
                 </table>
 
