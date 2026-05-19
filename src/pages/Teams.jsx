@@ -22,21 +22,25 @@ export default function Teams() {
     if (loading) {
         return <Loader />
     }
+
     console.log("teams", teams)
+
     return (
         <div>
             <h2>Constructors Championship</h2>
             <table>
-                <tr>
-                    <th>Constructors Championship Standings - 2013</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Constructors Championship Standings - 2013</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    {teams.map((team, i) => {
+                    {teams.map((team) => {
                         return (
-                            <tr key={i}>
+                            <tr key={team.position}>
                                 <td>{team.position}</td>
                                 <td>{team.Constructor.name}</td>
-                                <td>detail</td>
+                                <td>Details</td>
                                 <td>{team.points}</td>
                             </tr>
                         );
@@ -51,4 +55,3 @@ export default function Teams() {
 
 
 
-// 'https://api.jolpi.ca/ergast/f1/' + year + '/constructorStandings.json'
