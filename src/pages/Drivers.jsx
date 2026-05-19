@@ -52,21 +52,19 @@ export default function Drivers() {
                 <tbody>
 
 
-                    {
-                        drivers.map((driver) => {
-                            return (
-                                <tr key={driver.Driver.driverId} >
+                    {drivers.map((driver) => {
+                        return (
+                            <tr key={driver.Driver.driverId} >
 
-                                    <td>{driver.Driver.givenName}</td>
-                                    <td>{driver.Driver.familyName}</td>
-                                    <td> {driver.Driver.nationality}</td>
-                                    <td>{driver.Driver.driverId}</td>
-                                </tr>
+                                <td>{driver.Driver.givenName}</td>
+                                <td>{driver.Driver.familyName}</td>
+                                <td> {driver.Driver.nationality}</td>
+                                <td>{driver.Driver.driverId}</td>
+                            </tr>
 
 
-                            )
-                        })
-                    }
+                        )
+                    })}
 
                 </tbody>
             </table>
