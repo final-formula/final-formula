@@ -1,5 +1,9 @@
 export default function Home() {
     return (
-        <h1>Home</h1>
+        <div className="home">
+            <h1>Home</h1>
+            <p> dobrodosli na formulu jedam</p>
+
+        </div>
     )
 }
