@@ -49,10 +49,11 @@ export default function Teams() {
                 <tbody>
                     {teams.map((team) => {
                         return (
-                            <tr key={team.position}>
+                            <tr key={team.Constructor.constructorId}>
                                 <td>{team.position}</td>
-                                <td>{team.Constructor.name}</td>
-                                <td onClick={() => handleClick(team.Constructor.constructorId)} className="details-column">Details</td>
+                                <td
+                                    onClick={() => handleClick(team.Constructor.constructorId)}>{team.Constructor.name}</td>
+                                <td>Details <a href={team.Constructor.url} target="_blank"><img src="./link-black.png" className="link-icon" /></a></td>
                                 <td>{team.points}</td>
                             </tr>
                         );
