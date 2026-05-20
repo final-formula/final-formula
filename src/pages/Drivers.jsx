@@ -46,40 +46,43 @@ export default function Drivers() {
 
     return (
         <>
-            <h1 style={{ textAlign: "center" }}>Drivers Championship Standings</h1>
+            <div className="container">
+
+                <div className="main">
+                    <h1 className="title">Drivers Championship Standings</h1>
 
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Family Name</th>
-                        <th>Country</th>
-                    </tr>
-                </thead>
 
 
-                <tbody>
+                    <table className="f1Table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Family Name</th>
+                                <th>Country</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                drivers.map((driver) => {
+                                    return (
+                                        <tr key={driver.Driver.driverId}
+                                            onClick={() => handleClick(driver.Driver.driverId)}>
+
+                                            <td className="driverCell">{driver.Driver.givenName}</td>
+                                            <td>{driver.Driver.familyName}</td>
+                                            <td> {driver.Driver.nationality}</td>
+
+                                        </tr>
 
 
-                    {
-                        drivers.map((driver) => {
-                            return (
-                                <tr key={driver.Driver.driverId}
-                                    onClick={() => handleClick(driver.Driver.driverId)}>
+                                    )
+                                })}
 
-                                    <td>{driver.Driver.givenName}</td>
-                                    <td>{driver.Driver.familyName}</td>
-                                    <td> {driver.Driver.nationality}</td>
-
-                                </tr>
-
-
-                            )
-                        })}
-
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         </>
     )
