@@ -64,7 +64,7 @@ export default function DriverDetails(props) {
                 <p>Name {driverDetails.Driver.givenName} {driverDetails.Driver.familyName} </p>
                 <p>Team: {driverRaces[0].Results[0].Constructor.name} </p>
                 <p>Birth: {driverRaces[0].Results[0].Driver.dateOfBirth} </p>
-                <p>Biography: {driverDetails.Driver.url} </p>
+                <p>Biography: <a href={driverDetails.Driver.url} target="_blank"><img src="../../../public/link-black.png" className="link-icon" /></a></p>
 
             </div>
 

@@ -64,7 +64,7 @@ export default function RacesDetails(props) {
                 <p>Country: {results.Circuit.Location.country}</p>
                 <p>Location: {results.Circuit.Location.locality}</p>
                 <p>Date: {results.date}</p>
-                <p>Date: {results.url}</p>
+                <p>Full Report: <a href={results.url} target="_blank"><img src="../../../public/link-black.png" className="link-icon" /></a></p>
             </div>
             <div>
                 <h1>2013 qualifying results</h1>

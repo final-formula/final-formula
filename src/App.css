@@ -13,6 +13,7 @@ body {
 .container {
   display: flex;
   height: 100vh;
+
 }
 
 
@@ -21,6 +22,8 @@ body {
   width: 100vw;
   min-height: 100vh;
   background-color: antiquewhite;
+  gap: 20px;
+
 
 }
 
@@ -100,4 +103,8 @@ td {
   background-image: url(/public/Formula-1.jpg);
   color: white;
   background-repeat: no-repeat;
+}
+
+.homeImage {
+  width: 20vw;
 }
