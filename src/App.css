@@ -19,3 +19,12 @@
   min-height: 100vh;
   background-color: aqua;
 }
+
+.link-icon {
+  width: 13px;
+}
+
+.team-image {
+  width: 200px;
+  height: 200px;
+}

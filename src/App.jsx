@@ -29,7 +29,7 @@ function App() {
           <Route path="/races" element={<Races />} />
           <Route path="/races/details/:raceName" element={<RacesDetalis />} />
           <Route path="/teams" element={<Teams />} />
-          <Route path="/teams/details/:id" element={<TeamResults />} />
+          <Route path="/teams/details/:constructorId" element={<TeamResults />} />
         </Routes>
       </div>
     </BrowserRouter>
