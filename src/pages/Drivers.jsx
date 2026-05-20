@@ -48,13 +48,9 @@ export default function Drivers(props) {
 
     return (
         <>
-            <div className="container">
-
-                <div className="main">
-                    <h1 className="title">Drivers Championship Standings</h1>
+            <h1 style={{ textAlign: "center" }}>Drivers Championship Standings</h1>
 
 
-<<<<<<< HEAD
             <table>
                 <thead>
                     <tr>
@@ -64,33 +60,11 @@ export default function Drivers(props) {
                         <th>Points</th>
                     </tr>
                 </thead>
-=======
->>>>>>> 42f28debec5b083fde615916d04bc646961d6dda
 
 
-                    <table className="f1Table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Family Name</th>
-                                <th>Country</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                drivers.map((driver) => {
-                                    return (
-                                        <tr key={driver.Driver.driverId}
-                                            onClick={() => handleClick(driver.Driver.driverId)}>
-
-                                            <td className="driverCell">{driver.Driver.givenName}</td>
-                                            <td>{driver.Driver.familyName}</td>
-                                            <td> {driver.Driver.nationality}</td>
-
-                                        </tr>
+                <tbody>
 
 
-<<<<<<< HEAD
                     {
                         drivers.map((driver) => {
                             return (
@@ -109,15 +83,6 @@ export default function Drivers(props) {
 
                 </tbody>
             </table>
-=======
-                                    )
-                                })}
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
->>>>>>> 42f28debec5b083fde615916d04bc646961d6dda
 
         </>
     )
