@@ -54,18 +54,6 @@ export default function Drivers(props) {
                     <h1 className="title">Drivers Championship Standings</h1>
 
 
-<<<<<<< HEAD
-            <table>
-                <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>Driver</th>
-                        <th>Team</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-=======
->>>>>>> 42f28debec5b083fde615916d04bc646961d6dda
 
 
                     <table className="f1Table">
@@ -90,26 +78,6 @@ export default function Drivers(props) {
                                         </tr>
 
 
-<<<<<<< HEAD
-                    {
-                        drivers.map((driver) => {
-                            return (
-                                <tr key={driver.Driver.driverId}
-                                    onClick={() => handleClick(driver.Driver.driverId)}>
-                                    <td>{driver.position}</td>
-                                    <td> <Flag country={getFlag(props.flags, driver.Driver.nationality)} />{driver.Driver.givenName} {driver.Driver.familyName}</td>
-                                    <td>{driver.Constructors[0].name}</td>
-                                    <td> {driver.points}</td>
-
-                                </tr>
-
-
-                            )
-                        })}
-
-                </tbody>
-            </table>
-=======
                                     )
                                 })}
 
@@ -117,7 +85,6 @@ export default function Drivers(props) {
                     </table>
                 </div>
             </div>
->>>>>>> 42f28debec5b083fde615916d04bc646961d6dda
 
         </>
     )
