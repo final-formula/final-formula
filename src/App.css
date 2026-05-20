@@ -33,7 +33,11 @@ body {
   width: 20vw;
   min-height: 100vh;
   background-color: aqua;
+  text-align: center;
+
 }
+
+
 
 .link-icon {
   width: 13px;
@@ -107,4 +111,8 @@ td {
 
 .homeImage {
   width: 20vw;
+}
+
+.nav-img {
+  width: 100px;
 }
