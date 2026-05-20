@@ -48,6 +48,43 @@ td {
   border-collapse: collapse;
   padding: 10px;
   margin: 10px;
-  background-color: aqua;
+  background-color: white;
 
+}
+
+.driverDetailsBorder {
+  border-collapse: collapse;
+}
+
+.teamResultTable {
+  border-collapse: collapse;
+  word-spacing: 10px;
+}
+
+.teamResultsContainer img {
+  height: 200px;
+  width: 350px;
+
+}
+
+.teamTable {
+  border-collapse: collapse;
+
+}
+
+.teamTable th {
+  margin: 10px;
+  padding: 10px;
+}
+
+.racesTable {
+  border-collapse: collapse;
+}
+
+.raceDetailsTable {
+  border-collapse: collapse;
+}
+
+.raceDetailsTable2 {
+  border-collapse: collapse;
 }

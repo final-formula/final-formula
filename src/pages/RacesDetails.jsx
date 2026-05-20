@@ -63,7 +63,7 @@ export default function RacesDetails() {
             </div>
             <div>
                 <h1>2013 qualifying results</h1>
-                <table>
+                <table className="raceDetailsTable">
                     <thead>
                         <tr>
                             <th>Pos</th>
@@ -93,7 +93,7 @@ export default function RacesDetails() {
             </div>
             <div>
                 <h1>Race results</h1>
-                <table>
+                <table className="raceDetailsTable2">
                     <thead>
                         <tr>
                             <th>Pos</th>

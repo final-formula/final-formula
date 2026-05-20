@@ -41,7 +41,7 @@ export default function TeamResults() {
     // console.log(teamDetails);
 
     return (
-        <div>
+        <div className="teamResultsContainer">
 
             <div>
                 <img src={`../../${teamDetails.Constructor.constructorId}.png`} className="team-image" />
@@ -62,7 +62,7 @@ export default function TeamResults() {
 
 
 
-            <table>
+            <table className="teamResultTable">
                 <thead>
                     <tr>
                         <th>Round</th>
