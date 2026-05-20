@@ -51,38 +51,71 @@ export default function Drivers(props) {
             <h1 style={{ textAlign: "center" }}>Drivers Championship Standings</h1>
 
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>Driver</th>
-                        <th>Team</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
+<<<<<<< HEAD
+    <table>
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+=======
+>>>>>>> 42f28debec5b083fde615916d04bc646961d6dda
 
 
-                <tbody>
+        <table className="f1Table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Family Name</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    drivers.map((driver) => {
+                        return (
+                            <tr key={driver.Driver.driverId}
+                                onClick={() => handleClick(driver.Driver.driverId)}>
+
+                                <td className="driverCell">{driver.Driver.givenName}</td>
+                                <td>{driver.Driver.familyName}</td>
+                                <td> {driver.Driver.nationality}</td>
+
+                            </tr>
 
 
+<<<<<<< HEAD
                     {
-                        drivers.map((driver) => {
-                            return (
-                                <tr key={driver.Driver.driverId}
-                                    onClick={() => handleClick(driver.Driver.driverId)}>
-                                    <td>{driver.position}</td>
-                                    <td> <Flag country={getFlag(props.flags, driver.Driver.nationality)} />{driver.Driver.givenName} {driver.Driver.familyName}</td>
-                                    <td>{driver.Constructors[0].name}</td>
-                                    <td> {driver.points}</td>
+                            drivers.map((driver) => {
+                                return (
+                                    <tr key={driver.Driver.driverId}
+                                        onClick={() => handleClick(driver.Driver.driverId)}>
+                                        <td>{driver.position}</td>
+                                        <td> <Flag country={getFlag(props.flags, driver.Driver.nationality)} />{driver.Driver.givenName} {driver.Driver.familyName}</td>
+                                        <td>{driver.Constructors[0].name}</td>
+                                        <td> {driver.points}</td>
 
-                                </tr>
+                                    </tr>
 
 
-                            )
-                        })}
+                                )
+                            })
+                        }
 
                 </tbody>
-            </table>
+        </table>
+=======
+                                    )
+                                })}
+
+                        </tbody>
+                    </table >
+                </div >
+            </div >
+>>>>>>> 42f28debec5b083fde615916d04bc646961d6dda
 
         </>
     )
