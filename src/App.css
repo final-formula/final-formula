@@ -107,6 +107,8 @@ td {
   background-image: url(/public/Formula-1.jpg);
   color: white;
   background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 .homeImage {
