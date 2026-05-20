@@ -3,11 +3,15 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import Drivers from "./Drivers";
+import Flag from 'react-flagkit';
+import getFlagShortName from '../helpers/getFlagsCountry.js'
+import getFlag from '../helpers/getFlagsNationality.js'
 
 
 
 
-export default function DriverDetails() {
+
+export default function DriverDetails(props) {
 
     const [driverDetails, setDriverDetails] = useState(null);
     const [driverRaces, setDriverRaces] = useState(null);
@@ -55,6 +59,8 @@ export default function DriverDetails() {
 
 
                 <h2>Driver details</h2>
+                <img src={`../../${driverDetails.Driver.driverId}.jpg`} className="team-image" />
+                <Flag country={getFlag(props.flags, driverDetails.Driver.nationality)} />
                 <p>Name {driverDetails.Driver.givenName} {driverDetails.Driver.familyName} </p>
                 <p>Team: {driverRaces[0].Results[0].Constructor.name} </p>
                 <p>Birth: {driverRaces[0].Results[0].Driver.dateOfBirth} </p>
@@ -84,7 +90,7 @@ export default function DriverDetails() {
                                 <tr key={details.driverId} >
 
                                     <td>{details.round}</td>
-                                    <td>{details.raceName}</td>
+                                    <td><Flag country={getFlagShortName(props.flags, details.Circuit.Location.country)} /> {details.raceName}</td>
                                     <td> {details.Results[0].Constructor.name}</td>
                                     <td> {details.Results[0].grid}</td>
                                     <td> {details.Results[0].position}</td>

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react"
 import axios from "axios";
 import Loader from "../components/Loader";
 import { useNavigate } from "react-router";
+import Flag from 'react-flagkit';
+import getFlag from '../helpers/getFlagsNationality.js'
 
 
-export default function Teams() {
+export default function Teams(props) {
 
     const [teams, setTeams] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -23,19 +25,19 @@ export default function Teams() {
         setLoading(false);
     }
 
+    // const getFlag = (flags, country) => {
+    //     const flag = flags.find(flag => flag.nationality === country);
+    //     console.log(flag)
+    //     return flag?.alpha_2_code;
+    // };
+
     const handleClick = (id) => {
-
         navigate(`/teams/details/${id}`);
-
-
     };
-
 
     if (loading) {
         return <Loader />
     }
-
-    console.log("teams", teams)
 
     return (
         <div>
@@ -52,7 +54,9 @@ export default function Teams() {
                             <tr key={team.Constructor.constructorId}>
                                 <td>{team.position}</td>
                                 <td
-                                    onClick={() => handleClick(team.Constructor.constructorId)}>{team.Constructor.name}</td>
+                                    onClick={() => handleClick(team.Constructor.constructorId)}> <Flag country={getFlag(props.flags, team.Constructor.nationality)} /> {team.Constructor.name}
+
+                                </td>
                                 <td>Details <a href={team.Constructor.url} target="_blank"><img src="./link-black.png" className="link-icon" /></a></td>
                                 <td>{team.points}</td>
                             </tr>

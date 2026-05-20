@@ -2,8 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Loader from "../components/Loader";
 import { useParams } from "react-router";
+import Flag from 'react-flagkit';
+import getFlagShortName from '../helpers/getFlagsCountry.js'
 
-export default function TeamResults() {
+import getFlag from '../helpers/getFlagsNationality.js'
+
+export default function TeamResults(props) {
 
     const [teamResults, setTeamResults] = useState([]);
     const [teamDetails, setTeamDetails] = useState([]);
@@ -46,7 +50,7 @@ export default function TeamResults() {
             <div>
                 <img src={`../../${teamDetails.Constructor.constructorId}.png`} className="team-image" />
                 <div>
-
+                    <Flag country={getFlag(props.flags, teamDetails.Constructor.nationality)} />
                     <p>Name {teamDetails.Constructor.name} </p>
                 </div>
 
@@ -80,7 +84,7 @@ export default function TeamResults() {
                         return (
                             <tr>
                                 <td>{result.round}</td>
-                                <td>{result.raceName}</td>
+                                <td><Flag country={getFlagShortName(props.flags, result.Circuit.Location.country)} />{result.raceName}</td>
                                 <td>{result.Results[0].position}</td>
                                 <td>{result.Results[1].position}</td>
                                 <td>{sumPoints(Number(result.Results[0].points), Number(result.Results[1].points))}</td>

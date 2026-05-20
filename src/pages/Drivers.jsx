@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
 import { useNavigate } from "react-router";
+import getFlag from '../helpers/getFlagsNationality.js'
+import Flag from 'react-flagkit';
 
 
 
 
 
-export default function Drivers() {
+export default function Drivers(props) {
     const [drivers, setDrivers] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -52,9 +54,10 @@ export default function Drivers() {
             <table>
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Family Name</th>
-                        <th>Country</th>
+                        <th>Position</th>
+                        <th>Driver</th>
+                        <th>Team</th>
+                        <th>Points</th>
                     </tr>
                 </thead>
 
@@ -67,10 +70,10 @@ export default function Drivers() {
                             return (
                                 <tr key={driver.Driver.driverId}
                                     onClick={() => handleClick(driver.Driver.driverId)}>
-
-                                    <td>{driver.Driver.givenName}</td>
-                                    <td>{driver.Driver.familyName}</td>
-                                    <td> {driver.Driver.nationality}</td>
+                                    <td>{driver.position}</td>
+                                    <td> <Flag country={getFlag(props.flags, driver.Driver.nationality)} />{driver.Driver.givenName} {driver.Driver.familyName}</td>
+                                    <td>{driver.Constructors[0].name}</td>
+                                    <td> {driver.points}</td>
 
                                 </tr>
 

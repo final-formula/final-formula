@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
 import { useNavigate } from "react-router";
+import getFlagShortName from '../helpers/getFlagsCountry.js'
+import Flag from 'react-flagkit';
+import getFlag from '../helpers/getFlagsNationality.js'
 
-export default function Races() {
+export default function Races(props) {
     const [races, setRaces] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -59,10 +62,10 @@ export default function Races() {
                                 onClick={() => handleClick(race.round)}
                             >
                                 <td>{race.round}</td>
-                                <td>{race.raceName}</td>
+                                <td><Flag country={getFlagShortName(props.flags, race.Circuit.Location.country)} /> {race.raceName}</td>
                                 <td>{race.Circuit.circuitName}</td>
                                 <td>{race.date}</td>
-                                <td>{race.Results[0].Driver.familyName}</td>
+                                <td><Flag country={getFlag(props.flags, race.Results[0].Driver.nationality)} /> {race.Results[0].Driver.familyName}</td>
                             </tr>
 
 

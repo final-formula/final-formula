@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
 import { useParams } from "react-router";
+import Flag from 'react-flagkit';
+import getFlagShortName from '../helpers/getFlagsCountry.js'
+import getFlag from '../helpers/getFlagsNationality.js'
 
 
-export default function RacesDetails() {
+export default function RacesDetails(props) {
     const [qualifiers, setQualifiers] = useState([]);
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -55,7 +58,9 @@ export default function RacesDetails() {
 
         <>
             <div>
+
                 <h1>{results.Circuit.circuitName}</h1>
+                <Flag country={getFlagShortName(props.flags, results.Circuit.Location.country)} />
                 <p>Country: {results.Circuit.Location.country}</p>
                 <p>Location: {results.Circuit.Location.locality}</p>
                 <p>Date: {results.date}</p>
@@ -81,7 +86,7 @@ export default function RacesDetails() {
 
                                 <tr key={position.position}>
                                     <td>{position.position}</td>
-                                    <td>{position.Driver.givenName} {position.Driver.familyName}</td>
+                                    <td><Flag country={getFlag(props.flags, position.Driver.nationality)} />{position.Driver.givenName} {position.Driver.familyName}</td>
                                     <td>{position.Constructor.name}</td>
                                     <td>{getFastestTime(position.Q1, position.Q2, position.Q3)}</td>
                                 </tr>
@@ -108,9 +113,9 @@ export default function RacesDetails() {
                             return (
                                 <tr>
                                     <td>{result.position}</td>
-                                    <td>{result.Driver.familyName} </td>
+                                    <td><Flag country={getFlag(props.flags, result.Driver.nationality)} />{result.Driver.familyName} </td>
                                     <td>{result.Constructor.name}</td>
-                                    <td>{result.time}</td>
+                                    <td>{result?.Time?.time || "DNQ"}</td>
                                     <td>{result.points}</td>
                                 </tr>
                             )
