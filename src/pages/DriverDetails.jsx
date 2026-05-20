@@ -73,7 +73,7 @@ export default function DriverDetails(props) {
             <div>
                 <h2>Driver races</h2>
                 <div>Furmula results</div>
-                <table>
+                <table className="driverDetailsBorder">
                     <thead>
                         <tr>
                             <th>Round</th>

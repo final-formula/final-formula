@@ -44,7 +44,7 @@ export default function Races(props) {
     return (
         <div>
             <h1>2013 F1 Race Winners</h1>
-            <table>
+            <table className="racesTable">
                 <thead>
                     <tr>
                         <th>Round</th>

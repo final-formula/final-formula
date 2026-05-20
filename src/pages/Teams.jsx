@@ -42,10 +42,11 @@ export default function Teams(props) {
     return (
         <div>
             <h2>Constructors Championship</h2>
-            <table>
+            <table className="teamTable">
                 <thead>
                     <tr>
-                        <th>Constructors Championship Standings - 2013</th>
+                        <th colSpan={4}>Constructors Championship Standings - 2013</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -65,7 +66,7 @@ export default function Teams(props) {
                 </tbody>
 
             </table>
-        </div>
+        </div >
     )
 }
 
