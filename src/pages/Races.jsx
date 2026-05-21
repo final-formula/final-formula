@@ -57,9 +57,9 @@ export default function Races(props) {
                 <table className="table">
                     <thead>
                         <tr>
-                            <td colSpan={5} className="table-head">
+                            <th colSpan={5} className="table-head">
                                 <h4>Drivers Championship Standings - 2013</h4>
-                            </td>
+                            </th>
 
                         </tr>
 
