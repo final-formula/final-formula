@@ -15,6 +15,27 @@ function App() {
 
   const [flags, setFlags] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [filters, setFilters] = useState([]);
+  const [search, setSearch] = useState("");
+  const [users, setUsers] = useState([]);
+
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
+
+  // useEffect(() => {
+  //   // const matchUsers = users.filter((user) => user.${}.toLowerCase().includes(search.toLocaleLowerCase()) || user.${}.toLowerCase().includes(search.toLocaleLowerCase()));
+  //   console.log(matchUsers);
+  //   setFilters(matchUsers)
+
+  // }, [search, users]);
+
+  // const getUsers = async () => {
+  //   const url = `https://api.jolpi.ca/ergast/f1/2013/constructors/${params.constructorId}/constructorStandings.json`;
+  //   const response = await axios.get(url);
+  //   setUsers(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
+  //   setLoading(false);
+  // };
 
   useEffect(() => {
     getFlags();
@@ -37,6 +58,7 @@ function App() {
 
 
   return (
+
     <BrowserRouter>
       <div className="wrapper">
         <nav>
@@ -48,6 +70,7 @@ function App() {
               <Link to="/drivers"><img src="../../public/Kaciga.png" className="nav-img" /> <span>Drivers</span></Link>
               <Link to="/teams"><img src="../../public/Teams.png" className="nav-img" /> <span>Teams</span></Link>
               <Link to="/races" className="link-races"><img src="../../public/Races1.png" className="nav-img races" /> <span>Races</span></Link>
+              <input type="text" value={search} placeholder="Search F1 ..." onChange={(e) => setSearch(e.target.value)} />
 
             </div>
 
