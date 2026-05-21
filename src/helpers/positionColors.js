@@ -9,6 +9,4 @@ export default function collors() {
         };
         return collors[position] || "#7393b3";
     }
-
-
 }
