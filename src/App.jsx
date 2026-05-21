@@ -45,7 +45,7 @@ function App() {
               <Link to="/drivers"><img src="../../public/Kaciga.png" className="nav-img" /> <span>Drivers</span></Link>
               <Link to="/teams"><img src="../../public/Teams.png" className="nav-img" /> <span>Teams</span></Link>
               <Link to="/races" className="link-races"><img src="../../public/Races1.png" className="nav-img races" /> <span>Races</span></Link>
-              <input type="text" value={search} placeholder="Search F1 ..." onChange={(e) => setSearch(e.target.value)} />
+
             </div>
           </div>
 
