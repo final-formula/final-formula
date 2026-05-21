@@ -1,7 +1,3 @@
-
-
-
-
 export default function collors() {
     const getPositionColor = (position) => {
         const colors = {
