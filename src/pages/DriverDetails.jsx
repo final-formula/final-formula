@@ -6,6 +6,7 @@ import Drivers from "./Drivers";
 import Flag from 'react-flagkit';
 import getFlagShortName from '../helpers/getFlagsCountry.js'
 import getFlag from '../helpers/getFlagsNationality.js'
+import { useNavigate } from "react-router";
 
 
 
@@ -16,12 +17,22 @@ export default function DriverDetails(props) {
     const [driverDetails, setDriverDetails] = useState(null);
     const [driverRaces, setDriverRaces] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const navigate = useNavigate();
     const params = useParams();
 
-    const handleClick = () => {
-        console.log("click");
-    }
+
+
+
+    const handleClickTeam = (id) => {
+        navigate(`/teams/details/${id}`);
+    };
+
+    const handleClickRace = (id) => {
+
+        navigate(`/races/details/${id}`);
+
+
+    };
 
     useEffect(() => {
         getDriverDetails();
@@ -53,59 +64,89 @@ export default function DriverDetails(props) {
     console.log("driverDetails", driverDetails)
     console.log("driverRaces", driverRaces)
     return (
-        <>
-
-            <div>
 
 
-                <h2>Driver details</h2>
-                <img src={`../../${driverDetails.Driver.driverId}.jpg`} className="team-image" />
-                <Flag country={getFlag(props.flags, driverDetails.Driver.nationality)} />
-                <p>Name {driverDetails.Driver.givenName} {driverDetails.Driver.familyName} </p>
-                <p>Team: {driverRaces[0].Results[0].Constructor.name} </p>
-                <p>Birth: {driverRaces[0].Results[0].Driver.dateOfBirth} </p>
-                <p>Biography: <a href={driverDetails.Driver.url} target="_blank"><img src="../../../public/link-black.png" className="link-icon" /></a></p>
+        <div className="mainScreen">
+
+            <div className="header">
+
+            </div>
+            <div className="details-screen">
+                <div className="card-container">
+                    <div className="card">
+                        <div className="upper-card">
+                            <div className="left-side">
+                                <img src={`../../${driverDetails.Driver.driverId}.jpg`} className="team-image" />
+                            </div>
+
+                            <div className="right-side">
+                                <Flag className="flag-detail" size={60} country={getFlag(props.flags, driverDetails.Driver.nationality)} />
+                                <p>{driverDetails.Driver.givenName} {driverDetails.Driver.familyName} </p>
+                            </div>
+
+                        </div>
+                        <div className="lower-card">
+                            <pre>Country: {driverDetails.Driver.nationality}</pre>
+                            <pre>Team:    {driverRaces[0].Results[0].Constructor.name} </pre>
+                            <pre>Birth:   {driverRaces[0].Results[0].Driver.dateOfBirth} </pre>
+                            <pre>Biography:  <a href={driverDetails.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="link-icon" /></a></pre>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div className="table-div-details">
+
+                    <table className="table-details">
+                        <thead>
+                            <tr>
+                                <td colSpan={5}><h3>Formula 1 2013 Results</h3></td>
+                            </tr>
+
+                        </thead>
+
+                        {<tbody>
+                            <tr>
+                                <th>Round</th>
+                                <th>Grand Prix</th>
+                                <th>Team</th>
+                                <th>Grid</th>
+                                <th>Race</th>
+                            </tr>
+                            {driverRaces.map((details) => {
+                                return (
+                                    <tr key={details.driverId} >
+
+                                        <td>{details.round}</td>
+                                        <td onClick={() => handleClickRace(details.round)} className="td-flag on-click"><Flag country={getFlagShortName(props.flags, details.Circuit.Location.country)} /> {details.raceName}</td>
+                                        <td> {details.Results[0].Constructor.name}</td>
+                                        <td> {details.Results[0].grid}</td>
+                                        <td> {details.Results[0].position}</td>
+
+                                    </tr>
+
+
+                                )
+                            })}
+
+                        </tbody>}
+
+                    </table>
+
+
+
+                </div>
 
             </div>
 
 
 
-            <div>
-                <h2>Driver races</h2>
-                <div>Furmula results</div>
-                <table className="driverDetailsBorder">
-                    <thead>
-                        <tr>
-                            <th>Round</th>
-                            <th>Grand Prix</th>
-                            <th>Team</th>
-                            <th>Grid</th>
-                            <th>Race</th>
-                        </tr>
-                    </thead>
-
-                    {<tbody>
-                        {driverRaces.map((details) => {
-                            return (
-                                <tr key={details.driverId} >
-
-                                    <td>{details.round}</td>
-                                    <td><Flag country={getFlagShortName(props.flags, details.Circuit.Location.country)} /> {details.raceName}</td>
-                                    <td> {details.Results[0].Constructor.name}</td>
-                                    <td> {details.Results[0].grid}</td>
-                                    <td> {details.Results[0].position}</td>
-
-                                </tr>
 
 
-                            )
-                        })}
 
-                    </tbody>}
+        </div>
 
-                </table>
-
-            </div>
-        </>
     )
 }

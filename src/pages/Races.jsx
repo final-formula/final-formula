@@ -34,6 +34,12 @@ export default function Races(props) {
 
 
     };
+    const handleClickDriver = (id) => {
+
+        navigate(`/drivers/details/${id}`);
+
+
+    };
 
     if (loading) {
         return <Loader />
@@ -42,37 +48,52 @@ export default function Races(props) {
 
 
     return (
-        <div>
-            <h1>2013 F1 Race Winners</h1>
-            <table className="racesTable">
-                <thead>
-                    <tr>
-                        <th>Round</th>
-                        <th>Grand Prix</th>
-                        <th>Circuit</th>
-                        <th>Date</th>
-                        <th>Winner</th>
-                    </tr>
+        <div className="mainScreen">
+            <div className="header">
 
-                </thead>
-                <tbody>
-                    {races.map((race) => {
-                        return (
-                            <tr key={race.round}
-                                onClick={() => handleClick(race.round)}
-                            >
-                                <td>{race.round}</td>
-                                <td><Flag country={getFlagShortName(props.flags, race.Circuit.Location.country)} /> {race.raceName}</td>
-                                <td>{race.Circuit.circuitName}</td>
-                                <td>{race.date}</td>
-                                <td><Flag country={getFlag(props.flags, race.Results[0].Driver.nationality)} /> {race.Results[0].Driver.familyName}</td>
-                            </tr>
+            </div>
+            <h1>Race Calendar</h1>
+            <div className="table-div">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <td colSpan={5} className="table-head">
+                                <h4>Drivers Championship Standings - 2013</h4>
+                            </td>
+
+                        </tr>
 
 
-                        );
-                    })}
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody className="table-body">
+                        <tr>
+                            <th>Round</th>
+                            <th>Grand Prix</th>
+                            <th>Circuit</th>
+                            <th>Date</th>
+                            <th>Winner</th>
+                        </tr>
+                        {races.map((race) => {
+                            return (
+                                <tr key={race.round}
+
+                                >
+                                    <td>{race.round}</td>
+                                    <td onClick={() => handleClick(race.round)} className="td-flag on-click"><Flag country={getFlagShortName(props.flags, race.Circuit.Location.country)} /> {race.raceName}</td>
+                                    <td>{race.Circuit.circuitName}</td>
+                                    <td>{race.date}</td>
+                                    <td onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}
+                                        className="td-flag on-click"><Flag country={getFlag(props.flags, race.Results[0].Driver.nationality)} /> {race.Results[0].Driver.familyName}</td>
+                                </tr>
+
+
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+
 
         </div>
     );

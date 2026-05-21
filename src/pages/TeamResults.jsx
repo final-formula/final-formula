@@ -45,54 +45,80 @@ export default function TeamResults(props) {
     // console.log(teamDetails);
 
     return (
-        <div className="teamResultsContainer">
+        <div className="mainScreen">
+            <div className="header">
 
-            <div>
-                <img src={`../../${teamDetails.Constructor.constructorId}.png`} className="team-image" />
-                <div>
-                    <Flag country={getFlag(props.flags, teamDetails.Constructor.nationality)} />
-                    <p>Name {teamDetails.Constructor.name} </p>
+            </div>
+            <div className="mainPart">
+                <div className="details-screen">
+                    <div className="card-container">
+                        <div className="card">
+                            <div className="upper-card">
+                                <div className="left-side">
+                                    <img src={`../../${teamDetails.Constructor.constructorId}.png`} className="team-image" />
+                                </div>
+
+                                <div className="right-side">
+                                    <Flag className="flag-detail" size={84} country={getFlag(props.flags, teamDetails.Constructor.nationality)} />
+                                    <p>{teamDetails.Constructor.name} </p>
+                                </div>
+                            </div>
+                            <div className="lower-card">
+                                <pre>Country:    {teamDetails.Constructor.nationality}</pre>
+                                <pre>Position:   {teamDetails.position}</pre>
+                                <pre>Points:     {teamDetails.points}</pre>
+                                <pre>History:   <a href={teamDetails.Constructor.url} target="_blank"> <img src="../../../public/link-white.png" className="link-icon" /></a></pre>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div className="table-div-details">
+                        <table className="table-details">
+                            <thead>
+                                <tr>
+                                    <td colSpan={5}><h3>Formula 1 2013 Results</h3></td>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <th>Round</th>
+                                    <th>Grand Prix</th>
+                                    <th>{teamResults[0].Results[0].Driver.familyName}</th>
+                                    <th>{teamResults[0].Results[1].Driver.familyName}</th>
+                                    <th>Points</th>
+
+
+                                </tr>
+                                {teamResults.map((result) => {
+                                    return (
+                                        <tr>
+                                            <td>{result.round}</td>
+                                            <td className="td-flag"><Flag country={getFlagShortName(props.flags, result.Circuit.Location.country)} />{result.raceName}</td>
+                                            <td>{result.Results[0].position}</td>
+                                            <td>{result.Results[1].position}</td>
+                                            <td>{sumPoints(Number(result.Results[0].points), Number(result.Results[1].points))}</td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
 
 
-                <div>
-                    <p>{teamDetails.Constructor.nationality}</p>
-                    <p>{teamDetails.position}</p>
-                    <p>{teamDetails.points}</p>
-                    <p>{teamDetails.name}</p>
-                </div>
 
             </div>
 
 
 
-            <table className="teamResultTable">
-                <thead>
-                    <tr>
-                        <th>Round</th>
-                        <th>Grand Prix</th>
-                        <th>{teamResults[0].Results[0].Driver.familyName}</th>
-                        <th>{teamResults[0].Results[1].Driver.familyName}</th>
-                        <th>Points</th>
 
-
-                    </tr>
-
-                </thead>
-                <tbody>
-                    {teamResults.map((result) => {
-                        return (
-                            <tr>
-                                <td>{result.round}</td>
-                                <td><Flag country={getFlagShortName(props.flags, result.Circuit.Location.country)} />{result.raceName}</td>
-                                <td>{result.Results[0].position}</td>
-                                <td>{result.Results[1].position}</td>
-                                <td>{sumPoints(Number(result.Results[0].points), Number(result.Results[1].points))}</td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
         </div>
     );
 }

@@ -34,38 +34,48 @@ export default function Teams(props) {
     const handleClick = (id) => {
         navigate(`/teams/details/${id}`);
     };
+    const handleClickUrl = (id) => {
+        navigate(`id`);
+    };
 
     if (loading) {
         return <Loader />
     }
 
     return (
-        <div>
-            <h2>Constructors Championship</h2>
-            <table className="teamTable">
-                <thead>
-                    <tr>
-                        <th colSpan={4}>Constructors Championship Standings - 2013</th>
+        <div className="mainScreen">
+            <div className="header">
 
-                    </tr>
-                </thead>
-                <tbody>
-                    {teams.map((team) => {
-                        return (
-                            <tr key={team.Constructor.constructorId}>
-                                <td>{team.position}</td>
-                                <td
-                                    onClick={() => handleClick(team.Constructor.constructorId)}> <Flag country={getFlag(props.flags, team.Constructor.nationality)} /> {team.Constructor.name}
+            </div>
+            <h1>Constructors Championship</h1>
+            <div className="table-div">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th colSpan={4}><h3>Constructors Championship Standings - 2013</h3></th>
 
-                                </td>
-                                <td>Details <a href={team.Constructor.url} target="_blank"><img src="./link-black.png" className="link-icon" /></a></td>
-                                <td>{team.points}</td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {teams.map((team) => {
+                            return (
+                                <tr key={team.Constructor.constructorId}>
+                                    <td style={{ width: '10%' }}>{team.position}</td>
+                                    <td
+                                        style={{ width: '50%' }}
+                                        onClick={() => handleClick(team.Constructor.constructorId)} className="on-click"> <Flag country={getFlag(props.flags, team.Constructor.nationality)} /> {team.Constructor.name}
 
-            </table>
+                                    </td>
+                                    <td style={{ width: '20%' }} className="td-link"> <a href={team.Constructor.url} target="_blank">Details <img src="./link-black.png" className="link-icon" /></a></td>
+                                    <td style={{ width: '20%' }}>{team.points}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+
+                </table>
+            </div>
+
         </div >
     )
 }

@@ -41,10 +41,17 @@ function App() {
       <div className="wrapper">
         <nav>
           <div className="navbar">
-            <Link to="/"><img src="../../public/F1-2013-Legends-Edition.jpg" className="homeImage" /></Link>
-            <Link to="/drivers"><img src="../../public/Kaciga.png" className="nav-img" /> Drivers</Link>
-            <Link to="/races"><img src="../../public/Races1.png" className="nav-img" /> Races</Link>
-            <Link to="/teams"><img src="../../public/Teams.png" className="nav-img" /> Teams</Link>
+            <div className="homeDiv">
+              <Link to="/"><img src="../../public/F1-2013-Legends-Edition.jpg" className="homeImage" /></Link>
+            </div>
+            <div className="linksDiv">
+              <Link to="/drivers"><img src="../../public/Kaciga.png" className="nav-img" /> <span>Drivers</span></Link>
+              <Link to="/teams"><img src="../../public/Teams.png" className="nav-img" /> <span>Teams</span></Link>
+              <Link to="/races" className="link-races"><img src="../../public/Races1.png" className="nav-img races" /> <span>Races</span></Link>
+
+            </div>
+
+
           </div>
 
 

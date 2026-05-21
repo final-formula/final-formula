@@ -5,12 +5,14 @@ import { useParams } from "react-router";
 import Flag from 'react-flagkit';
 import getFlagShortName from '../helpers/getFlagsCountry.js'
 import getFlag from '../helpers/getFlagsNationality.js'
+import { useNavigate } from "react-router";
 
 
 export default function RacesDetails(props) {
     const [qualifiers, setQualifiers] = useState([]);
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     const params = useParams();
 
@@ -18,7 +20,12 @@ export default function RacesDetails(props) {
         getRaceDetails();
     }, []);
 
+    const handleClick = (id) => {
 
+        navigate(`/drivers/details/${id}`);
+
+
+    };
     const getRaceDetails = async () => {
         const urlQualifying = `https://api.jolpi.ca/ergast/f1/2013/${params.raceName}/qualifying.json`;
         const urlResults = `https://api.jolpi.ca/ergast/f1/2013/${params.raceName}/results.json`;
@@ -56,72 +63,103 @@ export default function RacesDetails(props) {
     return (
 
 
-        <>
-            <div>
-
-                <h1>{results.Circuit.circuitName}</h1>
-                <Flag country={getFlagShortName(props.flags, results.Circuit.Location.country)} />
-                <p>Country: {results.Circuit.Location.country}</p>
-                <p>Location: {results.Circuit.Location.locality}</p>
-                <p>Date: {results.date}</p>
-                <p>Full Report: <a href={results.url} target="_blank"><img src="../../../public/link-black.png" className="link-icon" /></a></p>
-            </div>
-            <div>
-                <h1>2013 qualifying results</h1>
-                <table className="raceDetailsTable">
-                    <thead>
-                        <tr>
-                            <th>Pos</th>
-                            <th>Driver</th>
-                            <th>Team</th>
-                            <th>Best Time</th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                        {qualifiers.map((position) => {
-                            return (
-
-
-
-                                <tr key={position.position}>
-                                    <td>{position.position}</td>
-                                    <td><Flag country={getFlag(props.flags, position.Driver.nationality)} />{position.Driver.givenName} {position.Driver.familyName}</td>
-                                    <td>{position.Constructor.name}</td>
-                                    <td>{getFastestTime(position.Q1, position.Q2, position.Q3)}</td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+        <div className="mainScreen">
+            <div className="header">
 
             </div>
-            <div>
-                <h1>Race results</h1>
-                <table className="raceDetailsTable2">
-                    <thead>
-                        <tr>
-                            <th>Pos</th>
-                            <th>Driver</th>
-                            <th>Team</th>
-                            <th>Result</th>
-                            <th>Points</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {results.Results.map((result) => {
-                            return (
+            <div className="mainPart">
+                <div className="details-screen">
+                    <div className="card-container-country">
+                        <div className="card-country">
+                            <div className="upper-card-country">
+
+                                <Flag size={150} country={getFlagShortName(props.flags, results.Circuit.Location.country)} />
+                                <p>{results.Circuit.circuitName}</p>
+                            </div>
+                            <div className="lower-card-country">
+                                <pre>Country:     {results.Circuit.Location.country}</pre>
+                                <pre>Location:    {results.Circuit.Location.locality}</pre>
+                                <pre>Date:        {results.date}</pre>
+                                <pre>Full Report: <a href={results.url} target="_blank"><img src="../../../public/link-white.png" className="link-icon" /></a></pre>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div className="table-div-details">
+
+                        <table className="table-details">
+                            <thead>
+
                                 <tr>
-                                    <td>{result.position}</td>
-                                    <td><Flag country={getFlag(props.flags, result.Driver.nationality)} />{result.Driver.familyName} </td>
-                                    <td>{result.Constructor.name}</td>
-                                    <td>{result?.Time?.time || "DNQ"}</td>
-                                    <td>{result.points}</td>
+
+                                    <th colSpan={4}><h3>2013 qualifying results</h3></th>
+
                                 </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Pos</th>
+                                    <th>Driver</th>
+                                    <th>Team</th>
+                                    <th>Best Time</th>
+                                </tr>
+                                {qualifiers.map((position) => {
+                                    return (
+
+
+
+                                        <tr key={position.position}>
+                                            <td>{position.position}</td>
+                                            <td onClick={() => handleClick(position.Driver.driverId)} className="td-flag on-click"><Flag country={getFlag(props.flags, position.Driver.nationality)} />{position.Driver.givenName} {position.Driver.familyName}</td>
+                                            <td>{position.Constructor.name}</td>
+                                            <td>{getFastestTime(position.Q1, position.Q2, position.Q3)}</td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div className="table-div-details">
+
+                        <table className="table-details">
+                            <thead>
+                                <tr>
+
+                                    <th colSpan={5}><h3>Race results</h3></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Pos</th>
+                                    <th>Driver</th>
+                                    <th>Team</th>
+                                    <th>Result</th>
+                                    <th>Points</th>
+                                </tr>
+                                {results.Results.map((result) => {
+                                    return (
+                                        <tr key={result.raceName}>
+                                            <td>{result.position}</td>
+                                            <td onClick={() => handleClick(result.Driver.driverId)} className="td-flag on-click"><Flag country={getFlag(props.flags, result.Driver.nationality)} />{result.Driver.familyName} </td>
+                                            <td>{result.Constructor.name}</td>
+                                            <td>{result?.Time?.time || "DNQ"}</td>
+                                            <td>{result.points}</td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+
 
             </div>
 
@@ -133,6 +171,6 @@ export default function RacesDetails(props) {
 
 
 
-        </>
+        </div>
     );
 }     
