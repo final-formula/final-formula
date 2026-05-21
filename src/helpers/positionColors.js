@@ -7,6 +7,6 @@ export default function collors() {
             4: "lightgreen",
             5: "lightblue"
         };
-        return collors[position] || "gray";
+        return collors[position] || "#7393b3";
     }
 }
