@@ -1,7 +1,3 @@
-import React from "react";
-
-
-
 export default function collors() {
     const getPositionColor = (position) => {
         const colors = {
@@ -13,6 +9,4 @@ export default function collors() {
         };
         return collors[position] || "gray";
     }
-
-
 }
