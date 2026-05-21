@@ -54,6 +54,9 @@ export default function Drivers(props) {
         <>
 
             <div className="mainScreen">
+                <div className="header">
+
+                </div>
 
                 <h1>Drivers Championship</h1>
 
