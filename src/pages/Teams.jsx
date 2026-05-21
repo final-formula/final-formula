@@ -63,7 +63,7 @@ export default function Teams(props) {
                                     <td style={{ width: '10%' }}>{team.position}</td>
                                     <td
                                         style={{ width: '50%' }}
-                                        onClick={() => handleClick(team.Constructor.constructorId)} className="on-click"> <Flag country={getFlag(props.flags, team.Constructor.nationality)} /> {team.Constructor.name}
+                                        onClick={() => handleClick(team.Constructor.constructorId)} className="td-flag on-click"> <Flag country={getFlag(props.flags, team.Constructor.nationality)} /> {team.Constructor.name}
 
                                     </td>
                                     <td style={{ width: '20%' }} className="td-link"> <a href={team.Constructor.url} target="_blank">Details <img src="./link-black.png" className="link-icon" /></a></td>
