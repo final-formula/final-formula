@@ -7,6 +7,7 @@ import Flag from 'react-flagkit';
 import getFlagShortName from '../helpers/getFlagsCountry.js'
 import getFlag from '../helpers/getFlagsNationality.js'
 import { useNavigate } from "react-router";
+import getPositionColor from '../helpers/positionColors.js'
 
 
 
@@ -123,7 +124,7 @@ export default function DriverDetails(props) {
                                         <td onClick={() => handleClickRace(details.round)} className="td-flag on-click"><Flag country={getFlagShortName(props.flags, details.Circuit.Location.country)} /> {details.raceName}</td>
                                         <td> {details.Results[0].Constructor.name}</td>
                                         <td> {details.Results[0].grid}</td>
-                                        <td> {details.Results[0].position}</td>
+                                        <td style={{ backgroundColor: getPositionColor(details.Results[0].position) }}> {details.Results[0].position}</td>
 
                                     </tr>
 

@@ -54,6 +54,10 @@
 }
 
 .linksDiv a:hover {
+  background-color: #242424;
+}
+
+.linksDiv a:active {
   background-color: black;
 }
 

@@ -4,7 +4,7 @@ import Loader from "../components/Loader";
 import { useParams } from "react-router";
 import Flag from 'react-flagkit';
 import getFlagShortName from '../helpers/getFlagsCountry.js'
-
+import getPositionColor from '../helpers/positionColors.js'
 import getFlag from '../helpers/getFlagsNationality.js'
 
 export default function TeamResults(props) {
@@ -100,8 +100,8 @@ export default function TeamResults(props) {
                                         <tr>
                                             <td>{result.round}</td>
                                             <td className="td-flag"><Flag country={getFlagShortName(props.flags, result.Circuit.Location.country)} />{result.raceName}</td>
-                                            <td>{result.Results[0].position}</td>
-                                            <td>{result.Results[1].position}</td>
+                                            <td style={{ backgroundColor: getPositionColor(result.Results[0]?.position) }}>{result.Results[0].position}</td>
+                                            <td style={{ backgroundColor: getPositionColor(result.Results[1]?.position) }}>{result.Results[1].position}</td>
                                             <td>{sumPoints(Number(result.Results[0].points), Number(result.Results[1].points))}</td>
                                         </tr>
                                     );

@@ -3,7 +3,7 @@ import Home from "./pages/Home"
 import Races from "./pages/Races"
 import Teams from "./pages/Teams"
 import DriverDetails from "./pages/DriverDetails"
-import RacesDetalis from "./pages/RacesDetails"
+import RacesDetails from "./pages/RacesDetails"
 import './App.css'
 import Drivers from "./pages/Drivers";
 import TeamResults from "./pages/TeamResults";
@@ -61,7 +61,7 @@ function App() {
           <Route path="/drivers" element={<Drivers flags={flags} />} />
           <Route path="/drivers/details/:driverId" element={<DriverDetails flags={flags} />} />
           <Route path="/races" element={<Races flags={flags} />} />
-          <Route path="/races/details/:raceName" element={<RacesDetalis flags={flags} />} />
+          <Route path="/races/details/:raceName" element={<RacesDetails flags={flags} />} />
           <Route path="/teams" element={<Teams flags={flags} />} />
           <Route path="/teams/details/:constructorId" element={<TeamResults flags={flags} />} />
         </Routes>

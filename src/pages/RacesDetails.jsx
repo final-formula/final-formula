@@ -6,6 +6,7 @@ import Flag from 'react-flagkit';
 import getFlagShortName from '../helpers/getFlagsCountry.js'
 import getFlag from '../helpers/getFlagsNationality.js'
 import { useNavigate } from "react-router";
+import getPositionColor from '../helpers/positionColors.js'
 
 
 export default function RacesDetails(props) {
@@ -113,7 +114,7 @@ export default function RacesDetails(props) {
 
                                         <tr key={position.position}>
                                             <td>{position.position}</td>
-                                            <td onClick={() => handleClick(position.Driver.driverId)} className="td-flag on-click"><Flag country={getFlag(props.flags, position.Driver.nationality)} />{position.Driver.givenName} {position.Driver.familyName}</td>
+                                            <td className="td-flag on-click"><Flag country={getFlag(props.flags, position.Driver.nationality)} />{position.Driver.givenName} {position.Driver.familyName}</td>
                                             <td>{position.Constructor.name}</td>
                                             <td>{getFastestTime(position.Q1, position.Q2, position.Q3)}</td>
                                         </tr>
@@ -148,7 +149,7 @@ export default function RacesDetails(props) {
                                             <td onClick={() => handleClick(result.Driver.driverId)} className="td-flag on-click"><Flag country={getFlag(props.flags, result.Driver.nationality)} />{result.Driver.familyName} </td>
                                             <td>{result.Constructor.name}</td>
                                             <td>{result?.Time?.time || "DNQ"}</td>
-                                            <td>{result.points}</td>
+                                            <td style={{ backgroundColor: getPositionColor(result.position) }}>{result.points}</td>
                                         </tr>
                                     )
                                 })}
