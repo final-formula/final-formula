@@ -317,8 +317,8 @@ thead h3 {
   border: 1px solid black;
   background-color: darkgrey;
   margin: 0 10px;
-
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .on-click:hover {
