@@ -9,6 +9,7 @@ import getFlag from '../helpers/getFlagsNationality.js'
 import { useNavigate } from "react-router";
 import getPositionColor from '../helpers/positionColors.js'
 import Breadcrumbs from "../components/Breadcrumbs"
+import FilterText from "../components/FilterText"
 
 
 
@@ -16,18 +17,18 @@ import Breadcrumbs from "../components/Breadcrumbs"
 
 export default function DriverDetails(props) {
 
-    const [driverDetails, setDriverDetails] = useState(null);
-    const [driverRaces, setDriverRaces] = useState(null);
+    const [driverDetails, setDriverDetails] = useState([]);
+    const [driverRaces, setDriverRaces] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [search, setSearch] = useState("");
+    const [filteredDrivers, setFilteredDrivers] = useState([])
     const navigate = useNavigate();
     const params = useParams();
 
 
 
 
-    const handleClickTeam = (id) => {
-        navigate(`/teams/details/${id}`);
-    };
+
 
     const handleClickRace = (id) => {
 
@@ -40,6 +41,13 @@ export default function DriverDetails(props) {
         getDriverDetails();
 
     }, []);
+
+    useEffect(() => {
+        const matchRaces = driverRaces.filter((driver) => driver.raceName.toLowerCase().includes(search.toLowerCase()));
+
+
+        setFilteredDrivers(matchRaces);
+    }, [search, driverRaces])
 
     const getDriverDetails = async () => {
         console.log("params ", params);
@@ -77,7 +85,13 @@ export default function DriverDetails(props) {
         <div className="mainScreen">
 
             <div className="header">
-                <Breadcrumbs crumbs={driversDetailsCrumbs} />
+                <div className="search-div">
+                    <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
+                    <button onClick={() => setSearch("")}>clear</button>
+                </div>
+                <div className="Breadcrumbs-main">
+                    <Breadcrumbs crumbs={driversDetailsCrumbs} />
+                </div>
             </div>
             <div className="details-screen">
                 <div className="card-container">
@@ -123,7 +137,7 @@ export default function DriverDetails(props) {
                                 <th>Grid</th>
                                 <th>Race</th>
                             </tr>
-                            {driverRaces.map((details) => {
+                            {filteredDrivers.map((details) => {
                                 return (
                                     <tr key={details.driverId} >
 

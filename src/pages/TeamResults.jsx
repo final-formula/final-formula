@@ -7,13 +7,14 @@ import getFlagShortName from '../helpers/getFlagsCountry.js'
 import getPositionColor from '../helpers/positionColors.js'
 import getFlag from '../helpers/getFlagsNationality.js'
 import Breadcrumbs from "../components/Breadcrumbs"
+import { useNavigate } from "react-router";
 
 export default function TeamResults(props) {
 
     const [teamResults, setTeamResults] = useState([]);
     const [teamDetails, setTeamDetails] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const navigate = useNavigate();
     const params = useParams();
 
 
@@ -21,6 +22,13 @@ export default function TeamResults(props) {
     useEffect(() => {
         getTeamResults();
     }, []);
+
+    const handleClick = (id) => {
+
+        navigate(`/races/details/${id}`);
+
+
+    };
 
     const getTeamResults = async () => {
         console.log("params", params);
@@ -42,8 +50,8 @@ export default function TeamResults(props) {
         return <Loader />
     }
 
-    console.log(teamResults);
-    // console.log(teamDetails);
+    console.log("res", teamResults);
+    console.log("det", teamDetails);
 
     const teamsDetailsCrumbs = [
         { path: "/teams", label: "Teams" },
@@ -54,7 +62,12 @@ export default function TeamResults(props) {
     return (
         <div className="mainScreen">
             <div className="header">
-                <Breadcrumbs crumbs={teamsDetailsCrumbs} />
+                <div className="search-div">
+
+                </div>
+                <div className="Breadcrumbs-main">
+                    <Breadcrumbs crumbs={teamsDetailsCrumbs} />
+                </div>
             </div>
             <div className="mainPart">
                 <div className="details-screen">
@@ -103,10 +116,11 @@ export default function TeamResults(props) {
 
                                 </tr>
                                 {teamResults.map((result) => {
+                                    console.log(result)
                                     return (
                                         <tr>
                                             <td>{result.round}</td>
-                                            <td className="td-flag"><Flag country={getFlagShortName(props.flags, result.Circuit.Location.country)} />{result.raceName}</td>
+                                            <td onClick={() => handleClick(result.round)} className="td-flag"><Flag country={getFlagShortName(props.flags, result.Circuit.Location.country)} />{result.raceName}</td>
                                             <td style={{ backgroundColor: getPositionColor(result.Results[0]?.position) }}>{result.Results[0].position}</td>
                                             <td style={{ backgroundColor: getPositionColor(result.Results[1]?.position) }}>{result.Results[1].position}</td>
                                             <td>{sumPoints(Number(result.Results[0].points), Number(result.Results[1].points))}</td>

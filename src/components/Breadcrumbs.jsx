@@ -4,7 +4,7 @@ export default function Breadcrumbs(props) {
     return (
         <div className="breadcrumbs-div">
             <Link to="/">Home</Link >
-            {props.crumbs.map((crumb, i) => {
+            {props.crumbs?.map((crumb, i) => {
                 const isLast = i === props.crumbs.length - 1;
 
                 return (

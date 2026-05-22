@@ -8,12 +8,16 @@ import getFlag from '../helpers/getFlagsNationality.js'
 import { useNavigate } from "react-router";
 import getPositionColor from '../helpers/positionColors.js'
 import Breadcrumbs from "../components/Breadcrumbs"
+import FilterText from "../components/FilterText"
 
 
 export default function RacesDetails(props) {
     const [qualifiers, setQualifiers] = useState([]);
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [search, setSearch] = useState("");
+    const [filteredResults, setFilteredResults] = useState([])
+    const [filteredQualifiers, setFilteredQualifiers] = useState([])
     const navigate = useNavigate();
 
     const params = useParams();
@@ -22,12 +26,25 @@ export default function RacesDetails(props) {
         getRaceDetails();
     }, []);
 
+    useEffect(() => {
+        const matchQualifiers = qualifiers.filter((driver) => driver.Driver.givenName.toLowerCase().includes(search.toLowerCase()) ||
+            driver.Driver.familyName.toLowerCase().includes(search.toLowerCase()));
+        console.log("results ", results);
+        const matchResults = results.Results?.filter((result) =>
+            result.Driver.familyName.toLowerCase().includes(search.toLowerCase()));
+        setFilteredQualifiers(matchQualifiers);
+        console.log("matchResults ", matchResults)
+        setFilteredResults(matchResults);
+    }, [search, qualifiers, results])
+
     const handleClick = (id) => {
 
         navigate(`/drivers/details/${id}`);
 
 
     };
+
+
     const getRaceDetails = async () => {
         const urlQualifying = `https://api.jolpi.ca/ergast/f1/2013/${params.raceName}/qualifying.json`;
         const urlResults = `https://api.jolpi.ca/ergast/f1/2013/${params.raceName}/results.json`;
@@ -71,7 +88,13 @@ export default function RacesDetails(props) {
 
         <div className="mainScreen">
             <div className="header">
-                <Breadcrumbs crumbs={racesDetailsCrumbs} />
+                <div className="search-div">
+                    <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
+                    <button onClick={() => setSearch("")}>clear</button>
+                </div>
+                <div className="Breadcrumbs-main">
+                    <Breadcrumbs crumbs={racesDetailsCrumbs} />
+                </div>
             </div>
             <div className="mainPart">
                 <div className="details-screen">
@@ -112,14 +135,14 @@ export default function RacesDetails(props) {
                                     <th>Team</th>
                                     <th>Best Time</th>
                                 </tr>
-                                {qualifiers.map((position) => {
+                                {filteredQualifiers.map((position) => {
                                     return (
 
 
 
                                         <tr key={position.position}>
                                             <td>{position.position}</td>
-                                            <td className="td-flag on-click"><Flag country={getFlag(props.flags, position.Driver.nationality)} />{position.Driver.givenName} {position.Driver.familyName}</td>
+                                            <td className="td-flag on-click" onClick={() => handleClick(position.Driver.driverId)}><Flag country={getFlag(props.flags, position.Driver.nationality)} />{position.Driver.givenName} {position.Driver.familyName}</td>
                                             <td>{position.Constructor.name}</td>
                                             <td>{getFastestTime(position.Q1, position.Q2, position.Q3)}</td>
                                         </tr>
@@ -147,7 +170,7 @@ export default function RacesDetails(props) {
                                     <th>Result</th>
                                     <th>Points</th>
                                 </tr>
-                                {results.Results.map((result) => {
+                                {filteredResults?.map((result) => {
                                     return (
                                         <tr key={result.raceName}>
                                             <td>{result.position}</td>
