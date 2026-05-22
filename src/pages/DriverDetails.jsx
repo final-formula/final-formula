@@ -89,7 +89,7 @@ export default function DriverDetails(props) {
             <div className="header">
                 <SelectYear value={year} change={(e) => setYear(e.target.value)} />
                 <div className="search-div">
-                    <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
+                    <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>
                 </div>
                 <div className="Breadcrumbs-main">
