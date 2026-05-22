@@ -309,11 +309,6 @@ thead h3 {
   cursor: pointer;
 }
 
-.on-click:hover {
-
-  background-color: #969696;
-}
-
 .breadcrumbs-div a,
 .breadcrumbs-div span {
   color: white;
@@ -321,8 +316,7 @@ thead h3 {
   padding: 10px;
 }
 
-.veliki {
-  font-size: 2rem;
-  color: crimson;
+.on-click:hover {
 
+  background-color: #969696;
 }
