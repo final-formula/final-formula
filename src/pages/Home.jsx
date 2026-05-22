@@ -9,9 +9,13 @@ export default function Home() {
                     <Breadcrumbs />
                 </div>
             </div>
-            <h1>Home</h1>
-            <p> dobrodosli na formulu jedan</p>
-            <p>Ovde mozete videti sve informacije vezane za  Formlu 1</p>
+            <h1 style={{ textAlign: "center" }}>Formula F1</h1>
+            <p> Welcome to Formula F1</p>
+            <p>Here you can see all information for F1 </p>
+            <p>Drivers</p>
+            <p>Races</p>
+            <p>Teams</p>
+
 
         </div>
     )
