@@ -6,16 +6,26 @@ import getFlagShortName from '../helpers/getFlagsCountry.js'
 import Flag from 'react-flagkit';
 import getFlag from '../helpers/getFlagsNationality.js'
 import Breadcrumbs from "../components/Breadcrumbs"
+import FilterText from "../components/FilterText"
 
 export default function Races(props) {
     const [races, setRaces] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [search, setSearch] = useState("");
+    const [filteredRaces, setFilteredRaces] = useState([]);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         getRaces();
     }, []);
+
+    useEffect(() => {
+        const matchRaces = races.filter((race) => race.raceName.toLowerCase().includes(search.toLowerCase()));
+
+
+        setFilteredRaces(matchRaces);
+    }, [search, races])
 
 
 
@@ -54,7 +64,13 @@ export default function Races(props) {
     return (
         <div className="mainScreen">
             <div className="header">
-                <Breadcrumbs crumbs={racesCrumbs} />
+                <div className="search-div">
+                    <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
+                    <button onClick={() => setSearch("")}>clear</button>
+                </div>
+                <div className="Breadcrumbs-main">
+                    <Breadcrumbs crumbs={racesCrumbs} />
+                </div>
             </div>
             <h1>Race Calendar</h1>
             <div className="table-div">
@@ -78,7 +94,11 @@ export default function Races(props) {
                             <th>Date</th>
                             <th>Winner</th>
                         </tr>
-                        {races.map((race) => {
+
+                        {filteredRaces.length === 0 && (
+                            <h1>No Race match criteria ... try again</h1>
+                        )}
+                        {filteredRaces.map((race) => {
                             return (
                                 <tr key={race.round}
 

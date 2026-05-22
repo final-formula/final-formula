@@ -72,9 +72,13 @@ export default function Drivers(props) {
 
             <div className="mainScreen">
                 <div className="header">
-                    <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
-                    <button onClick={() => setSearch("")}>clear</button>
-                    <Breadcrumbs crumbs={driversCrumbs} />
+                    <div className="search-div">
+                        <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
+                        <button onClick={() => setSearch("")}>clear</button>
+                    </div>
+                    <div className="Breadcrumbs-main">
+                        <Breadcrumbs crumbs={driversCrumbs} />
+                    </div>
                 </div>
 
                 <h1>Drivers Championship</h1>

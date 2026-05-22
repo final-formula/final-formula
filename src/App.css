@@ -89,6 +89,8 @@
   background-color: #303030;
   position: sticky;
   top: 0;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .mainScreen {
@@ -312,6 +314,9 @@ thead h3 {
   background-color: #969696;
 }
 
-.breadcrumbs-div a {
+.breadcrumbs-div a,
+.breadcrumbs-div span {
   color: white;
+  font-size: 1.5rem;
+  padding: 10px;
 }

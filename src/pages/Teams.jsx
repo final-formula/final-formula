@@ -5,12 +5,15 @@ import { useNavigate } from "react-router";
 import Flag from 'react-flagkit';
 import getFlag from '../helpers/getFlagsNationality.js'
 import Breadcrumbs from "../components/Breadcrumbs"
+import FilterText from "../components/FilterText"
 
 
 export default function Teams(props) {
 
     const [teams, setTeams] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [search, setSearch] = useState("");
+    const [filteredTeams, setFilteredTeams] = useState([]);
 
     const navigate = useNavigate();
 
@@ -25,6 +28,13 @@ export default function Teams(props) {
         setTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
         setLoading(false);
     }
+
+    useEffect(() => {
+        const matchTeams = teams.filter((team) => team.Constructor.name.toLowerCase().includes(search.toLowerCase()));
+
+
+        setFilteredTeams(matchTeams);
+    }, [search, teams])
 
     // const getFlag = (flags, country) => {
     //     const flag = flags.find(flag => flag.nationality === country);
@@ -51,7 +61,13 @@ export default function Teams(props) {
     return (
         <div className="mainScreen">
             <div className="header">
-                <Breadcrumbs crumbs={teamsCrumbs} />
+                <div className="search-div">
+                    <FilterText type="text" label="team" value={search} change={(e) => setSearch(e.target.value)} />
+                    <button onClick={() => setSearch("")}>clear</button>
+                </div>
+                <div className="Breadcrumbs-main">
+                    <Breadcrumbs crumbs={teamsCrumbs} />
+                </div>
             </div>
             <h1>Constructors Championship</h1>
             <div className="table-div">
@@ -63,7 +79,10 @@ export default function Teams(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {teams.map((team) => {
+                        {filteredTeams.length === 0 && (
+                            <h1>No Team match criteria ... try again</h1>
+                        )}
+                        {filteredTeams.map((team) => {
                             return (
                                 <tr key={team.Constructor.constructorId}>
                                     <td style={{ width: '10%' }}>{team.position}</td>
