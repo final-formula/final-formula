@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 import getPositionColor from '../helpers/positionColors.js'
 import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
+import SelectYear from "../components/SelectYear"
 
 
 export default function RacesDetails(props) {
@@ -19,12 +20,13 @@ export default function RacesDetails(props) {
     const [filteredResults, setFilteredResults] = useState([])
     const [filteredQualifiers, setFilteredQualifiers] = useState([])
     const navigate = useNavigate();
+    const [year, setYear] = useState("2013");
 
     const params = useParams();
 
     useEffect(() => {
         getRaceDetails();
-    }, []);
+    }, [year]);
 
     useEffect(() => {
         const matchQualifiers = qualifiers.filter((driver) => driver.Driver.givenName.toLowerCase().includes(search.toLowerCase()) ||
@@ -46,8 +48,8 @@ export default function RacesDetails(props) {
 
 
     const getRaceDetails = async () => {
-        const urlQualifying = `https://api.jolpi.ca/ergast/f1/2013/${params.raceName}/qualifying.json`;
-        const urlResults = `https://api.jolpi.ca/ergast/f1/2013/${params.raceName}/results.json`;
+        const urlQualifying = `https://api.jolpi.ca/ergast/f1/${year}/${params.raceName}/qualifying.json`;
+        const urlResults = `https://api.jolpi.ca/ergast/f1/${year}/${params.raceName}/results.json`;
 
         const responseQualifying = await axios.get(urlQualifying);
         const responseResults = await axios.get(urlResults);
@@ -88,6 +90,7 @@ export default function RacesDetails(props) {
 
         <div className="mainScreen">
             <div className="header">
+                <SelectYear value={year} change={(e) => setYear(e.target.value)} />
                 <div className="search-div">
                     <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>

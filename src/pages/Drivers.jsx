@@ -7,6 +7,7 @@ import getFlag from '../helpers/getFlagsNationality.js'
 import Flag from 'react-flagkit';
 import FilterText from "../components/FilterText"
 import Breadcrumbs from "../components/Breadcrumbs"
+import SelectYear from "../components/SelectYear"
 
 
 
@@ -19,13 +20,16 @@ export default function Drivers(props) {
     const [search, setSearch] = useState("");
     const [filteredDriver, setFilteredDriver] = useState([]);
 
+    const [year, setYear] = useState("2013");
 
     const navigate = useNavigate();
 
 
     useEffect(() => {
         getDrivers();
-    }, []);
+    }, [year]);
+
+
 
     useEffect(() => {
         const matchDrivers = drivers.filter((driver) => driver.Driver.givenName.toLowerCase().includes(search.toLowerCase()) ||
@@ -35,7 +39,7 @@ export default function Drivers(props) {
     }, [search, drivers])
 
     const getDrivers = async () => {
-        const url = "https://api.jolpi.ca/ergast/f1/2013/driverstandings.json";
+        const url = `https://api.jolpi.ca/ergast/f1/${year}/driverstandings.json`;
         const response = await axios.get(url);
         console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
         setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
@@ -64,7 +68,7 @@ export default function Drivers(props) {
     ];
 
 
-    console.log(drivers);
+
 
 
     return (
@@ -72,6 +76,7 @@ export default function Drivers(props) {
 
             <div className="mainScreen">
                 <div className="header">
+                    <SelectYear value={year} change={(e) => setYear(e.target.value)} />
                     <div className="search-div">
                         <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
                         <button onClick={() => setSearch("")}>clear</button>
@@ -89,7 +94,9 @@ export default function Drivers(props) {
 
                         <tbody className="table-body">
                             {filteredDriver.length === 0 && (
-                                <h1>No Driver match criteria ... try again</h1>
+                                <tr>
+                                    <td colSpan="4">No Driver match criteria ... try again</td>
+                                </tr>
                             )}
 
                             {

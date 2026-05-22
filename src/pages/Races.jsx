@@ -7,18 +7,21 @@ import Flag from 'react-flagkit';
 import getFlag from '../helpers/getFlagsNationality.js'
 import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
+import SelectYear from "../components/SelectYear"
+
 
 export default function Races(props) {
     const [races, setRaces] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredRaces, setFilteredRaces] = useState([]);
+    const [year, setYear] = useState("2013");
 
     const navigate = useNavigate();
 
     useEffect(() => {
         getRaces();
-    }, []);
+    }, [year]);
 
     useEffect(() => {
         const matchRaces = races.filter((race) => race.raceName.toLowerCase().includes(search.toLowerCase()));
@@ -30,7 +33,7 @@ export default function Races(props) {
 
 
     const getRaces = async () => {
-        const url = "https://api.jolpi.ca/ergast/f1/2013/results/1.json";
+        const url = `https://api.jolpi.ca/ergast/f1/${year}/results/1.json`;
         console.log(url)
         const response = await axios.get(url);
         console.log("1", response.data.MRData)
@@ -64,6 +67,7 @@ export default function Races(props) {
     return (
         <div className="mainScreen">
             <div className="header">
+                <SelectYear value={year} change={(e) => setYear(e.target.value)} />
                 <div className="search-div">
                     <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>

@@ -8,6 +8,8 @@ import getPositionColor from '../helpers/positionColors.js'
 import getFlag from '../helpers/getFlagsNationality.js'
 import Breadcrumbs from "../components/Breadcrumbs"
 import { useNavigate } from "react-router";
+import SelectYear from "../components/SelectYear"
+import FilterText from "../components/FilterText"
 
 export default function TeamResults(props) {
 
@@ -16,12 +18,23 @@ export default function TeamResults(props) {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const params = useParams();
+    const [year, setYear] = useState("2013");
+    const [search, setSearch] = useState("");
+    const [filteredRaces, setFilteredRaces] = useState([]);
 
 
 
     useEffect(() => {
         getTeamResults();
-    }, []);
+    }, [year]);
+
+
+    useEffect(() => {
+        const matchRaces = teamResults.filter((race) => race.round.toLowerCase().includes(search.toLowerCase()));
+
+
+        setFilteredRaces(matchRaces);
+    }, [search, teamResults])
 
     const handleClick = (id) => {
 
@@ -32,8 +45,8 @@ export default function TeamResults(props) {
 
     const getTeamResults = async () => {
         console.log("params", params);
-        const urlTeamDetails = `https://api.jolpi.ca/ergast/f1/2013/constructors/${params.constructorId}/constructorStandings.json`
-        const urlTeamResults = `https://api.jolpi.ca/ergast/f1/2013/constructors/${params.constructorId}/results.json`
+        const urlTeamDetails = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.constructorId}/constructorStandings.json`
+        const urlTeamResults = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.constructorId}/results.json`
         const response = await axios.get(urlTeamDetails);
         const response2 = await axios.get(urlTeamResults)
 
@@ -62,8 +75,10 @@ export default function TeamResults(props) {
     return (
         <div className="mainScreen">
             <div className="header">
+                <SelectYear value={year} change={(e) => setYear(e.target.value)} />
                 <div className="search-div">
-
+                    <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
+                    <button onClick={() => setSearch("")}>clear</button>
                 </div>
                 <div className="Breadcrumbs-main">
                     <Breadcrumbs crumbs={teamsDetailsCrumbs} />
@@ -115,7 +130,7 @@ export default function TeamResults(props) {
 
 
                                 </tr>
-                                {teamResults.map((result) => {
+                                {filteredRaces.map((result) => {
                                     console.log(result)
                                     return (
                                         <tr>

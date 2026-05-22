@@ -6,6 +6,7 @@ import Flag from 'react-flagkit';
 import getFlag from '../helpers/getFlagsNationality.js'
 import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
+import SelectYear from "../components/SelectYear"
 
 
 export default function Teams(props) {
@@ -14,15 +15,16 @@ export default function Teams(props) {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredTeams, setFilteredTeams] = useState([]);
+    const [year, setYear] = useState("2013");
 
     const navigate = useNavigate();
 
     useEffect(() => {
         getTeams();
-    }, []);
+    }, [year]);
 
     const getTeams = async () => {
-        const url = "https://api.jolpi.ca/ergast/f1/2013/constructorStandings.json";
+        const url = `https://api.jolpi.ca/ergast/f1/${year}/constructorStandings.json`;
         const response = await axios.get(url);
         console.log(response.data.MRData);
         setTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
@@ -61,6 +63,7 @@ export default function Teams(props) {
     return (
         <div className="mainScreen">
             <div className="header">
+                <SelectYear value={year} change={(e) => setYear(e.target.value)} />
                 <div className="search-div">
                     <FilterText type="text" label="team" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>
