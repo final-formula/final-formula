@@ -322,3 +322,9 @@ thead h3 {
   border: 1px solid black;
   background-color: darkgrey;
 }
+
+.veliki {
+  font-size: 2rem;
+  color: crimson;
+
+}
