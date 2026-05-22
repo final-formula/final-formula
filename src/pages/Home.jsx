@@ -9,7 +9,7 @@ export default function Home() {
                     <Breadcrumbs />
                 </div>
             </div>
-            <h1>Home</h1>
+            <h1>Kuca</h1>
             <p> dobrodosli na formulu jedan</p>
             <p>Ovde mozete videti sve informacije vezane za  Formlu 1</p>
 
