@@ -7,6 +7,7 @@ import getFlagShortName from '../helpers/getFlagsCountry.js'
 import getFlag from '../helpers/getFlagsNationality.js'
 import { useNavigate } from "react-router";
 import getPositionColor from '../helpers/positionColors.js'
+import Breadcrumbs from "../components/Breadcrumbs"
 
 
 export default function RacesDetails(props) {
@@ -59,14 +60,18 @@ export default function RacesDetails(props) {
 
     console.log("qualifiers", qualifiers);
     console.log("results", results);
+    const racesDetailsCrumbs = [
+        { path: "/races", label: "Races" },
+        { path: "/races/details/:raceName", label: `${results.Circuit.circuitName}` }
 
+    ];
 
     return (
 
 
         <div className="mainScreen">
             <div className="header">
-
+                <Breadcrumbs crumbs={racesDetailsCrumbs} />
             </div>
             <div className="mainPart">
                 <div className="details-screen">

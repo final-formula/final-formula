@@ -8,6 +8,7 @@ import getFlagShortName from '../helpers/getFlagsCountry.js'
 import getFlag from '../helpers/getFlagsNationality.js'
 import { useNavigate } from "react-router";
 import getPositionColor from '../helpers/positionColors.js'
+import Breadcrumbs from "../components/Breadcrumbs"
 
 
 
@@ -64,13 +65,19 @@ export default function DriverDetails(props) {
 
     console.log("driverDetails", driverDetails)
     console.log("driverRaces", driverRaces)
+
+    const driversDetailsCrumbs = [
+        { path: "/drivers", label: "Drivers" },
+        { path: "/drivers/details/:driverId", label: `${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}` }
+
+    ];
     return (
 
 
         <div className="mainScreen">
 
             <div className="header">
-
+                <Breadcrumbs crumbs={driversDetailsCrumbs} />
             </div>
             <div className="details-screen">
                 <div className="card-container">

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import getFlagShortName from '../helpers/getFlagsCountry.js'
 import Flag from 'react-flagkit';
 import getFlag from '../helpers/getFlagsNationality.js'
+import Breadcrumbs from "../components/Breadcrumbs"
 
 export default function Races(props) {
     const [races, setRaces] = useState([]);
@@ -45,12 +46,15 @@ export default function Races(props) {
         return <Loader />
     }
 
+    const racesCrumbs = [
+        { path: "", label: "Races" }
 
+    ];
 
     return (
         <div className="mainScreen">
             <div className="header">
-
+                <Breadcrumbs crumbs={racesCrumbs} />
             </div>
             <h1>Race Calendar</h1>
             <div className="table-div">

@@ -5,6 +5,9 @@ import Loader from "../components/Loader";
 import { useNavigate } from "react-router";
 import getFlag from '../helpers/getFlagsNationality.js'
 import Flag from 'react-flagkit';
+import FilterText from "../components/FilterText"
+import Breadcrumbs from "../components/Breadcrumbs"
+
 
 
 
@@ -13,6 +16,9 @@ import Flag from 'react-flagkit';
 export default function Drivers(props) {
     const [drivers, setDrivers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [search, setSearch] = useState("");
+    const [filteredDriver, setFilteredDriver] = useState([]);
+
 
     const navigate = useNavigate();
 
@@ -20,6 +26,13 @@ export default function Drivers(props) {
     useEffect(() => {
         getDrivers();
     }, []);
+
+    useEffect(() => {
+        const matchDrivers = drivers.filter((driver) => driver.Driver.givenName.toLowerCase().includes(search.toLowerCase()) ||
+            driver.Driver.familyName.toLowerCase().includes(search.toLowerCase()));
+
+        setFilteredDriver(matchDrivers);
+    }, [search, drivers])
 
     const getDrivers = async () => {
         const url = "https://api.jolpi.ca/ergast/f1/2013/driverstandings.json";
@@ -45,6 +58,10 @@ export default function Drivers(props) {
         return <Loader />
     }
 
+    const driversCrumbs = [
+        { path: "", label: "Drivers" }
+
+    ];
 
 
     console.log(drivers);
@@ -55,7 +72,9 @@ export default function Drivers(props) {
 
             <div className="mainScreen">
                 <div className="header">
-
+                    <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
+                    <button onClick={() => setSearch("")}>clear</button>
+                    <Breadcrumbs crumbs={driversCrumbs} />
                 </div>
 
                 <h1>Drivers Championship</h1>
@@ -65,9 +84,12 @@ export default function Drivers(props) {
 
 
                         <tbody className="table-body">
+                            {filteredDriver.length === 0 && (
+                                <h1>No Driver match criteria ... try again</h1>
+                            )}
 
                             {
-                                drivers.map((driver) => {
+                                filteredDriver.map((driver) => {
                                     return (
                                         <tr key={driver.Driver.driverId}>
                                             <td style={{ width: '10%' }}>{driver.position}</td>

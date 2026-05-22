@@ -6,6 +6,7 @@ import Flag from 'react-flagkit';
 import getFlagShortName from '../helpers/getFlagsCountry.js'
 import getPositionColor from '../helpers/positionColors.js'
 import getFlag from '../helpers/getFlagsNationality.js'
+import Breadcrumbs from "../components/Breadcrumbs"
 
 export default function TeamResults(props) {
 
@@ -44,10 +45,16 @@ export default function TeamResults(props) {
     console.log(teamResults);
     // console.log(teamDetails);
 
+    const teamsDetailsCrumbs = [
+        { path: "/teams", label: "Teams" },
+        { path: "/teams/details/:constructorId", label: `${teamDetails.Constructor.name}` }
+
+    ];
+
     return (
         <div className="mainScreen">
             <div className="header">
-
+                <Breadcrumbs crumbs={teamsDetailsCrumbs} />
             </div>
             <div className="mainPart">
                 <div className="details-screen">

@@ -4,6 +4,7 @@ import Loader from "../components/Loader";
 import { useNavigate } from "react-router";
 import Flag from 'react-flagkit';
 import getFlag from '../helpers/getFlagsNationality.js'
+import Breadcrumbs from "../components/Breadcrumbs"
 
 
 export default function Teams(props) {
@@ -42,10 +43,15 @@ export default function Teams(props) {
         return <Loader />
     }
 
+    const teamsCrumbs = [
+        { path: "", label: "Teams" }
+
+    ];
+
     return (
         <div className="mainScreen">
             <div className="header">
-
+                <Breadcrumbs crumbs={teamsCrumbs} />
             </div>
             <h1>Constructors Championship</h1>
             <div className="table-div">
