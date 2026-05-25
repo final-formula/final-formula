@@ -26,7 +26,7 @@ export default function Teams(props) {
     const getTeams = async () => {
         const url = `https://api.jolpi.ca/ergast/f1/${year}/constructorStandings.json`;
         const response = await axios.get(url);
-        console.log(response.data.MRData);
+
         setTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
         setLoading(false);
     }
@@ -37,12 +37,6 @@ export default function Teams(props) {
 
         setFilteredTeams(matchTeams);
     }, [search, teams])
-
-    // const getFlag = (flags, country) => {
-    //     const flag = flags.find(flag => flag.nationality === country);
-    //     console.log(flag)
-    //     return flag?.alpha_2_code;
-    // };
 
     const handleClick = (id) => {
         navigate(`/teams/details/${id}`);

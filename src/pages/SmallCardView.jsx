@@ -29,7 +29,7 @@ export default function SmallCardView(props) {
     const getDrivers = async () => {
         const url = `https://api.jolpi.ca/ergast/f1/${year}/driverstandings.json`;
         const response = await axios.get(url);
-        console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+
         setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
         setLoading(false);
     };
