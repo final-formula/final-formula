@@ -14,12 +14,16 @@ export default function Drivers(props) {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredDriver, setFilteredDriver] = useState([]);
-    const [year, setYear] = useState("2013");
+
+    // const [selectedYear, setSelectedYear] = useState(props.year);
+
     const navigate = useNavigate();
 
     useEffect(() => {
         getDrivers();
-    }, [year]);
+    }, [props.year]);
+
+
 
     useEffect(() => {
         const matchDrivers = drivers.filter((driver) => driver.Driver.givenName.toLowerCase().includes(search.toLowerCase()) ||
@@ -29,7 +33,7 @@ export default function Drivers(props) {
     }, [search, drivers])
 
     const getDrivers = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/${year}/driverstandings.json`;
+        const url = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
         const response = await axios.get(url);
         console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
         setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
@@ -60,7 +64,7 @@ export default function Drivers(props) {
 
             <div className="mainScreen">
                 <div className="header">
-                    <SelectYear value={year} change={(e) => setYear(e.target.value)} />
+                    {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
                     <div className="search-div">
                         <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
                         <button onClick={() => setSearch("")}>clear</button>
