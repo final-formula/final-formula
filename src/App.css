@@ -343,3 +343,21 @@ h1 {
 
 
 }
+
+.smallCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px;
+  margin: 10px;
+  font-size: large;
+
+}
+
+.smallCard {
+
+  border: 1px solid black;
+  background-color: teal;
+
+
+}

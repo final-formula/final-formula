@@ -51,10 +51,6 @@ export default function SmallCardView(props) {
         { path: "", label: "Drivers" }
     ];
 
-
-
-
-
     return (
         <>
             <div className="mainScreen">
@@ -71,6 +67,7 @@ export default function SmallCardView(props) {
                         <Breadcrumb crumbs={driversCrumbs} />
                     </div>
                 </div>
+
                 <div className="smallCardContainer">
 
                     {filteredDriver.map((driver) => {
