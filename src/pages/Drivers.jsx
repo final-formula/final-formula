@@ -9,27 +9,17 @@ import FilterText from "../components/FilterText"
 import Breadcrumbs from "../components/Breadcrumbs"
 import SelectYear from "../components/SelectYear"
 
-
-
-
-
-
 export default function Drivers(props) {
     const [drivers, setDrivers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredDriver, setFilteredDriver] = useState([]);
-
     const [year, setYear] = useState("2013");
-
     const navigate = useNavigate();
-
 
     useEffect(() => {
         getDrivers();
     }, [year]);
-
-
 
     useEffect(() => {
         const matchDrivers = drivers.filter((driver) => driver.Driver.givenName.toLowerCase().includes(search.toLowerCase()) ||
@@ -46,11 +36,9 @@ export default function Drivers(props) {
         setLoading(false);
     };
 
-
     const handleClick = (id) => {
 
         navigate(`/drivers/details/${id}`);
-
 
     };
 
@@ -66,10 +54,6 @@ export default function Drivers(props) {
         { path: "", label: "Drivers" }
 
     ];
-
-
-
-
 
     return (
         <>
@@ -91,7 +75,6 @@ export default function Drivers(props) {
                 <div className="table-div">
                     <table className="table">
 
-
                         <tbody className="table-body">
                             {filteredDriver.length === 0 && (
                                 <tr>
@@ -110,15 +93,7 @@ export default function Drivers(props) {
 
                                         </tr>
 
-
                                     )
-
-
-
-
-
-
-
 
                                 })}
 
