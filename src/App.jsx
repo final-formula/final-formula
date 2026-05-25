@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router"
+import { BrowserRouter, Routes, Route, NavLink, Link } from "react-router"
 import Home from "./pages/Home"
 import Races from "./pages/Races"
 import Teams from "./pages/Teams"
@@ -38,6 +38,13 @@ function App() {
     return <Loader />
   }
 
+  const activeStyle = ({ isActive }) => ({
+    color: isActive ? 'crimson' : 'white',
+    fontWeight: isActive ? 'bolder' : 'normal',
+    padding: '5px 10px',
+    backgroundColor: isActive ? "black" : "#303030"
+  });
+
   return (
     <BrowserRouter>
       <div className="wrapper">
@@ -48,11 +55,11 @@ function App() {
               <Link to="/"><img src="../../public/F1-2013-Legends-Edition.jpg" className="homeImage" /></Link>
             </div>
             <div className="linksDiv">
-              <Link to="/drivers"><img src="../../public/Kaciga.png" className="nav-img" /> <span>Drivers</span></Link>
-              <Link to="/teams"><img src="../../public/Teams.png" className="nav-img" /> <span>Teams</span></Link>
-              <Link to="/races" className="link-races"><img src="../../public/Races1.png" className="nav-img races" /> <span>Races</span></Link>
-              <Link to="/smallCard"><img src="../../public/Kaciga.png" className="nav-img" /> <span>SmallCard</span></Link>
-              <Link to="/bigCard"><img src="../../public/Kaciga.png" className="nav-img" /> <span>BigCard</span></Link>
+              <NavLink to="/drivers" style={activeStyle}><img src="../../public/Kaciga.png" className="nav-img" /> <span>Drivers</span></NavLink>
+              <NavLink to="/teams" style={activeStyle}><img src="../../public/Teams.png" className="nav-img" /> <span>Teams</span></NavLink>
+              <NavLink to="/races" className="link-races" style={activeStyle}><img src="../../public/Races1.png" className="nav-img races" /> <span>Races</span></NavLink>
+              <NavLink to="/smallCard" style={activeStyle}><img src="../../public/Kaciga.png" className="nav-img" /> <span>SmallCard</span></NavLink>
+              <NavLink to="/bigCard" style={activeStyle}><img src="../../public/Kaciga.png" className="nav-img" /> <span>BigCard</span></NavLink>
             </div>
           </div>
 
