@@ -1,9 +1,9 @@
 export default function SelectYear(props) {
     const thisYear = new Date().getFullYear();
-    const years = [thisYear];
+    const years = [];
 
-    for (let i = 0; i < 30; i++) {
-        const year = years[i] - 1;
+    for (let year = thisYear; year >= 1950; year--) {
+
         years.push(year);
     }
 

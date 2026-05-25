@@ -1,4 +1,4 @@
-export default function Galerija() {
+export default function Galery() {
     return (
         <>
 
