@@ -12,60 +12,45 @@ import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
 import SelectYear from "../components/SelectYear"
 
-
-
-
-
 export default function DriverDetails(props) {
 
-    const [driverDetails, setDriverDetails] = useState([]);
+    const [driverDetails, setDriverDetails] = useState(null);
     const [driverRaces, setDriverRaces] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredDrivers, setFilteredDrivers] = useState([])
     const navigate = useNavigate();
     const params = useParams();
-    const [year, setYear] = useState("2013");
-
-
-
-
-
-
+    // const [year, setYear] = useState("2013");
     const handleClickRace = (id) => {
 
         navigate(`/races/details/${id}`);
-
-
     };
 
     useEffect(() => {
         getDriverDetails();
 
-    }, [year]);
+    }, [props.year]);
 
     useEffect(() => {
         const matchRaces = driverRaces.filter((driver) => driver.raceName.toLowerCase().includes(search.toLowerCase()));
-
 
         setFilteredDrivers(matchRaces);
     }, [search, driverRaces])
 
     const getDriverDetails = async () => {
-        console.log("params ", params);
-        const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/${year}/drivers/${params.driverId}/driverStandings.json`;
-        const urlDriverRace = `https://api.jolpi.ca/ergast/f1/${year}/drivers/${params.driverId}/results.json`;
-        const response = await axios.get(urlDriverDetails);
-        const response2 = await axios.get(urlDriverRace);
-        console.log(response2);
 
-        setDriverDetails(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
-        setDriverRaces(response2.data.MRData.RaceTable.Races)
+        const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/driverStandings.json`;
+        const urlDriverRace = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/results.json`;
+        const responseDriverDetails = await axios.get(urlDriverDetails);
+        const responseDriverRace = await axios.get(urlDriverRace);
+
+
+        setDriverDetails(responseDriverDetails.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
+        setDriverRaces(responseDriverRace.data.MRData.RaceTable.Races)
         setLoading(false);
 
     };
-
-
 
     if (loading) {
         return <Loader />;
@@ -78,7 +63,7 @@ export default function DriverDetails(props) {
 
     const driversDetailsCrumbs = [
         { path: "/drivers", label: "Drivers" },
-        { path: "/drivers/details/:driverId", label: `${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}` }
+        { path: "", label: `${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}` }
 
     ];
     return (
@@ -87,7 +72,7 @@ export default function DriverDetails(props) {
         <div className="mainScreen">
 
             <div className="header">
-                <SelectYear value={year} change={(e) => setYear(e.target.value)} />
+                {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
                 <div className="search-div">
                     <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>
@@ -101,7 +86,7 @@ export default function DriverDetails(props) {
                     <div className="card">
                         <div className="upper-card">
                             <div className="left-side">
-                                <img src={`../../${driverDetails.Driver.driverId}.jpg`} className="team-image" />
+                                <img src={`./${driverDetails.Driver.driverId}.jpg`} className="team-image" />
                             </div>
 
                             <div className="right-side">
@@ -114,12 +99,9 @@ export default function DriverDetails(props) {
                             <pre>Country: {driverDetails.Driver.nationality}</pre>
                             <pre>Team:    {driverRaces[0].Results[0].Constructor.name} </pre>
                             <pre>Birth:   {driverRaces[0].Results[0].Driver.dateOfBirth} </pre>
-                            <pre>Biography:  <a href={driverDetails.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="link-icon" /></a></pre>
+                            <pre>Biography:  <a href={driverDetails.Driver.url} target="_blank"><img src="./link-white.png" className="link-icon" /></a></pre>
                         </div>
                     </div>
-
-
-
 
                 </div>
                 <div className="table-div-details">
@@ -127,7 +109,7 @@ export default function DriverDetails(props) {
                     <table className="table-details">
                         <thead>
                             <tr>
-                                <td colSpan={5}><h3>Formula 1 2013 Results</h3></td>
+                                <td colSpan={5}><h3>Formula 1 {props.year} Results</h3></td>
                             </tr>
 
                         </thead>
@@ -152,7 +134,6 @@ export default function DriverDetails(props) {
 
                                     </tr>
 
-
                                 )
                             })}
 
@@ -160,16 +141,9 @@ export default function DriverDetails(props) {
 
                     </table>
 
-
-
                 </div>
 
             </div>
-
-
-
-
-
 
         </div>
 

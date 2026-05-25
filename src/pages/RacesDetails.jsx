@@ -71,7 +71,6 @@ export default function RacesDetails(props) {
 
     })
 
-    getFastestTime("2:36", "2:37", "1:25")
 
     if (loading) {
         return <Loader />
@@ -81,7 +80,7 @@ export default function RacesDetails(props) {
     console.log("results", results);
     const racesDetailsCrumbs = [
         { path: "/races", label: "Races" },
-        { path: "/races/details/:raceName", label: `${results.Circuit.circuitName}` }
+        { path: "", label: `${results.Circuit.circuitName}` }
 
     ];
 
@@ -90,7 +89,7 @@ export default function RacesDetails(props) {
 
         <div className="mainScreen">
             <div className="header">
-                <SelectYear value={year} change={(e) => setYear(e.target.value)} />
+                {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
                 <div className="search-div">
                     <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>
@@ -112,7 +111,7 @@ export default function RacesDetails(props) {
                                 <pre>Country:     {results.Circuit.Location.country}</pre>
                                 <pre>Location:    {results.Circuit.Location.locality}</pre>
                                 <pre>Date:        {results.date}</pre>
-                                <pre>Full Report: <a href={results.url} target="_blank"><img src="../../../public/link-white.png" className="link-icon" /></a></pre>
+                                <pre>Full Report: <a href={results.url} target="_blank"><img src="./public/link-white.png" className="link-icon" /></a></pre>
                             </div>
 
 

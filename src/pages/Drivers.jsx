@@ -9,25 +9,19 @@ import FilterText from "../components/FilterText"
 import Breadcrumbs from "../components/Breadcrumbs"
 import SelectYear from "../components/SelectYear"
 
-
-
-
-
-
 export default function Drivers(props) {
     const [drivers, setDrivers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredDriver, setFilteredDriver] = useState([]);
 
-    const [year, setYear] = useState("2013");
+    // const [selectedYear, setSelectedYear] = useState(props.year);
 
     const navigate = useNavigate();
 
-
     useEffect(() => {
         getDrivers();
-    }, [year]);
+    }, [props.year]);
 
 
 
@@ -39,18 +33,16 @@ export default function Drivers(props) {
     }, [search, drivers])
 
     const getDrivers = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/${year}/driverstandings.json`;
+        const url = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
         const response = await axios.get(url);
         console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
         setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
         setLoading(false);
     };
 
-
     const handleClick = (id) => {
 
         navigate(`/drivers/details/${id}`);
-
 
     };
 
@@ -67,16 +59,12 @@ export default function Drivers(props) {
 
     ];
 
-
-
-
-
     return (
         <>
 
             <div className="mainScreen">
                 <div className="header">
-                    <SelectYear value={year} change={(e) => setYear(e.target.value)} />
+                    {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
                     <div className="search-div">
                         <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
                         <button onClick={() => setSearch("")}>clear</button>
@@ -91,13 +79,20 @@ export default function Drivers(props) {
                 <div className="table-div">
                     <table className="table">
 
-
                         <tbody className="table-body">
                             {filteredDriver.length === 0 && (
                                 <tr>
                                     <td colSpan="4">No Driver match criteria ... try again</td>
                                 </tr>
                             )}
+                            <tr>
+                                <th>Position</th>
+                                <th>Driver</th>
+                                <th>Team</th>
+                                <th>Points</th>
+
+                            </tr>
+
 
                             {
                                 filteredDriver.map((driver) => {
@@ -110,15 +105,7 @@ export default function Drivers(props) {
 
                                         </tr>
 
-
                                     )
-
-
-
-
-
-
-
 
                                 })}
 

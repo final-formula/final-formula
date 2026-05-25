@@ -14,7 +14,7 @@ import FilterText from "../components/FilterText"
 export default function TeamResults(props) {
 
     const [teamResults, setTeamResults] = useState([]);
-    const [teamDetails, setTeamDetails] = useState([]);
+    const [teamDetails, setTeamDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const params = useParams();
@@ -68,14 +68,14 @@ export default function TeamResults(props) {
 
     const teamsDetailsCrumbs = [
         { path: "/teams", label: "Teams" },
-        { path: "/teams/details/:constructorId", label: `${teamDetails.Constructor.name}` }
+        { path: "", label: `${teamDetails.Constructor.name}` }
 
     ];
 
     return (
         <div className="mainScreen">
             <div className="header">
-                <SelectYear value={year} change={(e) => setYear(e.target.value)} />
+                {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
                 <div className="search-div">
                     <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>
@@ -90,7 +90,7 @@ export default function TeamResults(props) {
                         <div className="card">
                             <div className="upper-card">
                                 <div className="left-side">
-                                    <img src={`../../${teamDetails.Constructor.constructorId}.png`} className="team-image" />
+                                    <img src={`./${teamDetails.Constructor.constructorId}.png`} className="team-image" />
                                 </div>
 
                                 <div className="right-side">
@@ -102,7 +102,7 @@ export default function TeamResults(props) {
                                 <pre>Country:    {teamDetails.Constructor.nationality}</pre>
                                 <pre>Position:   {teamDetails.position}</pre>
                                 <pre>Points:     {teamDetails.points}</pre>
-                                <pre>History:   <a href={teamDetails.Constructor.url} target="_blank"> <img src="../../../public/link-white.png" className="link-icon" /></a></pre>
+                                <pre>History:   <a href={teamDetails.Constructor.url} target="_blank"> <img src="./link-white.png" className="link-icon" /></a></pre>
                             </div>
                         </div>
 
