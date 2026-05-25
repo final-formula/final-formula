@@ -10,6 +10,8 @@ import TeamResults from "./pages/TeamResults";
 import Flag from 'react-flagkit';
 import { useState, useEffect } from 'react'
 import Loader from "./components/Loader"
+import SmallCardView from "./pages/SmallCardView"
+import BigCardView from "./pages/BigCardView"
 
 function App() {
   const [flags, setFlags] = useState([]);
@@ -45,7 +47,8 @@ function App() {
               <Link to="/drivers"><img src="../../public/Kaciga.png" className="nav-img" /> <span>Drivers</span></Link>
               <Link to="/teams"><img src="../../public/Teams.png" className="nav-img" /> <span>Teams</span></Link>
               <Link to="/races" className="link-races"><img src="../../public/Races1.png" className="nav-img races" /> <span>Races</span></Link>
-
+              <Link to="/smallCard"><img src="../../public/Kaciga.png" className="nav-img" /> <span>SmallCard</span></Link>
+              <Link to="/bigCard"><img src="../../public/Kaciga.png" className="nav-img" /> <span>BigCard</span></Link>
             </div>
           </div>
 
@@ -58,6 +61,8 @@ function App() {
           <Route path="/races/details/:raceName" element={<RacesDetails flags={flags} />} />
           <Route path="/teams" element={<Teams flags={flags} />} />
           <Route path="/teams/details/:constructorId" element={<TeamResults flags={flags} />} />
+          <Route path="/smallCard" element={<SmallCardView flags={flags} search={search} />} />
+          <Route path="/bigCard" element={<BigCardView flags={flags} search={search} />} />
         </Routes>
       </div>
     </BrowserRouter>
