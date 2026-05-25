@@ -9,11 +9,6 @@ import FilterText from "../components/FilterText"
 import Breadcrumbs from "../components/Breadcrumbs"
 import SelectYear from "../components/SelectYear"
 
-
-
-
-
-
 export default function Drivers(props) {
     const [drivers, setDrivers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -23,7 +18,6 @@ export default function Drivers(props) {
     // const [selectedYear, setSelectedYear] = useState(props.year);
 
     const navigate = useNavigate();
-
 
     useEffect(() => {
         getDrivers();
@@ -46,11 +40,9 @@ export default function Drivers(props) {
         setLoading(false);
     };
 
-
     const handleClick = (id) => {
 
         navigate(`/drivers/details/${id}`);
-
 
     };
 
@@ -66,10 +58,6 @@ export default function Drivers(props) {
         { path: "", label: "Drivers" }
 
     ];
-
-
-
-
 
     return (
         <>
@@ -90,7 +78,6 @@ export default function Drivers(props) {
 
                 <div className="table-div">
                     <table className="table">
-
 
                         <tbody className="table-body">
                             {filteredDriver.length === 0 && (
@@ -118,15 +105,7 @@ export default function Drivers(props) {
 
                                         </tr>
 
-
                                     )
-
-
-
-
-
-
-
 
                                 })}
 

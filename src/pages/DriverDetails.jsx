@@ -12,10 +12,6 @@ import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
 import SelectYear from "../components/SelectYear"
 
-
-
-
-
 export default function DriverDetails(props) {
 
     const [driverDetails, setDriverDetails] = useState(null);
@@ -26,18 +22,9 @@ export default function DriverDetails(props) {
     const navigate = useNavigate();
     const params = useParams();
     // const [year, setYear] = useState("2013");
-
-
-
-
-
-
-
     const handleClickRace = (id) => {
 
         navigate(`/races/details/${id}`);
-
-
     };
 
     useEffect(() => {
@@ -47,7 +34,6 @@ export default function DriverDetails(props) {
 
     useEffect(() => {
         const matchRaces = driverRaces.filter((driver) => driver.raceName.toLowerCase().includes(search.toLowerCase()));
-
 
         setFilteredDrivers(matchRaces);
     }, [search, driverRaces])
@@ -65,8 +51,6 @@ export default function DriverDetails(props) {
         setLoading(false);
 
     };
-
-
 
     if (loading) {
         return <Loader />;
@@ -119,9 +103,6 @@ export default function DriverDetails(props) {
                         </div>
                     </div>
 
-
-
-
                 </div>
                 <div className="table-div-details">
 
@@ -153,7 +134,6 @@ export default function DriverDetails(props) {
 
                                     </tr>
 
-
                                 )
                             })}
 
@@ -161,16 +141,9 @@ export default function DriverDetails(props) {
 
                     </table>
 
-
-
                 </div>
 
             </div>
-
-
-
-
-
 
         </div>
 
