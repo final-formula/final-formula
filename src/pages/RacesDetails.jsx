@@ -14,7 +14,7 @@ import SelectYear from "../components/SelectYear"
 
 export default function RacesDetails(props) {
     const [qualifiers, setQualifiers] = useState([]);
-    const [results, setResults] = useState(null);
+    const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredResults, setFilteredResults] = useState([])
@@ -80,7 +80,7 @@ export default function RacesDetails(props) {
     console.log("results", results);
     const racesDetailsCrumbs = [
         { path: "/races", label: "Races" },
-        { path: "/races/details/:raceName", label: `${results.Circuit.circuitName}` }
+        { path: "", label: `${results.Circuit.circuitName}` }
 
     ];
 

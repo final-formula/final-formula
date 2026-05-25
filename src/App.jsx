@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink, Link } from "react-router"
+import axios from "axios";
 import Home from "./pages/Home"
 import Races from "./pages/Races"
 import Teams from "./pages/Teams"
@@ -27,9 +28,9 @@ function App() {
 
   const getFlags = async () => {
     const url = "https://raw.githubusercontent.com/Imagin-io/country-nationality-list/refs/heads/master/countries.json"
-    const response = await fetch(url);
-    const data = await response.json()
-    setFlags(data);
+    const response = await axios.get(url);
+
+    setFlags(response.data);
     setIsLoading(false)
   }
 

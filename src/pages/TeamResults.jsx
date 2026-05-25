@@ -68,7 +68,7 @@ export default function TeamResults(props) {
 
     const teamsDetailsCrumbs = [
         { path: "/teams", label: "Teams" },
-        { path: "/teams/details/:constructorId", label: `${teamDetails.Constructor.name}` }
+        { path: "", label: `${teamDetails.Constructor.name}` }
 
     ];
 
