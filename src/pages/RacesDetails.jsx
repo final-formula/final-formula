@@ -14,7 +14,7 @@ import SelectYear from "../components/SelectYear"
 
 export default function RacesDetails(props) {
     const [qualifiers, setQualifiers] = useState([]);
-    const [results, setResults] = useState([]);
+    const [results, setResults] = useState(null);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredResults, setFilteredResults] = useState([])
@@ -71,7 +71,6 @@ export default function RacesDetails(props) {
 
     })
 
-    getFastestTime("2:36", "2:37", "1:25")
 
     if (loading) {
         return <Loader />
@@ -112,7 +111,7 @@ export default function RacesDetails(props) {
                                 <pre>Country:     {results.Circuit.Location.country}</pre>
                                 <pre>Location:    {results.Circuit.Location.locality}</pre>
                                 <pre>Date:        {results.date}</pre>
-                                <pre>Full Report: <a href={results.url} target="_blank"><img src="../../../public/link-white.png" className="link-icon" /></a></pre>
+                                <pre>Full Report: <a href={results.url} target="_blank"><img src="./public/link-white.png" className="link-icon" /></a></pre>
                             </div>
 
 

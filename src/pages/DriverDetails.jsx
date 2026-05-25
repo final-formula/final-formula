@@ -18,7 +18,7 @@ import SelectYear from "../components/SelectYear"
 
 export default function DriverDetails(props) {
 
-    const [driverDetails, setDriverDetails] = useState([]);
+    const [driverDetails, setDriverDetails] = useState(null);
     const [driverRaces, setDriverRaces] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
@@ -102,7 +102,7 @@ export default function DriverDetails(props) {
                     <div className="card">
                         <div className="upper-card">
                             <div className="left-side">
-                                <img src={`../../${driverDetails.Driver.driverId}.jpg`} className="team-image" />
+                                <img src={`./${driverDetails.Driver.driverId}.jpg`} className="team-image" />
                             </div>
 
                             <div className="right-side">
@@ -115,7 +115,7 @@ export default function DriverDetails(props) {
                             <pre>Country: {driverDetails.Driver.nationality}</pre>
                             <pre>Team:    {driverRaces[0].Results[0].Constructor.name} </pre>
                             <pre>Birth:   {driverRaces[0].Results[0].Driver.dateOfBirth} </pre>
-                            <pre>Biography:  <a href={driverDetails.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="link-icon" /></a></pre>
+                            <pre>Biography:  <a href={driverDetails.Driver.url} target="_blank"><img src="./link-white.png" className="link-icon" /></a></pre>
                         </div>
                     </div>
 
