@@ -21,58 +21,42 @@ export default function DriverDetails(props) {
     const [filteredDrivers, setFilteredDrivers] = useState([])
     const navigate = useNavigate();
     const params = useParams();
-    // const [year, setYear] = useState("2013");
-    const handleClickRace = (id) => {
 
+    const handleClickRace = (id) => {
         navigate(`/races/details/${id}`);
     };
 
     useEffect(() => {
         getDriverDetails();
-
     }, [props.year]);
 
     useEffect(() => {
         const matchRaces = driverRaces.filter((driver) => driver.raceName.toLowerCase().includes(search.toLowerCase()));
-
         setFilteredDrivers(matchRaces);
     }, [search, driverRaces])
 
     const getDriverDetails = async () => {
-
         const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/driverStandings.json`;
         const urlDriverRace = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/results.json`;
         const responseDriverDetails = await axios.get(urlDriverDetails);
         const responseDriverRace = await axios.get(urlDriverRace);
-
-
         setDriverDetails(responseDriverDetails.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
         setDriverRaces(responseDriverRace.data.MRData.RaceTable.Races)
         setLoading(false);
-
     };
 
     if (loading) {
         return <Loader />;
     }
-    console.log("drivers" + driverDetails);
-
-
-    console.log("driverDetails", driverDetails)
-    console.log("driverRaces", driverRaces)
 
     const driversDetailsCrumbs = [
         { path: "/drivers", label: "Drivers" },
         { path: "", label: `${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}` }
-
     ];
+
     return (
-
-
         <div className="mainScreen">
-
             <div className="header">
-                {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
                 <div className="search-div">
                     <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>
@@ -88,12 +72,10 @@ export default function DriverDetails(props) {
                             <div className="left-side">
                                 <img src={`./${driverDetails.Driver.driverId}.jpg`} className="team-image" />
                             </div>
-
                             <div className="right-side">
                                 <Flag className="flag-detail" size={60} country={getFlag(props.flags, driverDetails.Driver.nationality)} />
                                 <p>{driverDetails.Driver.givenName} {driverDetails.Driver.familyName} </p>
                             </div>
-
                         </div>
                         <div className="lower-card">
                             <pre>Country: {driverDetails.Driver.nationality}</pre>
@@ -102,19 +84,15 @@ export default function DriverDetails(props) {
                             <pre>Biography:  <a href={driverDetails.Driver.url} target="_blank"><img src="./link-white.png" className="link-icon" /></a></pre>
                         </div>
                     </div>
-
                 </div>
                 <div className="table-div-details">
-
                     <table className="table-details">
                         <thead>
                             <tr>
                                 <td colSpan={5}><h3>Formula 1 {props.year} Results</h3></td>
                             </tr>
-
                         </thead>
-
-                        {<tbody>
+                        <tbody>
                             <tr>
                                 <th>Round</th>
                                 <th>Grand Prix</th>
@@ -131,21 +109,13 @@ export default function DriverDetails(props) {
                                         <td> {details.Results[0].Constructor.name}</td>
                                         <td> {details.Results[0].grid}</td>
                                         <td style={{ backgroundColor: getPositionColor(details.Results[0].position) }}> {details.Results[0].position}</td>
-
                                     </tr>
-
                                 )
                             })}
-
-                        </tbody>}
-
+                        </tbody>
                     </table>
-
                 </div>
-
             </div>
-
         </div>
-
     )
 }

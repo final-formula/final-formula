@@ -7,7 +7,7 @@ import DriverDetails from "./pages/DriverDetails"
 import RacesDetails from "./pages/RacesDetails"
 import './App.css'
 import Drivers from "./pages/Drivers";
-import TeamResults from "./pages/TeamResults";
+import TeamDetails from "./pages/TeamDetails";
 import Flag from 'react-flagkit';
 import { useState, useEffect } from 'react'
 import Loader from "./components/Loader"
@@ -71,7 +71,7 @@ function App() {
           <Route path="/races" element={<Races flags={flags} year={year} />} />
           <Route path="/races/details/:raceName" element={<RacesDetails flags={flags} year={year} />} />
           <Route path="/teams" element={<Teams flags={flags} year={year} />} />
-          <Route path="/teams/details/:constructorId" element={<TeamResults flags={flags} year={year} />} />
+          <Route path="/teams/details/:constructorId" element={<TeamDetails flags={flags} year={year} />} />
           <Route path="/smallCard" element={<SmallCardView flags={flags} search={search} year={year} />} />
           <Route path="/bigCard" element={<BigCardView flags={flags} search={search} year={year} />} />
         </Routes>

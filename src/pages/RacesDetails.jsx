@@ -11,7 +11,6 @@ import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
 import SelectYear from "../components/SelectYear"
 
-
 export default function RacesDetails(props) {
     const [qualifiers, setQualifiers] = useState([]);
     const [results, setResults] = useState([]);
@@ -21,7 +20,6 @@ export default function RacesDetails(props) {
     const [filteredQualifiers, setFilteredQualifiers] = useState([])
     const navigate = useNavigate();
     const [year, setYear] = useState("2013");
-
     const params = useParams();
 
     useEffect(() => {
@@ -31,16 +29,13 @@ export default function RacesDetails(props) {
     useEffect(() => {
         const matchQualifiers = qualifiers.filter((driver) => driver.Driver.givenName.toLowerCase().includes(search.toLowerCase()) ||
             driver.Driver.familyName.toLowerCase().includes(search.toLowerCase()));
-        console.log("results ", results);
         const matchResults = results.Results?.filter((result) =>
             result.Driver.familyName.toLowerCase().includes(search.toLowerCase()));
         setFilteredQualifiers(matchQualifiers);
-        console.log("matchResults ", matchResults)
         setFilteredResults(matchResults);
     }, [search, qualifiers, results])
 
     const handleClick = (id) => {
-
         navigate(`/drivers/details/${id}`);
 
 

@@ -1,5 +1,4 @@
 export default function FilterText(props) {
-
     return (
         <input
             type={props.type}
@@ -7,8 +6,5 @@ export default function FilterText(props) {
             value={props.value}
             onChange={props.change}
         />
-
     );
-
-
 }

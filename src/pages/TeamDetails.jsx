@@ -1,17 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Loader from "../components/Loader";
+import Loader from "../components/Loader.jsx";
 import { useParams } from "react-router";
 import Flag from 'react-flagkit';
 import getFlagShortName from '../helpers/getFlagsCountry.js'
 import getPositionColor from '../helpers/positionColors.js'
 import getFlag from '../helpers/getFlagsNationality.js'
-import Breadcrumbs from "../components/Breadcrumbs"
+import Breadcrumbs from "../components/Breadcrumbs.jsx"
 import { useNavigate } from "react-router";
-import SelectYear from "../components/SelectYear"
-import FilterText from "../components/FilterText"
+import SelectYear from "../components/SelectYear.jsx"
+import FilterText from "../components/FilterText.jsx"
 
-export default function TeamResults(props) {
+export default function TeamDetails(props) {
 
     const [teamResults, setTeamResults] = useState([]);
     const [teamDetails, setTeamDetails] = useState(null);
@@ -63,8 +63,7 @@ export default function TeamResults(props) {
         return <Loader />
     }
 
-    console.log("res", teamResults);
-    console.log("det", teamDetails);
+
 
     const teamsDetailsCrumbs = [
         { path: "/teams", label: "Teams" },

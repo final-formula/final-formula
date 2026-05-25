@@ -1,7 +1,6 @@
 import Breadcrumbs from "../components/Breadcrumbs"
+
 export default function Home() {
-
-
     return (
         <div className="home">
             <div className="header">
@@ -13,8 +12,6 @@ export default function Home() {
             <p>Drivers</p>
             <p>Races</p>
             <p>Teams</p>
-
-
         </div>
     )
 }
