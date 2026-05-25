@@ -9,7 +9,7 @@ import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
 import Flag from "react-flagkit";
 import getFlag from "../helpers/getFlagsNationality";
 
-export default function SmallCardView() {
+export default function SmallCardView(props) {
     const [drivers, setDrivers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
