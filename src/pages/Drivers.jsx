@@ -85,6 +85,14 @@ export default function Drivers(props) {
                                     <td colSpan="4">No Driver match criteria ... try again</td>
                                 </tr>
                             )}
+                            <tr>
+                                <th>Position</th>
+                                <th>Driver</th>
+                                <th>Team</th>
+                                <th>Points</th>
+
+                            </tr>
+
 
                             {
                                 filteredDriver.map((driver) => {

@@ -47,9 +47,7 @@ export default function Teams(props) {
     const handleClick = (id) => {
         navigate(`/teams/details/${id}`);
     };
-    const handleClickUrl = (id) => {
-        navigate(`id`);
-    };
+
 
     if (loading) {
         return <Loader />

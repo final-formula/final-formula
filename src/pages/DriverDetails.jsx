@@ -14,7 +14,7 @@ import SelectYear from "../components/SelectYear"
 
 export default function DriverDetails(props) {
 
-    const [driverDetails, setDriverDetails] = useState([]);
+    const [driverDetails, setDriverDetails] = useState(null);
     const [driverRaces, setDriverRaces] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
@@ -39,15 +39,15 @@ export default function DriverDetails(props) {
     }, [search, driverRaces])
 
     const getDriverDetails = async () => {
-        console.log("params ", params);
+
         const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/driverStandings.json`;
         const urlDriverRace = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/results.json`;
-        const response = await axios.get(urlDriverDetails);
-        const response2 = await axios.get(urlDriverRace);
-        console.log(response2);
+        const responseDriverDetails = await axios.get(urlDriverDetails);
+        const responseDriverRace = await axios.get(urlDriverRace);
 
-        setDriverDetails(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
-        setDriverRaces(response2.data.MRData.RaceTable.Races)
+
+        setDriverDetails(responseDriverDetails.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
+        setDriverRaces(responseDriverRace.data.MRData.RaceTable.Races)
         setLoading(false);
 
     };
@@ -63,7 +63,7 @@ export default function DriverDetails(props) {
 
     const driversDetailsCrumbs = [
         { path: "/drivers", label: "Drivers" },
-        { path: "/drivers/details/:driverId", label: `${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}` }
+        { path: "", label: `${driverDetails.Driver.givenName} ${driverDetails.Driver.familyName}` }
 
     ];
     return (
@@ -86,7 +86,7 @@ export default function DriverDetails(props) {
                     <div className="card">
                         <div className="upper-card">
                             <div className="left-side">
-                                <img src={`../../${driverDetails.Driver.driverId}.jpg`} className="team-image" />
+                                <img src={`./${driverDetails.Driver.driverId}.jpg`} className="team-image" />
                             </div>
 
                             <div className="right-side">
@@ -99,7 +99,7 @@ export default function DriverDetails(props) {
                             <pre>Country: {driverDetails.Driver.nationality}</pre>
                             <pre>Team:    {driverRaces[0].Results[0].Constructor.name} </pre>
                             <pre>Birth:   {driverRaces[0].Results[0].Driver.dateOfBirth} </pre>
-                            <pre>Biography:  <a href={driverDetails.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="link-icon" /></a></pre>
+                            <pre>Biography:  <a href={driverDetails.Driver.url} target="_blank"><img src="./link-white.png" className="link-icon" /></a></pre>
                         </div>
                     </div>
 
