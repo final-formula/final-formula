@@ -12,15 +12,18 @@ import { useState, useEffect } from 'react'
 import Loader from "./components/Loader"
 import SmallCardView from "./pages/SmallCardView"
 import BigCardView from "./pages/BigCardView"
+import SelectYear from "./components/SelectYear"
 
 function App() {
   const [flags, setFlags] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState([]);
   const [search, setSearch] = useState("");
+  const [year, setYear] = useState("2026")
 
   useEffect(() => {
     getFlags();
+
   }, []);
 
   const getFlags = async () => {
@@ -39,6 +42,7 @@ function App() {
     <BrowserRouter>
       <div className="wrapper">
         <nav>
+          <SelectYear value={year} change={(e) => setYear(e.target.value)} />
           <div className="navbar">
             <div className="homeDiv">
               <Link to="/"><img src="../../public/F1-2013-Legends-Edition.jpg" className="homeImage" /></Link>
@@ -54,15 +58,15 @@ function App() {
 
         </nav>
         <Routes>
-          <Route path="/" element={<Home flags={flags} />} />
-          <Route path="/drivers" element={<Drivers flags={flags} search={search} />} />
-          <Route path="/drivers/details/:driverId" element={<DriverDetails flags={flags} />} />
-          <Route path="/races" element={<Races flags={flags} />} />
-          <Route path="/races/details/:raceName" element={<RacesDetails flags={flags} />} />
-          <Route path="/teams" element={<Teams flags={flags} />} />
-          <Route path="/teams/details/:constructorId" element={<TeamResults flags={flags} />} />
-          <Route path="/smallCard" element={<SmallCardView flags={flags} search={search} />} />
-          <Route path="/bigCard" element={<BigCardView flags={flags} search={search} />} />
+          <Route path="/" element={<Home flags={flags} year={year} />} />
+          <Route path="/drivers" element={<Drivers flags={flags} year={year} search={search} />} />
+          <Route path="/drivers/details/:driverId" element={<DriverDetails flags={flags} year={year} />} />
+          <Route path="/races" element={<Races flags={flags} year={year} />} />
+          <Route path="/races/details/:raceName" element={<RacesDetails flags={flags} year={year} />} />
+          <Route path="/teams" element={<Teams flags={flags} year={year} />} />
+          <Route path="/teams/details/:constructorId" element={<TeamResults flags={flags} year={year} />} />
+          <Route path="/smallCard" element={<SmallCardView flags={flags} search={search} year={year} />} />
+          <Route path="/bigCard" element={<BigCardView flags={flags} search={search} year={year} />} />
         </Routes>
       </div>
     </BrowserRouter>

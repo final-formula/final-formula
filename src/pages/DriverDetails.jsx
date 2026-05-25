@@ -25,7 +25,8 @@ export default function DriverDetails(props) {
     const [filteredDrivers, setFilteredDrivers] = useState([])
     const navigate = useNavigate();
     const params = useParams();
-    const [year, setYear] = useState("2013");
+    // const [year, setYear] = useState("2013");
+
 
 
 
@@ -42,7 +43,7 @@ export default function DriverDetails(props) {
     useEffect(() => {
         getDriverDetails();
 
-    }, [year]);
+    }, [props.year]);
 
     useEffect(() => {
         const matchRaces = driverRaces.filter((driver) => driver.raceName.toLowerCase().includes(search.toLowerCase()));
@@ -53,8 +54,8 @@ export default function DriverDetails(props) {
 
     const getDriverDetails = async () => {
         console.log("params ", params);
-        const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/${year}/drivers/${params.driverId}/driverStandings.json`;
-        const urlDriverRace = `https://api.jolpi.ca/ergast/f1/${year}/drivers/${params.driverId}/results.json`;
+        const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/driverStandings.json`;
+        const urlDriverRace = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/results.json`;
         const response = await axios.get(urlDriverDetails);
         const response2 = await axios.get(urlDriverRace);
         console.log(response2);
@@ -87,7 +88,7 @@ export default function DriverDetails(props) {
         <div className="mainScreen">
 
             <div className="header">
-                <SelectYear value={year} change={(e) => setYear(e.target.value)} />
+                {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
                 <div className="search-div">
                     <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>
@@ -127,7 +128,7 @@ export default function DriverDetails(props) {
                     <table className="table-details">
                         <thead>
                             <tr>
-                                <td colSpan={5}><h3>Formula 1 2013 Results</h3></td>
+                                <td colSpan={5}><h3>Formula 1 {props.year} Results</h3></td>
                             </tr>
 
                         </thead>
