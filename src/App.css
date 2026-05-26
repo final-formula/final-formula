@@ -448,7 +448,7 @@ h1 {
 .bigCardContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 20%;
+  gap: 20px;
   justify-content: center;
 }
 
@@ -458,8 +458,9 @@ h1 {
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 550px;
+  width: 70%;
+  max-height: 300px;
+  /* max-width: 550px; */
   padding: 15px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
