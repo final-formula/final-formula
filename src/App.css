@@ -421,6 +421,7 @@ h1 {
       rgba(45, 90, 123, 0.6)40%,
       rgba(26, 58, 82, 1)100%); */
   animation: pulse-glow 5s ease-in-out infinite;
+  color: #000;
 }
 
 
@@ -442,28 +443,30 @@ h1 {
   background-color: #f4f4f9;
 }
 
-.heder {
+.header {
   margin-bottom: 20px;
 }
 
 .bigCardContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 20%;
+  gap: 20px;
   justify-content: center;
 }
 
 .bigCard {
   display: flex;
   flex-direction: row;
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #1a3a52 0%, #2d527b 100%);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 550px;
+  width: 70%;
+  max-height: 400px;
+  /* max-width: 550px; */
   padding: 15px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #81c3d7;
 }
 
 .bigCard:hover {
@@ -526,7 +529,7 @@ h1 {
   margin: 0 0 8px 0;
   font-family: inherit;
   font-size: 0.9rem;
-  color: #555;
+  color: #81c3d7;
 }
 
 .bio {
@@ -543,20 +546,62 @@ h1 {
 .standingsBigCard {
   display: flex;
   justify-content: space-between;
-  background: #f9f9fb;
+  background: #2f6188;
   padding: 10px;
   border-radius: 8px;
 }
 
-.standingsBigCards p {
+/* .standingsBigCard::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: linear-gradient(90deg,
+  #ff0000,
+  #ff7300,
+  #fffb00,
+  #48ff00,
+  #00ffd5,
+  #002bff,
+  #7a00ff,
+  #ff00aa,
+  #ff0000;
+  background-size: 300% 300%;
+  filter: blur(16px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  animation: rgbGlow 6s linear infinite;
+  );
+} */
+
+/* .standingsBigCard:hover::before {
+  opacity: 1;
+} */
+
+/* @keyframes rgbGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 50% 100%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+} */
+
+.standingsBigCard p {
   margin: 0;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #333;
+  color: #ffd700;
 }
 
 .standingsBigCard .position {
-  color: #0066cc;
+  /* color: #0066cc; */
 }
 
 /* BigCardView---> */
