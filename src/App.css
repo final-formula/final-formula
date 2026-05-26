@@ -515,7 +515,8 @@ h1 {
   margin-bottom: 15px;
 }
 
-.middleLeft, .middleRight {
+.middleLeft,
+.middleRight {
   display: flex;
   flex-direction: column;
 }
@@ -556,4 +557,52 @@ h1 {
 .standingsBigCard .position {
   color: #0066cc;
 }
+
 /* BigCardView---> */
+
+.smallCard::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+
+  background: linear-gradient(90deg,
+      #ff0000,
+      #ff7300,
+      #fffb00,
+      #48ff00,
+      #00ffd5,
+      #002bff,
+      #7a00ff,
+      #ff00aa,
+      #ff0000);
+
+  background-size: 300% 300%;
+
+  filter: blur(16px);
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+
+  z-index: -1;
+
+  animation: rgbGlow 6s linear infinite;
+}
+
+.smallCard:hover::before {
+  opacity: 1;
+}
+
+@keyframes rgbGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
