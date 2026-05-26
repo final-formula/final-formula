@@ -378,15 +378,19 @@ h1 {
 }
 
 .smallCard {
+  position: relative;
+  overflow: visible;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
   border-radius: 16px;
   background: linear-gradient(135deg, #1a3a52 0%, #2d527b 100%);
   padding: 0;
   cursor: pointer;
+  /* transition: all 0.3s ease; */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: #81c3d7;
   /* var(--mouse-x; 50%) var(--mouse-y:50%); */
   background-color: teal;
+  z-index: 1;
 
 }
 
@@ -410,4 +414,52 @@ h1 {
 
 .lower-card-smallCard .country-label {
   color: #81c3d7;
+}
+
+
+.smallCard::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+
+  background: linear-gradient(90deg,
+      #ff0000,
+      #ff7300,
+      #fffb00,
+      #48ff00,
+      #00ffd5,
+      #002bff,
+      #7a00ff,
+      #ff00aa,
+      #ff0000);
+
+  background-size: 300% 300%;
+
+  filter: blur(16px);
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+
+  z-index: -1;
+
+  animation: rgbGlow 6s linear infinite;
+}
+
+.smallCard:hover::before {
+  opacity: 1;
+}
+
+@keyframes rgbGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
