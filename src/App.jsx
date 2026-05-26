@@ -15,6 +15,7 @@ import SmallCardView from "./pages/SmallCardView"
 import BigCardView from "./pages/BigCardView"
 import SelectYear from "./components/SelectYear"
 
+
 function App() {
   const [flags, setFlags] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -49,18 +50,25 @@ function App() {
     <BrowserRouter>
       <div className="wrapper">
         <nav>
-          <SelectYear value={year} change={(e) => setYear(e.target.value)} />
           <div className="navbar">
+
+
             <div className="homeDiv">
               <Link to="/"><img src="./F1-2013-Legends-Edition.jpg" className="homeImage" /></Link>
             </div>
+
             <div className="linksDiv">
+              <SelectYear className="selectYear" value={year} change={(e) => setYear(e.target.value)} />
+
               <NavLink to="/drivers" style={activeStyle}><img src="./Kaciga.png" className="nav-img" /> <span>Drivers</span></NavLink>
               <NavLink to="/teams" style={activeStyle}><img src="./Teams.png" className="nav-img" /> <span>Teams</span></NavLink>
               <NavLink to="/races" className="link-races" style={activeStyle}><img src="./Races1.png" className="nav-img races" /> <span>Races</span></NavLink>
               <NavLink to="/smallCard" style={activeStyle}><img src="./Kaciga.png" className="nav-img" /> <span>SmallCard</span></NavLink>
               <NavLink to="/bigCard" style={activeStyle}><img src="./Kaciga.png" className="nav-img" /> <span>BigCard</span></NavLink>
+
             </div>
+
+
           </div>
 
         </nav>

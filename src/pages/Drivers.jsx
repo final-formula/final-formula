@@ -7,12 +7,14 @@ import Flag from 'react-flagkit';
 import FilterText from "../components/FilterText"
 import Breadcrumbs from "../components/Breadcrumbs"
 import SelectYear from "../components/SelectYear"
+import SearchBar from "../components/SearchBar";
 
 export default function Drivers(props) {
     const [drivers, setDrivers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredDriver, setFilteredDriver] = useState([]);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,10 +28,19 @@ export default function Drivers(props) {
     }, [search, drivers])
 
     const getDrivers = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
-        const response = await axios.get(url);
-        setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
-        setLoading(false);
+        try {
+            const url = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
+            const response = await axios.get(url);
+            setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+
+        }
+        catch (e) {
+            console.log(e.message);
+            setError(e.message);
+        }
+        finally {
+            setLoading(false);
+        }
     };
 
     const handleClick = (id) => {
@@ -38,6 +49,9 @@ export default function Drivers(props) {
 
     const handleClickTeam = (id) => {
         navigate(`/teams/details/${id}`);
+    };
+    const handleClear = () => {
+        setSearch("");
     };
 
     if (loading) {
@@ -52,7 +66,7 @@ export default function Drivers(props) {
         <>
             <div className="mainScreen">
                 <div className="header">
-                    {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
+                    <SearchBar type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} clear={(e) => handleClear()} />
                     <div className="search-div">
                         <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
                         <button onClick={() => setSearch("")}>clear</button>
@@ -63,6 +77,7 @@ export default function Drivers(props) {
                 </div>
                 <h1>Drivers Championship</h1>
                 <div className="table-div">
+
                     <table className="table">
                         <tbody className="table-body">
                             {filteredDriver.length === 0 && (
@@ -80,8 +95,13 @@ export default function Drivers(props) {
                                 return (
                                     <tr key={driver.Driver.driverId}>
                                         <td style={{ width: '10%' }}>{driver.position}</td>
-                                        <td onClick={() => handleClick(driver.Driver.driverId)} style={{ width: '50%' }} className="td-flag on-click"> <Flag country={getFlag(props.flags, driver.Driver.nationality)} /><span>{driver.Driver.givenName} {driver.Driver.familyName}</span></td>
-                                        <td onClick={() => handleClickTeam(driver.Constructors[0].constructorId)} style={{ width: '30%' }} className="on-click">{driver.Constructors[0].name}</td>
+                                        <td onClick={() => handleClick(driver.Driver.driverId)} style={{ width: '50%' }}
+                                            className="td-flag on-click"> <Flag country={getFlag(props.flags, driver.Driver.nationality)} />
+                                            <span>{driver.Driver.givenName} {driver.Driver.familyName}</span></td>
+
+
+                                        <td onClick={() => handleClickTeam(driver.Constructors[0].constructorId)} style={{ width: '30%' }} className="on-click">
+                                            {driver.Constructors[0].name}</td>
                                         <td style={{ width: '30%' }}> {driver.points}</td>
                                     </tr>
                                 )
