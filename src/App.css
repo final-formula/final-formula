@@ -420,6 +420,7 @@ h1 {
       rgba(45, 90, 123, 0.6)40%,
       rgba(26, 58, 82, 1)100%); */
   animation: pulse-glow 5s ease-in-out infinite;
+  color: #000;
 }
 
 
