@@ -61,13 +61,13 @@ export default function BigCardFunction(props) {
             <div className="bigCardContainer">
                 {filteredDriver.map((driver, i) => {
                     return (
-                        <div className="big-card" onClick={() => handleClick(driver.Driver.driverId)} key={i}>
-                            <div className="left-bigCard">
-                                <img src={`/Drivers/${driver.Driver.driverId}.jpg`} className="team-image" />
+                        <div className="bigCard" onClick={() => handleClick(driver.Driver.driverId)} key={i}>
+                            <div className="leftBigCard">
+                                <img src={`/Drivers/${driver.Driver.driverId}.jpg`} className="teamImage" />
                             </div>
-                            <div className="right-bigCard">
-                                <div className="first-row">
-                                    <Flag className="flag-detail" size={200} country={getFlag(props.flags, driver.Driver.nationality)} />
+                            <div className="rightBigCard">
+                                <div className="firstRow">
+                                    <Flag className="flagDetail" size={200} country={getFlag(props.flags, driver.Driver.nationality)} />
                                     <p>{driver.Driver.givenName} {driver.Driver.familyName}</p>
                                 </div>
                                 <div className="middlePart">
@@ -77,7 +77,7 @@ export default function BigCardFunction(props) {
                                     </div>
                                     <div className="middleRight">
                                         <pre>Birth: {driver.Driver.dateOfBirth}</pre>
-                                        <pre className="bio">Biography: <a href={driver.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="link-icon" /></a></pre>
+                                        <pre className="bio">Biography: <a href={driver.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="linkIcon" /></a></pre>
                                     </div>
                                 </div>
                                 <div className="standingsBigCard">
