@@ -15,18 +15,18 @@ export default function Teams(props) {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredTeams, setFilteredTeams] = useState([]);
-    const [year, setYear] = useState("2013");
+
 
     const navigate = useNavigate();
 
     useEffect(() => {
         getTeams();
-    }, [year]);
+    }, [props.year]);
 
     const getTeams = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/${year}/constructorStandings.json`;
+        const url = `https://api.jolpi.ca/ergast/f1/${props.year}/constructorStandings.json`;
         const response = await axios.get(url);
-        console.log(response.data.MRData);
+
         setTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
         setLoading(false);
     }
@@ -37,12 +37,6 @@ export default function Teams(props) {
 
         setFilteredTeams(matchTeams);
     }, [search, teams])
-
-    // const getFlag = (flags, country) => {
-    //     const flag = flags.find(flag => flag.nationality === country);
-    //     console.log(flag)
-    //     return flag?.alpha_2_code;
-    // };
 
     const handleClick = (id) => {
         navigate(`/teams/details/${id}`);
@@ -61,7 +55,7 @@ export default function Teams(props) {
     return (
         <div className="mainScreen">
             <div className="header">
-                {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
+
                 <div className="search-div">
                     <FilterText type="text" label="team" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>
@@ -75,7 +69,7 @@ export default function Teams(props) {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th colSpan={4}><h3>Constructors Championship Standings - 2013</h3></th>
+                            <th colSpan={4}><h3>Constructors Championship Standings - {props.year}</h3></th>
 
                         </tr>
                     </thead>

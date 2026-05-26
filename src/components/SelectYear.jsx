@@ -9,9 +9,9 @@ export default function SelectYear(props) {
 
     return (
         <select value={props.value} onChange={props.change}>
-            {years.map((year) => {
+            {years.map((year, i) => {
                 return (
-                    <option value={year}>{year}</option>
+                    <option key={i} value={year}>{year}</option>
                 );
             })}
         </select>

@@ -21,7 +21,7 @@ export default function BigCardFunction(props) {
 
     useEffect(() => {
         getDrivers();
-    }, [year]);
+    }, [props.year]);
 
     useEffect(() => {
         const matchDrivers = drivers.filter((driver) =>
@@ -31,7 +31,7 @@ export default function BigCardFunction(props) {
     }, [search, drivers])
 
     const getDrivers = async () => {
-        const driversUrl = `https://api.jolpi.ca/ergast/f1/${year}/driverstandings.json`;
+        const driversUrl = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
         const response = await axios.get(driversUrl);
         setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
         setLoading(false);
@@ -54,25 +54,20 @@ export default function BigCardFunction(props) {
     return (
         <div className="mainScreen">
             <div className="header">
-                <SelectYear value={year} onChange={(e) => setYear(e.target.value)} />
-                <div className="search-div">
-                    <FilterText type="text" label="driver" value={search} onChange={(e) => setSearch(e.target.value)} />
-                    <button onClick={() => setSearch("")}>clear</button>
-                </div>
-                <div className="Breadcrumbs-main">
-                    <Breadcrumbs crumbs={driversCrumbs} />
-                </div>
+
+
+
             </div>
             <div className="bigCardContainer">
                 {filteredDriver.map((driver, i) => {
                     return (
-                        <div className="big-card" onClick={() => handleClick(driver.Driver.driverId)} key={i}>
-                            <div className="left-bigCard">
-                                <img src={`../../${driver.Driver.driverId}.jpg`} className="team-image" />
+                        <div className="bigCard" onClick={() => handleClick(driver.Driver.driverId)} key={i}>
+                            <div className="leftBigCard">
+                                <img src={`/Drivers/${driver.Driver.driverId}.jpg`} className="teamImage" />
                             </div>
-                            <div className="right-bigCard">
-                                <div className="first-row">
-                                    <Flag className="flag-detail" size={200} country={getFlag(props.flags, driver.Driver.nationality)} />
+                            <div className="rightBigCard">
+                                <div className="firstRow">
+                                    <Flag className="flagDetail" size={200} country={getFlag(props.flags, driver.Driver.nationality)} />
                                     <p>{driver.Driver.givenName} {driver.Driver.familyName}</p>
                                 </div>
                                 <div className="middlePart">
@@ -82,7 +77,7 @@ export default function BigCardFunction(props) {
                                     </div>
                                     <div className="middleRight">
                                         <pre>Birth: {driver.Driver.dateOfBirth}</pre>
-                                        <pre className="bio">Biography: <a href={driver.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="link-icon" /></a></pre>
+                                        <pre className="bio">Biography: <a href={driver.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="linkIcon" /></a></pre>
                                     </div>
                                 </div>
                                 <div className="standingsBigCard">
