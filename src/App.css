@@ -394,15 +394,19 @@ h1 {
 }
 
 .smallCard {
+  position: relative;
+  overflow: visible;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
   border-radius: 16px;
   background: linear-gradient(135deg, #1a3a52 0%, #2d527b 100%);
   padding: 0;
   cursor: pointer;
+  /* transition: all 0.3s ease; */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: #81c3d7;
   /* var(--mouse-x; 50%) var(--mouse-y:50%); */
   background-color: teal;
+  z-index: 1;
 
 }
 
@@ -426,23 +430,4 @@ h1 {
 
 .lower-card-smallCard .country-label {
   color: #81c3d7;
-}
-
-.searchWithClearButton {
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-
-
-}
-
-.searchWithClear {
-  width: 100%;
-  padding-right: 30px;
-  height: 100%;
-
 }
