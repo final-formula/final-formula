@@ -70,7 +70,7 @@ export default function DriverDetails(props) {
                     <div className="card">
                         <div className="upper-card">
                             <div className="left-side">
-                                <img src={`./${driverDetails.Driver.driverId}.jpg`} className="team-image" />
+                                <img src={`/${driverDetails.Driver.driverId}.jpg`} className="team-image" />
                             </div>
                             <div className="right-side">
                                 <Flag className="flag-detail" size={60} country={getFlag(props.flags, driverDetails.Driver.nationality)} />

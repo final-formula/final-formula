@@ -19,7 +19,7 @@ export default function SmallCardView(props) {
 
     useEffect(() => {
         getDrivers();
-    }, [year]);
+    }, [props.year]);
 
     useEffect(() => {
         const matchDrivers = drivers.filter((driver) => driver.Driver.givenName.toLowerCase().includes(search.toLowerCase()) || driver.Driver.familyName.toLowerCase().includes(search.toLowerCase()));
@@ -27,7 +27,7 @@ export default function SmallCardView(props) {
     }, [search, drivers]);
 
     const getDrivers = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/${year}/driverstandings.json`;
+        const url = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
         const response = await axios.get(url);
 
         setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
@@ -75,7 +75,7 @@ export default function SmallCardView(props) {
                             <div className="smallCard" onClick={() => handleClick(driver.Driver.driverId)}>
                                 <div className="upper-smallCard">
                                     <div className="left-side-smallCard">
-                                        <img src={`../../${driver.Driver.driverId}.jpg`} className="team-image" />
+                                        <img src={`/Drivers/${driver.Driver.driverId}.jpg`} className="team-image" />
                                     </div>
 
                                     <div className="right-side-smallCard">

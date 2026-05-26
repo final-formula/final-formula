@@ -21,7 +21,7 @@ export default function BigCardFunction(props) {
 
     useEffect(() => {
         getDrivers();
-    }, [year]);
+    }, [props.year]);
 
     useEffect(() => {
         const matchDrivers = drivers.filter((driver) =>
@@ -31,7 +31,7 @@ export default function BigCardFunction(props) {
     }, [search, drivers])
 
     const getDrivers = async () => {
-        const driversUrl = `https://api.jolpi.ca/ergast/f1/${year}/driverstandings.json`;
+        const driversUrl = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
         const response = await axios.get(driversUrl);
         setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
         setLoading(false);
@@ -54,16 +54,16 @@ export default function BigCardFunction(props) {
     return (
         <div className="mainScreen">
             <div className="header">
-                
-                
-               
+
+
+
             </div>
             <div className="bigCardContainer">
                 {filteredDriver.map((driver, i) => {
                     return (
                         <div className="big-card" onClick={() => handleClick(driver.Driver.driverId)} key={i}>
                             <div className="left-bigCard">
-                                <img src={`../../${driver.Driver.driverId}.jpg`} className="team-image" />
+                                <img src={`/Drivers/${driver.Driver.driverId}.jpg`} className="team-image" />
                             </div>
                             <div className="right-bigCard">
                                 <div className="first-row">

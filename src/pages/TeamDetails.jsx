@@ -89,7 +89,7 @@ export default function TeamDetails(props) {
                         <div className="card">
                             <div className="upper-card">
                                 <div className="left-side">
-                                    <img src={`./${teamDetails.Constructor.constructorId}.png`} className="team-image" />
+                                    <img src={`/Teams/${teamDetails.Constructor.constructorId}.png`} className="team-image" />
                                 </div>
 
                                 <div className="right-side">
