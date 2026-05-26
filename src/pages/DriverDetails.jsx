@@ -11,6 +11,7 @@ import getPositionColor from '../helpers/positionColors.js'
 import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
 import SelectYear from "../components/SelectYear"
+import Error from "../components/Error.jsx";
 
 export default function DriverDetails(props) {
 
@@ -21,6 +22,7 @@ export default function DriverDetails(props) {
     const [filteredDrivers, setFilteredDrivers] = useState([])
     const navigate = useNavigate();
     const params = useParams();
+    const [error, setError] = useState(null);
 
     const handleClickRace = (id) => {
         navigate(`/races/details/${id}`);
@@ -36,18 +38,34 @@ export default function DriverDetails(props) {
     }, [search, driverRaces])
 
     const getDriverDetails = async () => {
-        const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/driverStandings.json`;
-        const urlDriverRace = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/results.json`;
-        const responseDriverDetails = await axios.get(urlDriverDetails);
-        const responseDriverRace = await axios.get(urlDriverRace);
-        setDriverDetails(responseDriverDetails.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
-        setDriverRaces(responseDriverRace.data.MRData.RaceTable.Races)
-        setLoading(false);
+
+        try {
+            const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/driverStandings.json`;
+            const urlDriverRace = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/results.json`;
+            const responseDriverDetails = await axios.get(urlDriverDetails);
+            const responseDriverRace = await axios.get(urlDriverRace);
+            setDriverDetails(responseDriverDetails.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
+            setDriverRaces(responseDriverRace.data.MRData.RaceTable.Races)
+        }
+        catch (e) {
+            console.log(e.message);
+            setError(e.message);
+        }
+        finally {
+            setLoading(false);
+        }
+
     };
 
     if (loading) {
         return <Loader />;
     }
+
+    if (error) {
+        return <Error />;
+    }
+
+
 
     const driversDetailsCrumbs = [
         { path: "/drivers", label: "Drivers" },
@@ -70,7 +88,7 @@ export default function DriverDetails(props) {
                     <div className="card">
                         <div className="upper-card">
                             <div className="left-side">
-                                <img src={`/${driverDetails.Driver.driverId}.jpg`} className="team-image" />
+                                <img src={`/Drivers/${driverDetails.Driver.driverId}.jpg`} className="team-image" />
                             </div>
                             <div className="right-side">
                                 <Flag className="flag-detail" size={60} country={getFlag(props.flags, driverDetails.Driver.nationality)} />
