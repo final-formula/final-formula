@@ -361,3 +361,129 @@ h1 {
 
 
 }
+
+/* --->BigCardView */
+.mainScreen {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  background-color: #f4f4f9;
+}
+
+.heder {
+  margin-bottom: 20px;
+}
+
+.bigCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20%;
+  justify-content: center;
+}
+
+.bigCard {
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 550px;
+  padding: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bigCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.leftBigCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding-right: 15px;
+}
+
+.teamImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rightBigCard {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  justify-content: space-between;
+}
+
+.firstRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.firstRow p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.flagDetail {
+  margin-right: 5px;
+}
+
+.middlePart {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.middleLeft, .middleRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.middlePart pre {
+  margin: 0 0 8px 0;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.bio {
+  display: flex;
+  align-items: center;
+}
+
+.linkIcon {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+}
+
+.standingsBigCard {
+  display: flex;
+  justify-content: space-between;
+  background: #f9f9fb;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.standingsBigCards p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.standingsBigCard .position {
+  color: #0066cc;
+}
+/* BigCardView---> */
