@@ -53,12 +53,28 @@
 
 }
 
-.linksDiv a:hover {
-  background-color: #242424;
+
+.selectYear,
+.homeDiv,
+.linksDiv {
+  position: sticky;
+  left: 0;
+
 }
 
-.linksDiv a:active {
-  background-color: black;
+.linksDiv {
+  top: 300px;
+}
+
+.selectYear {
+
+  top: 0;
+
+}
+
+.homeDiv {
+
+  top: 0;
 }
 
 .link-races {
