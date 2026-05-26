@@ -19,7 +19,7 @@ export default function Races(props) {
 
     useEffect(() => {
         getRaces();
-    }, [year]);
+    }, [props.year]);
 
     useEffect(() => {
         const matchRaces = races.filter((race) => race.raceName.toLowerCase().includes(search.toLowerCase()));
@@ -27,7 +27,7 @@ export default function Races(props) {
     }, [search, races])
 
     const getRaces = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/${year}/results/1.json`;
+        const url = `https://api.jolpi.ca/ergast/f1/${props.year}/results/1.json`;
         const response = await axios.get(url);
         setRaces(response.data.MRData.RaceTable.Races);
         setLoading(false);
@@ -52,7 +52,7 @@ export default function Races(props) {
     return (
         <div className="mainScreen">
             <div className="header">
-                {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
+
                 <div className="search-div">
                     <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>
@@ -67,7 +67,7 @@ export default function Races(props) {
                     <thead>
                         <tr>
                             <th colSpan={5} className="table-head">
-                                <h4>Drivers Championship Standings - 2013</h4>
+                                <h4>Drivers Championship Standings - {props.year}</h4>
                             </th>
                         </tr>
                     </thead>

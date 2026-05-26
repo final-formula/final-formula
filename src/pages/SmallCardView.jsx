@@ -57,7 +57,7 @@ export default function SmallCardView(props) {
 
                 <div className="header">
 
-                    <SelectYear value={year} change={(e) => setYear(e.target.value)} />
+
                     <div className="search-div">
                         <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
                         <button onClick={() => setSearch("")}>clear</button>

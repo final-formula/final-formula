@@ -24,7 +24,7 @@ export default function RacesDetails(props) {
 
     useEffect(() => {
         getRaceDetails();
-    }, [year]);
+    }, [props.year]);
 
     useEffect(() => {
         const matchQualifiers = qualifiers.filter((driver) => driver.Driver.givenName.toLowerCase().includes(search.toLowerCase()) ||
@@ -43,8 +43,8 @@ export default function RacesDetails(props) {
 
 
     const getRaceDetails = async () => {
-        const urlQualifying = `https://api.jolpi.ca/ergast/f1/${year}/${params.raceName}/qualifying.json`;
-        const urlResults = `https://api.jolpi.ca/ergast/f1/${year}/${params.raceName}/results.json`;
+        const urlQualifying = `https://api.jolpi.ca/ergast/f1/${props.year}/${params.raceName}/qualifying.json`;
+        const urlResults = `https://api.jolpi.ca/ergast/f1/${props.year}/${params.raceName}/results.json`;
 
         const responseQualifying = await axios.get(urlQualifying);
         const responseResults = await axios.get(urlResults);
@@ -84,7 +84,7 @@ export default function RacesDetails(props) {
 
         <div className="mainScreen">
             <div className="header">
-                {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
+
                 <div className="search-div">
                     <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>
@@ -120,7 +120,7 @@ export default function RacesDetails(props) {
 
                                 <tr>
 
-                                    <th colSpan={4}><h3>2013 qualifying results</h3></th>
+                                    <th colSpan={4}><h3>{props.year} qualifying results</h3></th>
 
                                 </tr>
 
@@ -155,7 +155,7 @@ export default function RacesDetails(props) {
                             <thead>
                                 <tr>
 
-                                    <th colSpan={5}><h3>Race results</h3></th>
+                                    <th colSpan={5}><h3>Race results {props.year}</h3></th>
 
                                 </tr>
                             </thead>

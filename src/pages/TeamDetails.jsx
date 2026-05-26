@@ -18,7 +18,7 @@ export default function TeamDetails(props) {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const params = useParams();
-    const [year, setYear] = useState("2013");
+
     const [search, setSearch] = useState("");
     const [filteredRaces, setFilteredRaces] = useState([]);
 
@@ -26,7 +26,7 @@ export default function TeamDetails(props) {
 
     useEffect(() => {
         getTeamResults();
-    }, [year]);
+    }, [props.year]);
 
 
     useEffect(() => {
@@ -45,8 +45,8 @@ export default function TeamDetails(props) {
 
     const getTeamResults = async () => {
         console.log("params", params);
-        const urlTeamDetails = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.constructorId}/constructorStandings.json`
-        const urlTeamResults = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.constructorId}/results.json`
+        const urlTeamDetails = `https://api.jolpi.ca/ergast/f1/${props.year}/constructors/${params.constructorId}/constructorStandings.json`
+        const urlTeamResults = `https://api.jolpi.ca/ergast/f1/${props.year}/constructors/${params.constructorId}/results.json`
         const response = await axios.get(urlTeamDetails);
         const response2 = await axios.get(urlTeamResults)
 
@@ -74,7 +74,7 @@ export default function TeamDetails(props) {
     return (
         <div className="mainScreen">
             <div className="header">
-                {/* <SelectYear value={year} change={(e) => setYear(e.target.value)} /> */}
+
                 <div className="search-div">
                     <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
                     <button onClick={() => setSearch("")}>clear</button>
