@@ -427,3 +427,22 @@ h1 {
 .lower-card-smallCard .country-label {
   color: #81c3d7;
 }
+
+.searchWithClearButton {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+
+
+}
+
+.searchWithClear {
+  width: 100%;
+  padding-right: 30px;
+  height: 100%;
+
+}

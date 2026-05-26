@@ -20,9 +20,10 @@ export default function DriverDetails(props) {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredDrivers, setFilteredDrivers] = useState([])
+    const [error, setError] = useState(true);
+
     const navigate = useNavigate();
     const params = useParams();
-    const [error, setError] = useState(null);
 
     const handleClickRace = (id) => {
         navigate(`/races/details/${id}`);
@@ -40,6 +41,7 @@ export default function DriverDetails(props) {
     const getDriverDetails = async () => {
 
         try {
+            setError(false)
             const urlDriverDetails = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/driverStandings.json`;
             const urlDriverRace = `https://api.jolpi.ca/ergast/f1/${props.year}/drivers/${params.driverId}/results.json`;
             const responseDriverDetails = await axios.get(urlDriverDetails);
@@ -48,8 +50,8 @@ export default function DriverDetails(props) {
             setDriverRaces(responseDriverRace.data.MRData.RaceTable.Races)
         }
         catch (e) {
-            console.log(e.message);
-            setError(e.message);
+            setError(true);
+
         }
         finally {
             setLoading(false);

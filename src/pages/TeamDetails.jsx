@@ -114,7 +114,7 @@ export default function TeamDetails(props) {
                         <table className="table-details">
                             <thead>
                                 <tr>
-                                    <td colSpan={5}><h3>Formula 1 2013 Results</h3></td>
+                                    <td colSpan={5}><h3>Formula 1 {props.year} Results</h3></td>
                                 </tr>
 
                             </thead>
