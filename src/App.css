@@ -22,6 +22,27 @@
   }
 }
 
+@media(min-widdth:1200px) {
+  .smallCardContainer {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media(min-widdth:1023px) {
+  .smallCardContainer {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media(min-widdth:480px) {
+  .smallCardContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
 
 .home {
   height: 100vh;
@@ -110,6 +131,8 @@
   top: 0;
   display: flex;
   justify-content: space-evenly;
+  position: sticky;
+  z-index: 2;
 }
 
 .mainScreen {
@@ -206,6 +229,8 @@ tr:nth-child(even) {
 
 .flag-detail {
   margin: 0 30px;
+  width: clamp(30px, 10vw, 60px);
+  height: clamp(20px, 6.5vw, 40px);
 }
 
 .right-side p {
@@ -340,8 +365,8 @@ h1 {
 .smallCardContainer {
   display: grid;
   /* flex-wrap: wrap; */
-  gap: 24px;
-  padding: 15px;
+  gap: clamp(10px, 3vw, 28px);
+  padding: clamp(6px, 3vw, 24px);
   margin: 10px;
   font-size: large;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -349,10 +374,11 @@ h1 {
 }
 
 .smallCard {
+  min-height: clamp(300px, 90vw, 420px);
   position: relative;
   overflow: visible;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-  border-radius: 16px;
+  border-radius: clamp(6px, 2vw, 16px);
   background: linear-gradient(135deg, #1a3a52 0%, #2d527b 100%);
   padding: 0;
   cursor: pointer;
@@ -379,6 +405,7 @@ h1 {
 
 
 .standingsSmallCard pre {
+  font-size: clamp(8px, 2.5, 14px);
   color: #ffd700;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -435,19 +462,44 @@ h1 {
 }
 
 .upper-smallCard {
+  height: clamp(80px, 30vw, 220px);
   display: flex;
   margin: 10px;
   padding: 10px;
 }
 
 .lower-card-smallCard {
+  font-size: clamp(7px, 2.5vw, 13px);
+  margin: 10px;
+  padding: clamp(6px, 3vw, 16px);
+  gap: clamp(3px, 1.5vw, 10px);
+}
+
+.link-icon {
+  width: clamp(8px, 1.5vw, 14px);
+  height: clamp(8px, 1.5vw, 14px);
+}
+
+.standingsSmallCard {
+
   margin: 10px;
   padding: 10px;
 }
 
-.standingsSmallCard {
-  margin: 10px;
-  padding: 10px;
+.right-side-smallCard {
+  right: clamp(4px, 2vw, 12px);
+  top: clamp(4px, 2vw, 12px);
+  padding: clamp(2px, 1vw, 6px);
+  /* font-size: larger; */
+
+}
+
+.lower-card-smallCard .country-label {
+  font-size: clamp(7px, 2vw, 12px);
+}
+
+.lower-card-smallCard .info-text {
+  font-size: clamp(7px, 2.5vw, 12px);
 }
 
 /* Small card end */
@@ -500,9 +552,7 @@ h1 {
   padding-right: 15px;
 }
 
-.leftBigCard .teamImage {
-  /* height: 250px; */
-}
+
 
 .teamImage {
   width: 100%;
