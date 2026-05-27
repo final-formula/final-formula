@@ -22,7 +22,7 @@
   }
 }
 
-@media(min-widdth:1200px) {
+/* @media(min-widdth:1200px) {
   .smallCardContainer {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
@@ -39,7 +39,23 @@
     grid-template-columns: 1fr;
   }
 }
+ */
 
+@media (max-width:768px) {
+  .linksDiv {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  .nav-img {
+    width: 30px;
+  }
+
+}
 
 
 
@@ -66,7 +82,10 @@
 }
 
 .navbar {
+  /* padding: clamp(10px, 2vw, 20px); */
   display: flex;
+  /* justify-content: space-between; */
+  /* align-items: center; */
   flex-direction: column;
   width: 15vw;
   min-height: 100%;
@@ -75,10 +94,15 @@
   font-size: 1.2rem;
 }
 
+
+
+
+
 .linksDiv a {
   width: 100%;
   height: 100%;
   display: flex;
+  gap: 5px;
   align-items: center;
   background-color: #303030;
   border: 1px solid #000000;
@@ -95,6 +119,10 @@
 }
 
 .linksDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 20px);
   top: 300px;
 }
 
@@ -112,13 +140,13 @@
 }
 
 .nav-img {
-  width: 150px;
-  height: 50px;
+  width: 80px;
+  height: auto;
 }
 
 .nav-img.races {
-  width: 100px;
-  margin-left: 20px;
+  /* width: 100px; */
+  /* margin-left: 20px; */
   display: flex;
   gap: 15px;
 }
