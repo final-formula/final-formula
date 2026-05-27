@@ -72,12 +72,12 @@ export default function BigCardFunction(props) {
                                 </div>
                                 <div className="middlePart">
                                     <div className="middleLeft">
-                                        <pre>Country:     {driver.Driver.nationality}</pre>
-                                        <pre>Team:        {driver.Constructors[0].name}</pre>
+                                        <pre>Country:  {driver.Driver.nationality}</pre>
+                                        <pre>Team:  {driver.Constructors[0].name}</pre>
                                     </div>
                                     <div className="middleRight">
-                                        <pre>Birth: {driver.Driver.dateOfBirth}</pre>
-                                        <pre className="bio">Biography: <a href={driver.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="linkIcon" /></a></pre>
+                                        <pre>Birth:  {driver.Driver.dateOfBirth}</pre>
+                                        <pre className="bio">Biography:  <a href={driver.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="linkIcon" /></a></pre>
                                     </div>
                                 </div>
                                 <div className="standingsBigCard">

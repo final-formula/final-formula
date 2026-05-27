@@ -460,13 +460,13 @@ h1 {
   background: linear-gradient(135deg, #1a3a52 0%, #2d527b 100%);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  width: 70%;
-  max-height: 400px;
+  width: 95%;
+  height: 400px;
   /* max-width: 550px; */
   padding: 15px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  color: #81c3d7;
+  color: #f4f4f9;
 }
 
 .bigCard:hover {
@@ -482,14 +482,11 @@ h1 {
   padding-right: 15px;
 }
 
-.leftBigCard .teamImage {
-  /* height: 250px; */
-}
-
 .teamImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* height: 250px; */
 }
 
 .rightBigCard {
@@ -503,11 +500,11 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 15px;
+  margin: 0 0 15px 15px;
 }
 
 .firstRow p {
-  font-size: 1.2rem;
+  font-size: 2.7rem;
   font-weight: bold;
   margin: 0;
 }
@@ -519,8 +516,13 @@ h1 {
 .middlePart {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-bottom: 15px;
+}
+
+.middlePart .middleLeft pre,
+.middlePart .middleRight pre {
+  font-size: 1.3rem;
 }
 
 .middleLeft,
@@ -530,10 +532,10 @@ h1 {
 }
 
 .middlePart pre {
-  margin: 0 0 8px 0;
+  margin: 0 15px 8px 15px;
   font-family: inherit;
   font-size: 0.9rem;
-  color: #81c3d7;
+  color: #f4f4f9;
 }
 
 .bio {
@@ -550,64 +552,19 @@ h1 {
 .standingsBigCard {
   display: flex;
   justify-content: space-between;
-  background: #2f6188;
+  background: linear-gradient(135deg, #4f6f86 0%, #2d527b 100%);
   padding: 10px;
   border-radius: 8px;
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.4);
+  margin: 0 15px;
 }
-
-/* .standingsBigCard::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: inherit;
-  background: linear-gradient(90deg,
-  #ff0000,
-  #ff7300,
-  #fffb00,
-  #48ff00,
-  #00ffd5,
-  #002bff,
-  #7a00ff,
-  #ff00aa,
-  #ff0000;
-  background-size: 300% 300%;
-  filter: blur(16px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-  animation: rgbGlow 6s linear infinite;
-  );
-} */
-
-/* .standingsBigCard:hover::before {
-  opacity: 1;
-} */
-
-/* @keyframes rgbGlow {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 50% 100%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-} */
 
 .standingsBigCard p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1.0rem;
   font-weight: 600;
   color: #ffd700;
 }
-
-.standingsBigCard .position {
-  /* color: #0066cc; */
-}
-
 /* BigCardView---> */
 
 .smallCard::before {
