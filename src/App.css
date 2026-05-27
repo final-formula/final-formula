@@ -30,7 +30,6 @@
   color: white;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 
 .wrapper {
@@ -53,8 +52,6 @@
   background-color: #303030;
   border: 1px solid #000000;
   font-size: 1.2rem;
-
-
 }
 
 .linksDiv a {
@@ -67,18 +64,13 @@
   text-decoration: none;
   padding: 15px 0;
   color: white;
-
-
-
 }
-
 
 .selectYear,
 .homeDiv,
 .linksDiv {
   position: sticky;
   left: 0;
-
 }
 
 .linksDiv {
@@ -86,13 +78,10 @@
 }
 
 .selectYear {
-
   top: 0;
-
 }
 
 .homeDiv {
-
   top: 0;
 }
 
@@ -101,12 +90,9 @@
   gap: 30px;
 }
 
-
-
 .nav-img {
   width: 150px;
   height: 50px;
-
 }
 
 .nav-img.races {
@@ -114,8 +100,6 @@
   margin-left: 20px;
   display: flex;
   gap: 15px;
-
-
 }
 
 .header {
@@ -147,8 +131,6 @@ table {
   border-radius: 15px;
   border: 1px solid #797979;
   border-spacing: 0;
-
-
 }
 
 .table-body {
@@ -161,9 +143,6 @@ table {
   align-items: center;
   margin-bottom: 20px;
   width: 100%;
-
-
-
 }
 
 .link-icon {
@@ -175,13 +154,8 @@ table {
   height: 120px;
 }
 
-
 .td-flag {
-
   padding: 5px 10px;
-
-
-
 }
 
 .td-flag img {
@@ -193,7 +167,6 @@ table {
   width: 100%;
   height: 40px;
   border-bottom: 1px solid gray;
-
 }
 
 .table-head,
@@ -201,16 +174,11 @@ th {
   background-color: #AAAAAA
 }
 
-
-
 th,
 td {
-
   padding: 5px 20px;
   border: 1px solid #AAAAAA;
   font-size: 1.3rem;
-
-
 }
 
 tr {
@@ -222,12 +190,8 @@ tr:nth-child(even) {
 }
 
 .card-container {
-
   width: 20%;
-
-
   background-color: #303030;
-
 }
 
 .card {
@@ -260,8 +224,6 @@ tr:nth-child(even) {
   gap: 20px;
   margin: 10px 20px;
   color: white;
-
-
 }
 
 .details-screen {
@@ -283,8 +245,6 @@ tr:nth-child(even) {
   display: flex;
   justify-content: center;
   align-items: center;
-
-
 }
 
 .td-link a {
@@ -292,7 +252,6 @@ tr:nth-child(even) {
   width: 100%;
   height: 100%;
   text-decoration: none;
-
 }
 
 thead h3 {
@@ -374,10 +333,9 @@ thead h3 {
 h1 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: wheat;
-
-
-
 }
+
+/* Small card pocetak */
 
 .smallCardContainer {
   display: grid;
@@ -386,11 +344,8 @@ h1 {
   padding: 15px;
   margin: 10px;
   font-size: large;
-
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   animation: fadeIn 0.6 ease-out;
-
-
 }
 
 .smallCard {
@@ -407,7 +362,6 @@ h1 {
   /* var(--mouse-x; 50%) var(--mouse-y:50%); */
   background-color: teal;
   z-index: 1;
-
 }
 
 .smallCard:hover {
@@ -432,6 +386,71 @@ h1 {
 .lower-card-smallCard .country-label {
   color: #81c3d7;
 }
+
+.smallCard::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+
+  background: linear-gradient(90deg,
+      #ff0000,
+      #ff7300,
+      #fffb00,
+      #48ff00,
+      #00ffd5,
+      #002bff,
+      #7a00ff,
+      #ff00aa,
+      #ff0000);
+
+  background-size: 300% 300%;
+
+  filter: blur(16px);
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+
+  z-index: -1;
+
+  animation: rgbGlow 6s linear infinite;
+}
+
+.smallCard:hover::before {
+  opacity: 1;
+}
+
+@keyframes rgbGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.upper-smallCard {
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+}
+
+.lower-card-smallCard {
+  margin: 10px;
+  padding: 10px;
+}
+
+.standingsSmallCard {
+  margin: 10px;
+  padding: 10px;
+}
+
+/* Small card end */
 
 /* --->BigCardView */
 .mainScreen {
@@ -560,50 +579,3 @@ h1 {
 }
 
 /* BigCardView---> */
-
-.smallCard::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: inherit;
-
-  background: linear-gradient(90deg,
-      #ff0000,
-      #ff7300,
-      #fffb00,
-      #48ff00,
-      #00ffd5,
-      #002bff,
-      #7a00ff,
-      #ff00aa,
-      #ff0000);
-
-  background-size: 300% 300%;
-
-  filter: blur(16px);
-  opacity: 0;
-
-  transition: opacity 0.3s ease;
-
-  z-index: -1;
-
-  animation: rgbGlow 6s linear infinite;
-}
-
-.smallCard:hover::before {
-  opacity: 1;
-}
-
-@keyframes rgbGlow {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
