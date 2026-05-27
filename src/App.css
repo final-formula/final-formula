@@ -435,11 +435,11 @@ h1 {
 }
 
 /* --->BigCardView */
-.mainScreen {
+.mainScreenBigCard {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 20px;
+  /* padding: 20px; */
   background-color: #f4f4f9;
 }
 
@@ -459,7 +459,7 @@ h1 {
   flex-direction: row;
   background: linear-gradient(135deg, #1a3a52 0%, #2d527b 100%);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   width: 70%;
   max-height: 400px;
   /* max-width: 550px; */
@@ -471,7 +471,7 @@ h1 {
 
 .bigCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
 }
 
 .leftBigCard {
@@ -480,6 +480,10 @@ h1 {
   justify-content: center;
   flex: 1;
   padding-right: 15px;
+}
+
+.leftBigCard .teamImage {
+  /* height: 250px; */
 }
 
 .teamImage {
