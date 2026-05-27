@@ -453,11 +453,11 @@ h1 {
 /* Small card end */
 
 /* --->BigCardView */
-.mainScreen {
+.mainScreenBigCard {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 20px;
+  /* padding: 20px; */
   background-color: #f4f4f9;
 }
 
@@ -468,26 +468,28 @@ h1 {
 .bigCardContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 20%;
+  gap: 20px;
   justify-content: center;
 }
 
 .bigCard {
   display: flex;
   flex-direction: row;
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #1a3a52 0%, #2d527b 100%);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 550px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  width: 70%;
+  max-height: 400px;
+  /* max-width: 550px; */
   padding: 15px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #81c3d7;
 }
 
 .bigCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
 }
 
 .leftBigCard {
@@ -496,6 +498,10 @@ h1 {
   justify-content: center;
   flex: 1;
   padding-right: 15px;
+}
+
+.leftBigCard .teamImage {
+  /* height: 250px; */
 }
 
 .teamImage {
@@ -545,7 +551,7 @@ h1 {
   margin: 0 0 8px 0;
   font-family: inherit;
   font-size: 0.9rem;
-  color: #555;
+  color: #81c3d7;
 }
 
 .bio {
@@ -562,7 +568,7 @@ h1 {
 .standingsBigCard {
   display: flex;
   justify-content: space-between;
-  background: #f9f9fb;
+  background: #2f6188;
   padding: 10px;
   border-radius: 8px;
 }
