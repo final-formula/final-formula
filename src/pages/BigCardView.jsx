@@ -8,6 +8,8 @@ import SelectYear from "../components/SelectYear";
 import FilterText from "../components/FilterText";
 import Breadcrumbs from "../components/Breadcrumbs";
 import getFlagShortName from "../helpers/getFlagsCountry";
+import Error from "../components/Error.jsx";
+
 
 export default function BigCardFunction(props) {
 
@@ -16,6 +18,7 @@ export default function BigCardFunction(props) {
     const [search, setSearch] = useState("");
     const [filteredDriver, setFilteredDriver] = useState([]);
     const [year, setYear] = useState("2013");
+    const [error, setError] = useState(true);
 
     const navigate = useNavigate();
 
@@ -31,10 +34,20 @@ export default function BigCardFunction(props) {
     }, [search, drivers])
 
     const getDrivers = async () => {
-        const driversUrl = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
-        const response = await axios.get(driversUrl);
-        setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
-        setLoading(false);
+        try {
+            setError(false)
+            const driversUrl = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
+            const response = await axios.get(driversUrl);
+            setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+
+        }
+        catch (e) {
+            console.log(e.message);
+            setError(e.message);
+        }
+        finally {
+            setLoading(false);
+        }
     }
 
     const handleClick = (id) => {
@@ -43,6 +56,9 @@ export default function BigCardFunction(props) {
 
     if (loading) {
         return <Loader />
+    }
+    if (error) {
+        return <Error />;
     }
 
     const driversCrumbs = [
@@ -77,7 +93,7 @@ export default function BigCardFunction(props) {
                                     </div>
                                     <div className="middleRight">
                                         <pre>Birth: {driver.Driver.dateOfBirth}</pre>
-                                        <pre className="bio">Biography: <a href={driver.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="linkIcon" /></a></pre>
+                                        <pre className="bio">Biography: <a href={driver.Driver.url} target="_blank"><img src="/General/link-white.png" className="linkIcon" /></a></pre>
                                     </div>
                                 </div>
                                 <div className="standingsBigCard">

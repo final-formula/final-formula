@@ -7,6 +7,7 @@ import getFlag from '../helpers/getFlagsNationality.js'
 import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
 import SelectYear from "../components/SelectYear"
+import Error from "../components/Error.jsx";
 
 
 export default function Teams(props) {
@@ -15,6 +16,7 @@ export default function Teams(props) {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredTeams, setFilteredTeams] = useState([]);
+    const [error, setError] = useState(true);
 
 
     const navigate = useNavigate();
@@ -24,10 +26,21 @@ export default function Teams(props) {
     }, [props.year]);
 
     const getTeams = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/${props.year}/constructorStandings.json`;
-        const response = await axios.get(url);
+        try {
+            setError(false)
+            const url = `https://api.jolpi.ca/ergast/f1/${props.year}/constructorStandings.json`;
+            const response = await axios.get(url);
 
-        setTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
+            setTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
+        }
+
+        catch (e) {
+            setError(true);
+
+        }
+        finally {
+            setLoading(false);
+        }
         setLoading(false);
     }
 
@@ -45,6 +58,9 @@ export default function Teams(props) {
 
     if (loading) {
         return <Loader />
+    }
+    if (error) {
+        return <Error />;
     }
 
     const teamsCrumbs = [
@@ -86,7 +102,7 @@ export default function Teams(props) {
                                         onClick={() => handleClick(team.Constructor.constructorId)} className="td-flag on-click"> <Flag country={getFlag(props.flags, team.Constructor.nationality)} /> {team.Constructor.name}
 
                                     </td>
-                                    <td style={{ width: '20%' }} className="td-link"> <a href={team.Constructor.url} target="_blank">Details <img src="./link-black.png" className="link-icon" /></a></td>
+                                    <td style={{ width: '20%' }} className="td-link"> <a href={team.Constructor.url} target="_blank">Details <img src="/General/link-black.png" className="link-icon" /></a></td>
                                     <td style={{ width: '20%' }}>{team.points}</td>
                                 </tr>
                             );
