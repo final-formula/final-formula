@@ -142,6 +142,9 @@
 .nav-img {
   width: 80px;
   height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .nav-img.races {
@@ -149,6 +152,7 @@
   /* margin-left: 20px; */
   display: flex;
   gap: 15px;
+
 }
 
 .header {
@@ -197,7 +201,8 @@ table {
 }
 
 .link-icon {
-  width: 13px;
+  width: clamp(8px, 1.5vw, 14px);
+  height: clamp(8px, 1.5vw, 14px);
 }
 
 .team-image {
@@ -391,31 +396,38 @@ h1 {
 /* Small card pocetak */
 
 .smallCardContainer {
+  /* display: flex; */
   display: grid;
-  /* flex-wrap: wrap; */
-  gap: clamp(10px, 3vw, 28px);
-  padding: clamp(6px, 3vw, 24px);
-  margin: 10px;
-  font-size: large;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  flex-wrap: wrap;
+  gap: clamp(15px, 3vw, 20px);
+  margin: 20px;
+  /* gap: 10px; */
+  padding: clamp(6px, 3vw, 30px);
+  /* padding: 10px; */
+  /* margin: 10px; */
+  font-size: 1.2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   animation: fadeIn 0.6 ease-out;
+  /* justify-content: space-between; */
 }
 
 .smallCard {
   min-height: clamp(300px, 90vw, 420px);
+  width: 300px;
   position: relative;
   overflow: visible;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
   border-radius: clamp(6px, 2vw, 16px);
   background: linear-gradient(135deg, #1a3a52 0%, #2d527b 100%);
   padding: 0;
+  margin: 10px;
   cursor: pointer;
   /* transition: all 0.3s ease; */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: #81c3d7;
-  /* var(--mouse-x; 50%) var(--mouse-y:50%); */
   background-color: teal;
   z-index: 1;
+  /* font-size: 1.5rem; */
 }
 
 .smallCard:hover {
@@ -423,10 +435,7 @@ h1 {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  /* background: radial-gradient(circle at var(--mouse-x) var(--mouse-y),
-      rgba(129, 195, 215, 0.3)0%,
-      rgba(45, 90, 123, 0.6)40%,
-      rgba(26, 58, 82, 1)100%); */
+
   animation: pulse-glow 5s ease-in-out infinite;
   color: #000;
 }
@@ -436,6 +445,7 @@ h1 {
   font-size: clamp(8px, 2.5, 14px);
   color: #ffd700;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 .lower-card-smallCard .country-label {
@@ -498,15 +508,12 @@ h1 {
 
 .lower-card-smallCard {
   font-size: clamp(7px, 2.5vw, 13px);
+  font-size: 1.2rem;
   margin: 10px;
   padding: clamp(6px, 3vw, 16px);
   gap: clamp(3px, 1.5vw, 10px);
 }
 
-.link-icon {
-  width: clamp(8px, 1.5vw, 14px);
-  height: clamp(8px, 1.5vw, 14px);
-}
 
 .standingsSmallCard {
 
@@ -528,6 +535,7 @@ h1 {
 
 .lower-card-smallCard .info-text {
   font-size: clamp(7px, 2.5vw, 12px);
+  /* font-size: 1.5rem; */
 }
 
 /* Small card end */
@@ -578,10 +586,6 @@ h1 {
   justify-content: center;
   flex: 1;
   padding-right: 15px;
-}
-
-.leftBigCard .teamImage {
-  /* height: 250px; */
 }
 
 .teamImage {
@@ -668,10 +672,6 @@ h1 {
   font-size: 1.8rem;
   font-weight: 600;
   color: #FFD700;
-}
-
-.standingsBigCard .position {
-  /* color: #0066cc; */
 }
 
 /* BigCardView---> */
