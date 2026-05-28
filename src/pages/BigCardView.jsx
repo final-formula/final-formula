@@ -53,7 +53,7 @@ export default function BigCardFunction(props) {
 
     return (
         <div className="mainScreenBigCard">
-            <div className="header">
+            <div className="headerBigCard">
 
 
 
@@ -63,26 +63,26 @@ export default function BigCardFunction(props) {
                     return (
                         <div className="bigCard" onClick={() => handleClick(driver.Driver.driverId)} key={i}>
                             <div className="leftBigCard">
-                                <img src={`/Drivers/${driver.Driver.driverId}.jpg`} className="teamImage" />
+                                <img src={`/Drivers/${driver.Driver.driverId}.jpg`} className="teamImageBigCard" />
                             </div>
                             <div className="rightBigCard">
-                                <div className="firstRow">
-                                    <Flag className="flagDetail" size={200} country={getFlag(props.flags, driver.Driver.nationality)} />
+                                <div className="firstRowBigCard">
+                                    <Flag className="flagDetailBigCard" size={200} country={getFlag(props.flags, driver.Driver.nationality)} />
                                     <p>{driver.Driver.givenName} {driver.Driver.familyName}</p>
                                 </div>
-                                <div className="middlePart">
-                                    <div className="middleLeft">
+                                <div className="middlePartBigCard">
+                                    <div className="middleLeftBigCard">
                                         <pre>Country:  {driver.Driver.nationality}</pre>
                                         <pre>Team:  {driver.Constructors[0].name}</pre>
                                     </div>
-                                    <div className="middleRight">
+                                    <div className="middleRightBigCard">
                                         <pre>Birth:  {driver.Driver.dateOfBirth}</pre>
-                                        <pre className="bio">Biography:  <a href={driver.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="linkIcon" /></a></pre>
+                                        <pre className="bioBigCard">Biography:  <a href={driver.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="linkIconBigCard" /></a></pre>
                                     </div>
                                 </div>
                                 <div className="standingsBigCard">
                                     <p>Points: {driver.points}</p>
-                                    <p className="position">Position: {driver.position}</p>
+                                    <p className="positionBigCard">Position: {driver.position}</p>
                                     <p>Wins: {driver.wins}</p>
                                 </div>
                             </div>

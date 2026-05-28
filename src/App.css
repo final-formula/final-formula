@@ -541,7 +541,7 @@ h1 {
   background-color: #f4f4f9;
 }
 
-.header {
+.headerBigCard {
   margin-bottom: 20px;
 }
 
@@ -580,11 +580,7 @@ h1 {
   padding-right: 15px;
 }
 
-.leftBigCard .teamImage {
-  /* height: 250px; */
-}
-
-.teamImage {
+.teamImageBigCard {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -598,7 +594,7 @@ h1 {
   justify-content: space-between;
 }
 
-.firstRow {
+.firstRowBigCard {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -607,47 +603,47 @@ h1 {
   flex-direction: row-reverse;
 }
 
-.firstRow p {
+.firstRowBigCard p {
   font-size: 2.7rem;
   font-weight: bold;
   margin: 0;
 }
 
-.flagDetail {
+.flagDetailBigCard {
   margin-right: 5px;
 }
 
-.middlePart {
+.middlePartBigCard {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin-bottom: 15px;
 }
 
-.middlePart .middleLeft pre,
-.middlePart .middleRight pre {
+.middlePartBigCard .middleLeftBigCard pre,
+.middlePartBigCard .middleRightBigCard pre {
   font-size: 1.6rem;
 }
 
-.middleLeft,
-.middleRight {
+.middleLeftBigCard,
+.middleRightBigCard {
   display: flex;
   flex-direction: column;
 }
 
-.middlePart pre {
+.middlePartBigCard pre {
   margin: 0 15px 8px 15px;
   font-family: inherit;
   font-size: 1.3rem;
   color: #f4f4f9;
 }
 
-.bio {
+.bioBigCard {
   display: flex;
   align-items: center;
 }
 
-.linkIcon {
+.linkIconBigCard {
   width: 16px;
   height: 16px;
   margin-left: 5px;
@@ -669,9 +665,4 @@ h1 {
   font-weight: 600;
   color: #FFD700;
 }
-
-.standingsBigCard .position {
-  /* color: #0066cc; */
-}
-
 /* BigCardView---> */
