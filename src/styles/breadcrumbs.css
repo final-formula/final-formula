@@ -1,0 +1,16 @@
+.breadcrumbs-div {
+    height: 100%;
+    width: 30vw;
+    background-color: aquamarine;
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+    font-size: 1.5rem;
+    gap: 20px;
+
+}
+
+
+.breadcrumbs-div a {
+    text-decoration: none;
+}

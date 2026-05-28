@@ -101,7 +101,7 @@ export default function DriverDetails(props) {
                             <pre>Country: {driverDetails.Driver.nationality}</pre>
                             <pre>Team:    {driverRaces[0].Results[0].Constructor.name} </pre>
                             <pre>Birth:   {driverRaces[0].Results[0].Driver.dateOfBirth} </pre>
-                            <pre>Biography:  <a href={driverDetails.Driver.url} target="_blank"><img src="./link-white.png" className="link-icon" /></a></pre>
+                            <pre>Biography:  <a href={driverDetails.Driver.url} target="_blank"><img src="/General/link-white.png" className="link-icon" /></a></pre>
                         </div>
                     </div>
                 </div>

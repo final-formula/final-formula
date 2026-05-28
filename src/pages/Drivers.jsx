@@ -8,6 +8,7 @@ import FilterText from "../components/FilterText"
 import Breadcrumbs from "../components/Breadcrumbs"
 import SelectYear from "../components/SelectYear"
 import SearchBar from "../components/SearchBar";
+import Error from "../components/Error.jsx";
 
 export default function Drivers(props) {
     const [drivers, setDrivers] = useState([]);
@@ -29,6 +30,7 @@ export default function Drivers(props) {
 
     const getDrivers = async () => {
         try {
+            setError(false)
             const url = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
             const response = await axios.get(url);
             setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
@@ -58,6 +60,10 @@ export default function Drivers(props) {
         return <Loader />
     }
 
+    if (error) {
+        return <Error />;
+    }
+
     const driversCrumbs = [
         { path: "", label: "Drivers" }
     ];
@@ -66,7 +72,7 @@ export default function Drivers(props) {
         <>
             <div className="mainScreen">
                 <div className="header">
-                    <SearchBar type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} clear={(e) => handleClear()} />
+
                     <div className="search-div">
                         <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
                         <button onClick={() => setSearch("")}>clear</button>

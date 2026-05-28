@@ -10,6 +10,7 @@ import Breadcrumbs from "../components/Breadcrumbs.jsx"
 import { useNavigate } from "react-router";
 import SelectYear from "../components/SelectYear.jsx"
 import FilterText from "../components/FilterText.jsx"
+import Error from "../components/Error.jsx";
 
 export default function TeamDetails(props) {
 
@@ -18,7 +19,7 @@ export default function TeamDetails(props) {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const params = useParams();
-
+    const [error, setError] = useState(true);
     const [search, setSearch] = useState("");
     const [filteredRaces, setFilteredRaces] = useState([]);
 
@@ -44,14 +45,25 @@ export default function TeamDetails(props) {
     };
 
     const getTeamResults = async () => {
-        console.log("params", params);
-        const urlTeamDetails = `https://api.jolpi.ca/ergast/f1/${props.year}/constructors/${params.constructorId}/constructorStandings.json`
-        const urlTeamResults = `https://api.jolpi.ca/ergast/f1/${props.year}/constructors/${params.constructorId}/results.json`
-        const response = await axios.get(urlTeamDetails);
-        const response2 = await axios.get(urlTeamResults)
+        try {
+            setError(false)
+            console.log("params", params);
+            const urlTeamDetails = `https://api.jolpi.ca/ergast/f1/${props.year}/constructors/${params.constructorId}/constructorStandings.json`
+            const urlTeamResults = `https://api.jolpi.ca/ergast/f1/${props.year}/constructors/${params.constructorId}/results.json`
+            const response = await axios.get(urlTeamDetails);
+            const response2 = await axios.get(urlTeamResults)
 
-        setTeamDetails(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
-        setTeamResults(response2.data.MRData.RaceTable.Races);
+            setTeamDetails(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
+            setTeamResults(response2.data.MRData.RaceTable.Races);
+        }
+
+        catch (e) {
+            setError(true);
+
+        }
+        finally {
+            setLoading(false);
+        }
         setLoading(false);
     }
 
@@ -61,6 +73,9 @@ export default function TeamDetails(props) {
 
     if (loading) {
         return <Loader />
+    }
+    if (error) {
+        return <Error />;
     }
 
 
@@ -101,7 +116,7 @@ export default function TeamDetails(props) {
                                 <pre>Country:    {teamDetails.Constructor.constructorId}</pre>
                                 <pre>Position:   {teamDetails.position}</pre>
                                 <pre>Points:     {teamDetails.points}</pre>
-                                <pre>History:   <a href={teamDetails.Constructor.url} target="_blank"> <img src="./link-white.png" className="link-icon" /></a></pre>
+                                <pre>History:   <a href={teamDetails.Constructor.url} target="_blank"> <img src="/General/link-white.png" className="link-icon" /></a></pre>
                             </div>
                         </div>
 
