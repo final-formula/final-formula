@@ -106,7 +106,7 @@ export default function Drivers(props) {
                                             <span>{driver.Driver.givenName} {driver.Driver.familyName}</span></td>
 
 
-                                        <td onClick={() => handleClickTeam(driver.Constructors.constructorId)} style={{ width: '30%' }} className="on-click">
+                                        <td onClick={() => handleClickTeam(driver.Constructors[0].constructorId)} style={{ width: '30%' }} className="on-click">
                                             {driver.Constructors[0].name}</td>
                                         <td style={{ width: '30%' }}> {driver.points}</td>
                                     </tr>
