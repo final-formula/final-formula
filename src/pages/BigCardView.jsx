@@ -72,8 +72,8 @@ export default function BigCardFunction(props) {
         <div className="mainScreenBigCard">
             <div className="headerBigCard">
                 <div className="searchDiv">
-                    <FilterText type="text" label="driver" value={search} onChange={(e) => setSearch(e.target.value)} />
-                    <button onClick={() => setSearch("")}>clear</button>    
+                    <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
+                    <button onClick={() => setSearch("")}>clear</button>
                 </div>
                 <div>
                     <Breadcrumbs crumbs={driversCrumbs} />
