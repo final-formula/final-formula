@@ -14,6 +14,7 @@ import Loader from "./components/Loader"
 import SmallCardView from "./pages/SmallCardView"
 import BigCardView from "./pages/BigCardView"
 import SelectYear from "./components/SelectYear"
+import Galery from "./pages/Galery"
 
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
               <NavLink to="/races" className="link-races" style={activeStyle}><img src="/General/Races1.png" className="nav-img races" /> <span>Races</span></NavLink>
               <NavLink to="/smallCard" style={activeStyle}><img src="/General/Kaciga.png" className="nav-img" /> <span>Small Card</span></NavLink>
               <NavLink to="/bigCard" style={activeStyle}><img src="/General/Kaciga.png" className="nav-img" /> <span>Big Card</span></NavLink>
+              <NavLink to="/galery" style={activeStyle}><img src="/General/Kaciga.png" className="nav-img" /> <span>Galery</span></NavLink>
 
             </div>
 
@@ -82,6 +84,7 @@ function App() {
           <Route path="/teams/details/:constructorId" element={<TeamDetails flags={flags} year={year} />} />
           <Route path="/smallCard" element={<SmallCardView flags={flags} search={search} year={year} />} />
           <Route path="/bigCard" element={<BigCardView flags={flags} search={search} year={year} />} />
+          <Route path="/galery" element={<Galery flags={flags} search={search} year={year} />} />
         </Routes>
       </div>
     </BrowserRouter>
