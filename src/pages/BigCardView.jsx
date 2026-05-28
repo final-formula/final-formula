@@ -9,7 +9,7 @@ import FilterText from "../components/FilterText";
 import Breadcrumbs from "../components/Breadcrumbs";
 import getFlagShortName from "../helpers/getFlagsCountry";
 import Error from "../components/Error.jsx";
-
+import "../styles/bigCardView.css"
 
 export default function BigCardFunction(props) {
 
