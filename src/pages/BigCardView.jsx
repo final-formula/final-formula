@@ -5,11 +5,12 @@ import { useNavigate } from "react-router";
 import getFlag from "../helpers/getFlagsNationality";
 import Flag from "react-flagkit";
 import SelectYear from "../components/SelectYear";
-import FilterText from "../components/FilterText";
+import FilterText from "../components/FilterText.jsx";
 import Breadcrumbs from "../components/Breadcrumbs";
 import getFlagShortName from "../helpers/getFlagsCountry";
 import Error from "../components/Error.jsx";
 import "../styles/bigCardView.css"
+
 
 export default function BigCardFunction(props) {
 
@@ -70,9 +71,13 @@ export default function BigCardFunction(props) {
     return (
         <div className="mainScreenBigCard">
             <div className="headerBigCard">
-
-
-
+                <div className="searchDiv">
+                    <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
+                    <button onClick={() => setSearch("")}>clear</button>
+                </div>
+                <div>
+                    <Breadcrumbs crumbs={driversCrumbs} />
+                </div>
             </div>
             <div className="bigCardContainer">
                 {filteredDriver.map((driver, i) => {
