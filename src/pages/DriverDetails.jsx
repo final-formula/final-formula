@@ -125,7 +125,8 @@ export default function DriverDetails(props) {
                                     <tr key={details.driverId} >
 
                                         <td>{details.round}</td>
-                                        <td onClick={() => handleClickRace(details.round)} className="td-flag on-click"><Flag country={getFlagShortName(props.flags, details.Circuit.Location.country)} /> {details.raceName}</td>
+                                        <td onClick={() => handleClickRace(details.round)} className="td-flag on-click">
+                                            <Flag country={getFlagShortName(props.flags, details.Circuit.Location.country)} /> {details.raceName}</td>
                                         <td> {details.Results[0].Constructor.name}</td>
                                         <td> {details.Results[0].grid}</td>
                                         <td style={{ backgroundColor: getPositionColor(details.Results[0].position) }}> {details.Results[0].position}</td>

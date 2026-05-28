@@ -43,6 +43,9 @@ export default function RacesDetails(props) {
 
 
     };
+    const handleClickTeam = (id) => {
+        navigate(`/teams/details/${id}`);
+    };
 
 
     const getRaceDetails = async () => {
@@ -65,7 +68,7 @@ export default function RacesDetails(props) {
         finally {
             setLoading(false);
         }
-        setLoading(false);
+
 
 
     };
@@ -95,7 +98,7 @@ export default function RacesDetails(props) {
         { path: "", label: `${results.Circuit.circuitName}` }
 
     ];
-
+    console.log(filteredResults)
     return (
 
 
@@ -157,7 +160,7 @@ export default function RacesDetails(props) {
                                         <tr key={position.position}>
                                             <td>{position.position}</td>
                                             <td className="td-flag on-click" onClick={() => handleClick(position.Driver.driverId)}><Flag country={getFlag(props.flags, position.Driver.nationality)} />{position.Driver.givenName} {position.Driver.familyName}</td>
-                                            <td>{position.Constructor.name}</td>
+                                            <td onClick={() => handleClickTeam(position.Constructor.constructorId)}>{position.Constructor.name}</td>
                                             <td>{getFastestTime(position.Q1, position.Q2, position.Q3)}</td>
                                         </tr>
                                     )
@@ -189,7 +192,7 @@ export default function RacesDetails(props) {
                                         <tr key={result.raceName}>
                                             <td>{result.position}</td>
                                             <td onClick={() => handleClick(result.Driver.driverId)} className="td-flag on-click"><Flag country={getFlag(props.flags, result.Driver.nationality)} />{result.Driver.familyName} </td>
-                                            <td>{result.Constructor.name}</td>
+                                            <td onClick={() => handleClickTeam(result.Constructor.constructorId)}>{result.Constructor.name}</td>
                                             <td>{result?.Time?.time || "DNQ"}</td>
                                             <td style={{ backgroundColor: getPositionColor(result.position) }}>{result.points}</td>
                                         </tr>
