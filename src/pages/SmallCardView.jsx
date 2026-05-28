@@ -8,6 +8,7 @@ import FilterText from "../components/FilterText";
 import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
 import Flag from "react-flagkit";
 import getFlag from "../helpers/getFlagsNationality";
+import Error from "../components/Error.jsx";
 
 export default function SmallCardView(props) {
     const [drivers, setDrivers] = useState([]);
@@ -16,6 +17,7 @@ export default function SmallCardView(props) {
     const [filteredDriver, setFilteredDriver] = useState([]);
     const [year, setYear] = useState("2013");
     const navigate = useNavigate();
+    const [error, setError] = useState(true);
 
     useEffect(() => {
         getDrivers();
@@ -27,10 +29,21 @@ export default function SmallCardView(props) {
     }, [search, drivers]);
 
     const getDrivers = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
-        const response = await axios.get(url);
+        try {
+            setError(false)
+            const url = `https://api.jolpi.ca/ergast/f1/${props.year}/driverstandings.json`;
+            const response = await axios.get(url);
 
-        setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+            setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+        }
+
+        catch (e) {
+            setError(true);
+
+        }
+        finally {
+            setLoading(false);
+        }
         setLoading(false);
     };
 
@@ -46,6 +59,9 @@ export default function SmallCardView(props) {
         return <Loader />
 
     };
+    if (error) {
+        return <Error />;
+    }
 
     const driversCrumbs = [
         { path: "", label: "Drivers" }
@@ -90,7 +106,7 @@ export default function SmallCardView(props) {
                                     <pre>Country:     {driver.Driver.nationality}</pre>
                                     <pre>Team         {driver.Constructors[0].name}</pre>
                                     <pre>Birth:       {driver.Driver.dateOfBirth}</pre>
-                                    <pre className="bio">Biography:   <a href={driver.Driver.url} target="_blank"><img src="../../..public/link-white.png" className="link-icon" /></a></pre>
+                                    <pre className="bio">Biography:   <a href={driver.Driver.url} target="_blank"><img src="/General/link-white.png" className="link-icon" /></a></pre>
                                 </div>
                                 <div className="standingsSmallCard">
                                     <pre>Position / Points</pre>

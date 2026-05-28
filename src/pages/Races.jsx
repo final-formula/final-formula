@@ -8,6 +8,7 @@ import getFlag from '../helpers/getFlagsNationality.js'
 import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
 import SelectYear from "../components/SelectYear"
+import Error from "../components/Error.jsx";
 
 export default function Races(props) {
     const [races, setRaces] = useState([]);
@@ -16,6 +17,7 @@ export default function Races(props) {
     const [filteredRaces, setFilteredRaces] = useState([]);
     const [year, setYear] = useState("2013");
     const navigate = useNavigate();
+    const [error, setError] = useState(true);
 
     useEffect(() => {
         getRaces();
@@ -27,9 +29,20 @@ export default function Races(props) {
     }, [search, races])
 
     const getRaces = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/${props.year}/results/1.json`;
-        const response = await axios.get(url);
-        setRaces(response.data.MRData.RaceTable.Races);
+        try {
+            setError(false)
+            const url = `https://api.jolpi.ca/ergast/f1/${props.year}/results/1.json`;
+            const response = await axios.get(url);
+            setRaces(response.data.MRData.RaceTable.Races);
+        }
+
+        catch (e) {
+            setError(true);
+
+        }
+        finally {
+            setLoading(false);
+        }
         setLoading(false);
     };
 
@@ -43,6 +56,9 @@ export default function Races(props) {
 
     if (loading) {
         return <Loader />
+    }
+    if (error) {
+        return <Error />;
     }
 
     const racesCrumbs = [

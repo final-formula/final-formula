@@ -10,6 +10,7 @@ import getPositionColor from '../helpers/positionColors.js'
 import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
 import SelectYear from "../components/SelectYear"
+import Error from "../components/Error.jsx";
 
 export default function RacesDetails(props) {
     const [qualifiers, setQualifiers] = useState([]);
@@ -21,6 +22,8 @@ export default function RacesDetails(props) {
     const navigate = useNavigate();
     const [year, setYear] = useState("2013");
     const params = useParams();
+    const [error, setError] = useState(true);
+
 
     useEffect(() => {
         getRaceDetails();
@@ -43,16 +46,28 @@ export default function RacesDetails(props) {
 
 
     const getRaceDetails = async () => {
-        const urlQualifying = `https://api.jolpi.ca/ergast/f1/${props.year}/${params.raceName}/qualifying.json`;
-        const urlResults = `https://api.jolpi.ca/ergast/f1/${props.year}/${params.raceName}/results.json`;
+        try {
+            setError(false)
+            const urlQualifying = `https://api.jolpi.ca/ergast/f1/${props.year}/${params.raceName}/qualifying.json`;
+            const urlResults = `https://api.jolpi.ca/ergast/f1/${props.year}/${params.raceName}/results.json`;
 
-        const responseQualifying = await axios.get(urlQualifying);
-        const responseResults = await axios.get(urlResults);
+            const responseQualifying = await axios.get(urlQualifying);
+            const responseResults = await axios.get(urlResults);
 
-        setQualifiers(responseQualifying.data.MRData.RaceTable.Races[0].QualifyingResults);
-        setResults(responseResults.data.MRData.RaceTable.Races[0]);
+            setQualifiers(responseQualifying.data.MRData.RaceTable.Races[0].QualifyingResults);
+            setResults(responseResults.data.MRData.RaceTable.Races[0]);
+        }
 
+        catch (e) {
+            setError(true);
+
+        }
+        finally {
+            setLoading(false);
+        }
         setLoading(false);
+
+
     };
 
     const getFastestTime = ((time1, time2, time3) => {
@@ -70,9 +85,11 @@ export default function RacesDetails(props) {
     if (loading) {
         return <Loader />
     }
+    if (error) {
+        return <Error />;
+    }
 
-    console.log("qualifiers", qualifiers);
-    console.log("results", results);
+
     const racesDetailsCrumbs = [
         { path: "/races", label: "Races" },
         { path: "", label: `${results.Circuit.circuitName}` }
@@ -106,7 +123,7 @@ export default function RacesDetails(props) {
                                 <pre>Country:     {results.Circuit.Location.country}</pre>
                                 <pre>Location:    {results.Circuit.Location.locality}</pre>
                                 <pre>Date:        {results.date}</pre>
-                                <pre>Full Report: <a href={results.url} target="_blank"><img src="./public/link-white.png" className="link-icon" /></a></pre>
+                                <pre>Full Report: <a href={results.url} target="_blank"><img src="/General/public/link-white.png" className="link-icon" /></a></pre>
                             </div>
 
 
