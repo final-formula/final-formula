@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/Gallery.css';
+import '../styles/galery.css';
 
-export default function Gallery() {
+export default function Galery() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
