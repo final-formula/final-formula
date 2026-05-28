@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/galery.css';
+import Loader from '../components/Loader';
 
 export default function Gallery() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -7,17 +8,13 @@ export default function Gallery() {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Dinamički učitaj sve slike iz /Drivers direktorijuma
     useEffect(() => {
-        const loadImages = async () => {
+        const loadImages = () => {
             try {
-                // Ako imaš API endpoint koji vraća sve slike
-                // const response = await fetch('/api/drivers/images');
-                // const data = await response.json();
                 setImages(data);
             } catch (error) {
                 console.log('Korišćenje fallback slika...');
-                // Fallback - koristi ovaj kod ako nemaš API
+
                 const fallbackImages = [
                     { id: 1, src: '/galery/slika1.jpg', title: 'slika 1', category: 'Drivers' },
                     { id: 2, src: '/galery/slika2.jpg', title: 'Driver 2', category: 'Drivers' },
