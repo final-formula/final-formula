@@ -5,11 +5,12 @@ import { useNavigate } from "react-router";
 import getFlag from "../helpers/getFlagsNationality";
 import Flag from "react-flagkit";
 import SelectYear from "../components/SelectYear";
-import FilterText from "../components/FilterText";
+import FilterText from "../components/FilterText.jsx";
 import Breadcrumbs from "../components/Breadcrumbs";
 import getFlagShortName from "../helpers/getFlagsCountry";
 import Error from "../components/Error.jsx";
 import "../styles/bigCardView.css"
+
 
 export default function BigCardFunction(props) {
 
