@@ -1,3 +1,39 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.searchDiv input {
+    height: 30px;
+    color: #000;
+}
+
+.searchDiv button {
+    height: 30px;
+    width: 60px;
+}
+
+.headerBigCard {
+  height: 8vh;
+  width: 100%;
+  background-color: #303030;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-evenly;
+  position: sticky;
+  z-index: 2;
+}
+
+.mainScreenBigCard {
+  width: 100%;
+}
+
+.mainScreenBigCard h1 {
+  padding: 20px 40px;
+}
+
 .mainScreenBigCard {
   display: flex;
   flex-direction: column;

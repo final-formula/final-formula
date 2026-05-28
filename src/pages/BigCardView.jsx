@@ -70,9 +70,13 @@ export default function BigCardFunction(props) {
     return (
         <div className="mainScreenBigCard">
             <div className="headerBigCard">
-
-
-
+                <div className="searchDiv">
+                    <FilterText type="text" label="driver" value={search} onChange={(e) => setSearch(e.target.value)} />
+                    <button onClick={() => setSearch("")}>clear</button>    
+                </div>
+                <div>
+                    <Breadcrumbs crumbs={driversCrumbs} />
+                </div>
             </div>
             <div className="bigCardContainer">
                 {filteredDriver.map((driver, i) => {
