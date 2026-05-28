@@ -93,12 +93,12 @@ export default function TeamDetails(props) {
                                 </div>
 
                                 <div className="right-side">
-                                    <Flag className="flag-detail" size={84} country={getFlag(props.flags, teamDetails.Constructor.nationality)} />
+                                    <Flag className="flag-detail" size={60} country={getFlag(props.flags, teamDetails.Constructor.nationality)} />
                                     <p>{teamDetails.Constructor.name} </p>
                                 </div>
                             </div>
                             <div className="lower-card">
-                                <pre>Country:    {teamDetails.Constructor.nationality}</pre>
+                                <pre>Country:    {teamDetails.Constructor.constructorId}</pre>
                                 <pre>Position:   {teamDetails.position}</pre>
                                 <pre>Points:     {teamDetails.points}</pre>
                                 <pre>History:   <a href={teamDetails.Constructor.url} target="_blank"> <img src="./link-white.png" className="link-icon" /></a></pre>
@@ -135,9 +135,9 @@ export default function TeamDetails(props) {
                                         <tr>
                                             <td>{result.round}</td>
                                             <td onClick={() => handleClick(result.round)} className="td-flag"><Flag country={getFlagShortName(props.flags, result.Circuit.Location.country)} />{result.raceName}</td>
-                                            <td style={{ backgroundColor: getPositionColor(result.Results[0]?.position) }}>{result.Results[0].position}</td>
-                                            <td style={{ backgroundColor: getPositionColor(result.Results[1]?.position) }}>{result.Results[1].position}</td>
-                                            <td>{sumPoints(Number(result.Results[0].points), Number(result.Results[1].points))}</td>
+                                            <td style={{ backgroundColor: getPositionColor(result.Results[0]?.position) }}>{result.Results[0]?.position ?? "N/A"}</td>
+                                            <td style={{ backgroundColor: getPositionColor(result.Results[1]?.position) }}>{result.Results[1]?.position ?? "N/A"}</td>
+                                            <td>{sumPoints(Number(result.Results[0]?.points ?? 0), Number(result.Results[1]?.points ?? 0))}</td>
                                         </tr>
                                     );
                                 })}

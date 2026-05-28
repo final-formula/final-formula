@@ -52,7 +52,7 @@ export default function BigCardFunction(props) {
     console.log("driversDrivers", drivers);
 
     return (
-        <div className="mainScreen">
+        <div className="mainScreenBigCard">
             <div className="header">
 
 

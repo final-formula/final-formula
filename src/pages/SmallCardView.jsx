@@ -73,7 +73,7 @@ export default function SmallCardView(props) {
                     {filteredDriver.map((driver) => {
                         return (
                             <div className="smallCard" >
-                            
+
                                 <div className="upper-smallCard">
                                     <div className="left-side-smallCard">
                                         <img src={`/Drivers/${driver.Driver.driverId}.jpg`} className="team-image" />
@@ -81,8 +81,8 @@ export default function SmallCardView(props) {
 
                                     <div className="right-side-smallCard">
                                         <Flag className="flag-detail" size={60} country={getFlag(props.flags, driver.Driver.nationality)} />
-                                        {/* <p>{driver.Driver.givenName} {driver.Driver.familyName}</p> */}
-                                        {<p>{driver.Driver.driverId}</p>}
+                                        <p>{driver.Driver.givenName} {driver.Driver.familyName}</p>
+
                                     </div>
                                 </div>
 
