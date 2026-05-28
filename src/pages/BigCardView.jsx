@@ -93,7 +93,7 @@ export default function BigCardFunction(props) {
                                     </div>
                                     <div className="middleRightBigCard">
                                         <pre>Birth:  {driver.Driver.dateOfBirth}</pre>
-                                        <pre className="bioBigCard">Biography:  <a href={driver.Driver.url} target="_blank"><img src="../../../public/link-white.png" className="linkIconBigCard" /></a></pre>
+                                        <pre className="bioBigCard">Biography:  <a href={driver.Driver.url} target="_blank"><img src="/General/link-white.png" className="linkIconBigCard" /></a></pre>
                                     </div>
                                 </div>
                                 <div className="standingsBigCard">
