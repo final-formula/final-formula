@@ -70,6 +70,7 @@ export default function Gallery() {
                 <h1 className="gallery-title">Galerija</h1>
                 <p className="gallery-subtitle">Formula 1 Piloti - {images.length} slika</p>
             </div>
+            <p></p>
 
             {/* Grid */}
             <div className="gallery-grid">
