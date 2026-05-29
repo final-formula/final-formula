@@ -27,9 +27,11 @@
     flex-direction: column;
     align-items: center;
   }
+
   .navbar {
     flex-direction: column;
   }
+
   .nav-img {
     width: 30px;
   }
@@ -516,7 +518,7 @@ h1 {
 .linksDiv {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 5px;
 }
 
 @media screen and (max-width: 768px) {
@@ -537,22 +539,24 @@ h1 {
     height: 60px;
   }
 }
-.searchError{
-  
+
+.searchError {
+
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
- 
-  
+
+
 }
-.searchError img{
+
+.searchError img {
   width: 50%;
 
 
 }
 
-.searchError h1{
+.searchError h1 {
   color: black;
 }

@@ -58,7 +58,7 @@ function App() {
               <NavLink to="/teams" style={activeStyle} className="navButton"><img src="/galery/slika15.jpg" className="nav-img" /><span>Teams</span></NavLink>
               <NavLink to="/races" style={activeStyle} className="navButton"><img src="/galery/slika14.jpg" className="nav-img" /><span>Races</span></NavLink>
               <NavLink to="/galery" style={activeStyle} className="navButton"><img src="/galery/slika35.jpg" className="nav-img" /><span>Gallery</span></NavLink>
-              <NavLink to="/smallCard" style={activeStyle}><img src="/General/smallCard.jpg" className="nav-img" /><span>Small Card</span></NavLink>
+              <NavLink to="/smallCard" style={activeStyle} className="navButton"><img src="/General/smallCard.jpg" className="nav-img" /><span>Small Card</span></NavLink>
             </div>
           </div>
         </nav>
