@@ -178,6 +178,7 @@ table {
 
 .td-flag {
   padding: 5px 10px;
+  cursor: pointer;
 }
 
 .td-flag img {

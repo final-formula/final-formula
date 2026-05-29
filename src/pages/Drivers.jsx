@@ -96,8 +96,12 @@ export default function Drivers(props) {
                     <table className="table">
                         <tbody className="table-body">
                             {filteredDriver.length === 0 && (
-                                <tr>
-                                    <td colSpan="4">No Driver match criteria ... try again</td>
+                                <tr className="searchError" colSpan={5}>
+
+                                    <h1 >No Team match criteria ... try again</h1>
+                                    <img src="/General/travolta.gif" />
+
+
                                 </tr>
                             )}
                             <tr>
