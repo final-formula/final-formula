@@ -7,4 +7,6 @@ export default function getPositionColor(position) {
         5: "lightblue"
     };
     return colors[position] || "#7393b3";
-}
+};
+
+

@@ -26,6 +26,7 @@
   width: 100%;
   /* padding: 20px; */
   background-color: #f4f4f9;
+
 }
 
 .headerBigCard {
@@ -45,19 +46,17 @@
   background: linear-gradient(135deg, #1a3a52 0%, #2d527b 100%);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  width: 95%;
+  width: 90%;
   height: 400px;
   /* max-width: 550px; */
   padding: 15px;
-  cursor: pointer;
+ 
+  margin: 20px auto;
+ 
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   color: #f4f4f9;
 }
 
-.bigCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
-}
 
 .leftBigCard {
   display: flex;

@@ -22,48 +22,23 @@
   }
 }
 
-/* @media(min-widdth:1200px) {
-  .smallCardContainer {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-}
-
-@media(min-widdth:1023px) {
-  .smallCardContainer {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  }
-}
-
-@media(min-widdth:480px) {
-  .smallCardContainer {
-    grid-template-columns: 1fr;
-  }
-}
- */
-
 @media (max-width:768px) {
   .linksDiv {
     flex-direction: column;
     align-items: center;
   }
-
   .navbar {
     flex-direction: column;
   }
-
   .nav-img {
     width: 30px;
   }
-
 }
-
-
-
 
 .home {
   height: 100vh;
   width: 100vw;
-  background-image: url(/General/Formula-1.jpg);
+  background-image: url(/General/formula-bck.jpg);
   color: white;
   background-repeat: no-repeat;
   background-size: cover;
@@ -77,15 +52,11 @@
 }
 
 .homeImage {
-
   width: 100%;
 }
 
 .navbar {
-  /* padding: clamp(10px, 2vw, 20px); */
   display: flex;
-  /* justify-content: space-between; */
-  /* align-items: center; */
   flex-direction: column;
   width: 15vw;
   min-height: 100%;
@@ -93,10 +64,6 @@
   border: 1px solid #000000;
   font-size: 1.2rem;
 }
-
-
-
-
 
 .linksDiv a {
   width: 100%;
@@ -123,7 +90,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: clamp(10px, 2vw, 20px);
-  top: 300px;
+  top: 20%;
 }
 
 .selectYear {
@@ -148,11 +115,8 @@
 }
 
 .nav-img.races {
-  /* width: 100px; */
-  /* margin-left: 20px; */
   display: flex;
   gap: 15px;
-
 }
 
 .header {
@@ -162,7 +126,8 @@
   position: sticky;
   top: 0;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding: 0 30px;
   position: sticky;
   z-index: 2;
 }
@@ -176,7 +141,6 @@
 }
 
 table {
-  /* border-collapse: collapse; */
   border-spacing: 0;
   width: 95%;
   border: 1px solid #797979;
@@ -288,6 +252,7 @@ tr:nth-child(even) {
   width: 100%;
   min-height: 92vh;
   display: flex;
+  flex-direction: column;
 }
 
 .team-details-screen {
@@ -317,10 +282,9 @@ thead h3 {
   padding: 5px;
 }
 
-
-
 .table-div-details {
   width: 100%;
+
 }
 
 .team-details-screen {
@@ -361,8 +325,6 @@ thead h3 {
   cursor: pointer;
 }
 
-
-
 .on-click:hover {
 
   background-color: #969696;
@@ -383,41 +345,36 @@ h1 {
   color: wheat;
 }
 
-/* Small card pocetak */
 
 .smallCardContainer {
-  /* display: flex; */
   display: grid;
   flex-wrap: wrap;
   gap: clamp(15px, 3vw, 20px);
   margin: 20px;
-  /* gap: 10px; */
   padding: clamp(6px, 3vw, 30px);
-  /* padding: 10px; */
-  /* margin: 10px; */
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  text-align: center;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   animation: fadeIn 0.6 ease-out;
-  /* justify-content: space-between; */
 }
 
 .smallCard {
-  min-height: clamp(300px, 90vw, 420px);
+  display: flex;
+  flex-direction: column;
+  height: 400px;
   width: 300px;
   position: relative;
-  overflow: visible;
+  word-break: normal;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
   border-radius: clamp(6px, 2vw, 16px);
   background: linear-gradient(135deg, #1a3a52 0%, #2d527b 100%);
-  padding: 0;
+  padding: 5px;
   margin: 10px;
   cursor: pointer;
-  /* transition: all 0.3s ease; */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: #81c3d7;
   background-color: teal;
   z-index: 1;
-  /* font-size: 1.5rem; */
 }
 
 .smallCard:hover {
@@ -425,11 +382,9 @@ h1 {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.3);
-
   animation: pulse-glow 5s ease-in-out infinite;
   color: #000;
 }
-
 
 .standingsSmallCard pre {
   font-size: clamp(8px, 2.5, 14px);
@@ -447,7 +402,6 @@ h1 {
   position: absolute;
   inset: -3px;
   border-radius: inherit;
-
   background: linear-gradient(90deg,
       #ff0000,
       #ff7300,
@@ -460,14 +414,10 @@ h1 {
       #ff0000);
 
   background-size: 300% 300%;
-
   filter: blur(16px);
   opacity: 0;
-
   transition: opacity 0.3s ease;
-
   z-index: -1;
-
   animation: rgbGlow 6s linear infinite;
 }
 
@@ -497,13 +447,10 @@ h1 {
 }
 
 .lower-card-smallCard {
-  font-size: clamp(7px, 2.5vw, 13px);
   font-size: 1.2rem;
   margin: 10px;
-  padding: clamp(6px, 3vw, 16px);
-  gap: clamp(3px, 1.5vw, 10px);
+  text-align: justify;
 }
-
 
 .standingsSmallCard {
 
@@ -515,8 +462,6 @@ h1 {
   right: clamp(4px, 2vw, 12px);
   top: clamp(4px, 2vw, 12px);
   padding: clamp(2px, 1vw, 6px);
-  /* font-size: larger; */
-
 }
 
 .lower-card-smallCard .country-label {
@@ -525,8 +470,89 @@ h1 {
 
 .lower-card-smallCard .info-text {
   font-size: clamp(7px, 2.5vw, 12px);
-  /* font-size: 1.5rem; */
 }
 
-/* Small card end */
+.navButton {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: white;
+  background: #111;
+  border: 2px solid #333;
+  border-radius: 20px;
+  transition: 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
 
+.navButton:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: #ff1801;
+  box-shadow: 0 0 20px rgba(255, 24, 1, 0.6);
+}
+
+.nav-img {
+  width: 90%;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.navButton span {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.navButton.active {
+  border-color: #ff1801;
+  background: #1a1a1a;
+}
+
+.linksDiv {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .linksDiv {
+    flex-direction: column;
+  }
+
+  .navButton {
+    width: 90%;
+    height: 100px;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 20px;
+  }
+
+  .nav-img {
+    width: 60px;
+    height: 60px;
+  }
+}
+.searchError{
+  
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+ 
+  
+}
+.searchError img{
+  width: 50%;
+
+
+}
+
+.searchError h1{
+  color: black;
+}

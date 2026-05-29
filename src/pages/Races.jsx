@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import Loader from "../components/Loader";
-import { useNavigate } from "react-router";
 import getFlagShortName from '../helpers/getFlagsCountry.js'
 import Flag from 'react-flagkit';
 import getFlag from '../helpers/getFlagsNationality.js'
@@ -9,6 +9,8 @@ import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
 import SelectYear from "../components/SelectYear"
 import Error from "../components/Error.jsx";
+import Error2 from "../components/Error2.jsx";
+
 
 export default function Races(props) {
     const [races, setRaces] = useState([]);
@@ -18,6 +20,7 @@ export default function Races(props) {
     const [year, setYear] = useState("2013");
     const navigate = useNavigate();
     const [error, setError] = useState(true);
+    const [error2, setError2] = useState(null);
 
     useEffect(() => {
         getRaces();
@@ -57,8 +60,11 @@ export default function Races(props) {
     if (loading) {
         return <Loader />
     }
-    if (error) {
-        return <Error />;
+    if (error && driverDetails.Driver.driverId === "michael_schumacher" && props.year > 2012) {
+        return <Error2 />;
+    }
+    else if (error) {
+        return <Error />
     }
 
     const racesCrumbs = [
@@ -68,16 +74,18 @@ export default function Races(props) {
     return (
         <div className="mainScreen">
             <div className="header">
-
-                <div className="search-div">
-                    <FilterText type="text" label="race" value={search} change={(e) => setSearch(e.target.value)} />
-                    <button onClick={() => setSearch("")}>clear</button>
-                </div>
                 <div className="Breadcrumbs-main">
                     <Breadcrumbs crumbs={racesCrumbs} />
                 </div>
+
+                <div className="search-div">
+                    <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
+
+                </div>
             </div>
-            <h1>Race Calendar</h1>
+            <h1 style={{
+                fontSize: "3rem", color: "Black"
+            }}>Race Calendar</h1>
             <div className="table-div">
                 <table className="table">
                     <thead>
@@ -96,7 +104,13 @@ export default function Races(props) {
                             <th>Winner</th>
                         </tr>
                         {filteredRaces.length === 0 && (
-                            <h1>No Race match criteria ... try again</h1>
+                            <tr className="searchError" >
+
+                                <h1 >No Race match criteria ... try again</h1>
+                                <img src="/General/travolta.gif" />
+
+
+                            </tr>
                         )}
                         {filteredRaces.map((race) => {
                             return (

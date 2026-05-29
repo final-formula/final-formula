@@ -1,0 +1,79 @@
+.gold {
+  background: linear-gradient(
+    90deg,
+    rgb(190, 145, 0),
+    rgb(255, 215, 80),
+    rgb(190, 145, 0)
+  );
+
+  background-size: 300% 100%;
+
+  animation: shine 10s linear infinite;
+}
+
+.silver {
+  background: linear-gradient(
+    90deg,
+    rgb(90, 90, 90),
+    rgb(180, 180, 180),
+    rgb(90, 90, 90)
+  );
+
+  background-size: 300% 100%;
+
+  animation: shine 10s linear infinite;
+}
+
+.bronze {
+  background: linear-gradient(
+    90deg,
+    rgb(120, 65, 25),
+    rgb(205, 140, 90),
+    rgb(120, 65, 25)
+  );
+
+  background-size: 300% 100%;
+
+  animation: shine 10s linear infinite;
+}
+.blue {
+  background: linear-gradient(
+    90deg,
+    rgb(90, 90, 255),
+    blue,
+    rgb(90, 90, 255)
+  );
+
+ 
+}
+.green {
+  background: linear-gradient(
+    90deg,
+    rgb(90, 255, 120),
+    green,
+    rgb(90, 255, 120)
+  );
+
+
+}
+
+.default{
+      background: linear-gradient(
+    90deg,
+    #7393b3,
+    gray,
+    #7393b3
+  );
+    
+}
+
+@keyframes shine {
+
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}

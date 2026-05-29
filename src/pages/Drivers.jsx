@@ -9,6 +9,8 @@ import Breadcrumbs from "../components/Breadcrumbs"
 import SelectYear from "../components/SelectYear"
 import SearchBar from "../components/SearchBar";
 import Error from "../components/Error.jsx";
+import Error2 from "../components/Error2.jsx";
+
 
 export default function Drivers(props) {
     const [drivers, setDrivers] = useState([]);
@@ -16,6 +18,7 @@ export default function Drivers(props) {
     const [search, setSearch] = useState("");
     const [filteredDriver, setFilteredDriver] = useState([]);
     const [error, setError] = useState(null);
+    const [error2, setError2] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -60,8 +63,11 @@ export default function Drivers(props) {
         return <Loader />
     }
 
-    if (error) {
-        return <Error />;
+    if (error && driverDetails.Driver.driverId === "michael_schumacher" && props.year > 2012) {
+        return <Error2 />;
+    }
+    else if (error) {
+        return <Error />
     }
 
     const driversCrumbs = [
@@ -72,16 +78,19 @@ export default function Drivers(props) {
         <>
             <div className="mainScreen">
                 <div className="header">
-
-                    <div className="search-div">
-                        <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
-                        <button onClick={() => setSearch("")}>clear</button>
-                    </div>
                     <div className="Breadcrumbs-main">
                         <Breadcrumbs crumbs={driversCrumbs} />
                     </div>
+
+                    <div className="search-div">
+                        <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
+
+                    </div>
+
                 </div>
-                <h1>Drivers Championship</h1>
+                <h1 style={{
+                    fontSize: "3rem", color: "black"
+                }}>Drivers Championship</h1>
                 <div className="table-div">
 
                     <table className="table">

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router";
 import axios from "axios";
 import Loader from "../components/Loader";
-import { useNavigate } from "react-router";
 import Flag from 'react-flagkit';
 import getFlag from '../helpers/getFlagsNationality.js'
 import Breadcrumbs from "../components/Breadcrumbs"
 import FilterText from "../components/FilterText"
 import SelectYear from "../components/SelectYear"
 import Error from "../components/Error.jsx";
-
+import Error2 from "../components/Error2.jsx";
 
 export default function Teams(props) {
 
@@ -17,7 +17,7 @@ export default function Teams(props) {
     const [search, setSearch] = useState("");
     const [filteredTeams, setFilteredTeams] = useState([]);
     const [error, setError] = useState(true);
-
+    const [error2, setError2] = useState(null);
 
     const navigate = useNavigate();
 
@@ -59,8 +59,11 @@ export default function Teams(props) {
     if (loading) {
         return <Loader />
     }
-    if (error) {
-        return <Error />;
+    if (error && driverDetails.Driver.driverId === "michael_schumacher" && props.year > 2012) {
+        return <Error2 />;
+    }
+    else if (error) {
+        return <Error />
     }
 
     const teamsCrumbs = [
@@ -71,27 +74,32 @@ export default function Teams(props) {
     return (
         <div className="mainScreen">
             <div className="header">
-
-                <div className="search-div">
-                    <FilterText type="text" label="team" value={search} change={(e) => setSearch(e.target.value)} />
-                    <button onClick={() => setSearch("")}>clear</button>
-                </div>
                 <div className="Breadcrumbs-main">
                     <Breadcrumbs crumbs={teamsCrumbs} />
                 </div>
+                <div className="search-div">
+                    <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
+                </div>
             </div>
-            <h1>Constructors Championship</h1>
+            <h1 style={{
+                fontSize: "3rem", color: "Black"
+            }}>Constructors Championship</h1>
             <div className="table-div">
-                <table className="table">
+                < table className="table">
                     <thead>
                         <tr>
                             <th colSpan={4}><h3>Constructors Championship Standings - {props.year}</h3></th>
-
                         </tr>
                     </thead>
                     <tbody>
                         {filteredTeams.length === 0 && (
-                            <h1>No Team match criteria ... try again</h1>
+                            <tr className="searchError" colSpan={5}>
+
+                                <h1 >No Team match criteria ... try again</h1>
+                                <img src="/General/travolta.gif" />
+
+
+                            </tr>
                         )}
                         {filteredTeams.map((team) => {
                             return (

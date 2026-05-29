@@ -1,3 +1,5 @@
+import "../styles/yearSelect.css"
+
 export default function SelectYear(props) {
     const thisYear = new Date().getFullYear();
     const years = [];

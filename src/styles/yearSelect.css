@@ -1,0 +1,48 @@
+/* =========================
+   F1 YEAR SELECT
+========================= */
+
+select {
+  width: 150px;
+  height: 50px;
+  padding: 0 15px;
+  background: linear-gradient(150deg, #0a0a0a, #1a1a1a);
+  color: white;
+  border: 2px solid rgba(255, 24, 1, 0.5);
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  appearance: none;
+  box-shadow: 0 0 10px rgba(255,24,1,0.25), inset 0 0 10px rgba(255,255,255,0.03);
+}  
+
+select:hover {
+  border-color: #00f7ff;
+  color: #00f7ff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0,247,255,0.4), 0 0 30px rgba(255,24,1,0.25);
+}
+
+select:focus {
+  border-color: #ffd700;
+  color: #ffd700;
+  box-shadow: 0 0 20px rgba(255,215,0,0.5);
+}
+
+option {
+  background: #111;
+  color: white;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  select {
+    width: 130px;
+    height: 45px;
+    font-size: 16px;
+  }
+}

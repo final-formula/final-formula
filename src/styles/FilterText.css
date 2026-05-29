@@ -1,0 +1,155 @@
+/* search.css */
+
+body {
+  background: #1f1f1f;
+ 
+  font-family: Arial, sans-serif;
+}
+
+.searchBox {
+  position: relative;
+  width: 60px;
+  height: 100%;
+  transition: 0.4s ease;
+  display: flex;
+
+
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBox.active {
+  width: 300px;
+}
+
+.searchInput {
+  position: absolute;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  border-radius: 50px;
+
+  padding: 0 65px 0 25px;
+
+  font-size: 18px;
+
+  background: #797979;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: 0.4s ease;
+}
+
+.searchBox.active .searchInput {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.searchBtn {
+  position: absolute;
+
+  right: 0;
+
+  width: 60px;
+  height: 60px;
+
+  border: none;
+  border-radius: 20%;
+
+  background: #797979;
+  color: white;
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.3s ease;
+}
+
+.searchBtn:hover {
+  transform: scale(1.05);
+}
+
+/* ICON */
+
+.icon {
+  position: relative;
+  width: 22px;
+  height: 22px;
+}
+
+/* magnifying circle */
+.icon::before {
+  content: "";
+
+  position: absolute;
+
+  width: 14px;
+  height: 14px;
+
+  border: 3px solid #222;
+  border-radius: 50%;
+
+  top: 0;
+  left: 0;
+
+  transition: 0.3s ease;
+}
+
+/* magnifying handle */
+.icon::after {
+  content: "";
+
+  position: absolute;
+
+  width: 3px;
+  height: 10px;
+
+  background: #222;
+
+  transform: rotate(-45deg);
+
+  bottom: 0;
+  right: 1px;
+
+  transition: 0.3s ease;
+}
+
+/* X animation */
+
+.searchBox.hasText .icon::before {
+  width: 20px;
+  height: 3px;
+
+  border: none;
+  background: #222;
+
+  border-radius: 10px;
+
+  transform: rotate(45deg);
+
+  top: 9px;
+  left: 1px;
+}
+
+.searchBox.hasText .icon::after {
+  width: 20px;
+  height: 3px;
+
+  background: #222;
+
+  transform: rotate(-45deg);
+
+  top: 9px;
+  right: 1px;
+}

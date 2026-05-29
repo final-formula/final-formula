@@ -5,10 +5,13 @@ import Loader from "../components/Loader";
 import { Label } from "@mui/icons-material";
 import SelectYear from "../components/SelectYear";
 import FilterText from "../components/FilterText";
-import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
+import Breadcrumbs from "../components/Breadcrumbs";
 import Flag from "react-flagkit";
 import getFlag from "../helpers/getFlagsNationality";
 import Error from "../components/Error.jsx";
+import Error2 from "../components/Error2.jsx";
+
+
 
 export default function SmallCardView(props) {
     const [drivers, setDrivers] = useState([]);
@@ -18,6 +21,7 @@ export default function SmallCardView(props) {
     const [year, setYear] = useState("2013");
     const navigate = useNavigate();
     const [error, setError] = useState(true);
+    const [error2, setError2] = useState(null);
 
     useEffect(() => {
         getDrivers();
@@ -48,7 +52,7 @@ export default function SmallCardView(props) {
     };
 
     const handleClick = (id) => {
-        navigate(`/teams/details${id}`);
+        navigate(`/drivers/details/${id}`);
     };
 
     const handleClickTeam = (id) => {
@@ -59,8 +63,11 @@ export default function SmallCardView(props) {
         return <Loader />
 
     };
-    if (error) {
-        return <Error />;
+    if (error && driverDetails.Driver.driverId === "michael_schumacher" && props.year > 2012) {
+        return <Error2 />;
+    }
+    else if (error) {
+        return <Error />
     }
 
     const driversCrumbs = [
@@ -70,25 +77,23 @@ export default function SmallCardView(props) {
     return (
         <>
             <div className="mainScreen">
-
                 <div className="header">
-
+                    <div className="Breadcrumbs-main">
+                        <Breadcrumbs crumbs={driversCrumbs} />
+                    </div>
 
                     <div className="search-div">
                         <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
-                        <button onClick={() => setSearch("")}>clear</button>
+
                     </div>
 
-                    <div className="Breadcrumbs-main">
-                        <Breadcrumb crumbs={driversCrumbs} />
-                    </div>
                 </div>
 
                 <div className="smallCardContainer">
 
                     {filteredDriver.map((driver) => {
                         return (
-                            <div className="smallCard" >
+                            <div className="smallCard" onClick={() => handleClick(driver.Driver.driverId)}>
 
                                 <div className="upper-smallCard">
                                     <div className="left-side-smallCard">
@@ -103,9 +108,9 @@ export default function SmallCardView(props) {
                                 </div>
 
                                 <div className="lower-card-smallCard">
-                                    <pre>Country:     {driver.Driver.nationality}</pre>
-                                    <pre>Team         {driver.Constructors[0].name}</pre>
-                                    <pre>Birth:       {driver.Driver.dateOfBirth}</pre>
+                                    <pre>Country:    {driver.Driver.nationality}</pre>
+                                    <pre>Team        {driver.Constructors[0].name}</pre>
+                                    <pre>Birth:      {driver.Driver.dateOfBirth}</pre>
                                     <pre className="bio">Biography:   <a href={driver.Driver.url} target="_blank"><img src="/General/link-white.png" className="link-icon" /></a></pre>
                                 </div>
                                 <div className="standingsSmallCard">
@@ -123,4 +128,3 @@ export default function SmallCardView(props) {
     );
 }
 
-// onClick={() => handleClick(driver.Driver.driverId)}>

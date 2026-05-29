@@ -8,6 +8,7 @@ export default function Gallery() {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
+
     useEffect(() => {
         const loadImages = () => {
             try {
@@ -70,7 +71,6 @@ export default function Gallery() {
                 <h1 className="gallery-title">Galerija</h1>
                 <p className="gallery-subtitle">Formula 1 Piloti - {images.length} slika</p>
             </div>
-            <p></p>
 
             {/* Grid */}
             <div className="gallery-grid">

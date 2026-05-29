@@ -10,6 +10,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import getFlagShortName from "../helpers/getFlagsCountry";
 import Error from "../components/Error.jsx";
 import "../styles/bigCardView.css"
+import Error2 from "../components/Error2.jsx";
 
 
 export default function BigCardFunction(props) {
@@ -20,6 +21,7 @@ export default function BigCardFunction(props) {
     const [filteredDriver, setFilteredDriver] = useState([]);
     const [year, setYear] = useState("2013");
     const [error, setError] = useState(true);
+    const [error2, setError2] = useState(null);
 
     const navigate = useNavigate();
 
@@ -58,8 +60,11 @@ export default function BigCardFunction(props) {
     if (loading) {
         return <Loader />
     }
-    if (error) {
-        return <Error />;
+    if (error && driverDetails.Driver.driverId === "michael_schumacher" && props.year > 2012) {
+        return <Error2 />;
+    }
+    else if (error) {
+        return <Error />
     }
 
     const driversCrumbs = [
@@ -73,7 +78,7 @@ export default function BigCardFunction(props) {
             <div className="headerBigCard">
                 <div className="searchDiv">
                     <FilterText type="text" label="driver" value={search} change={(e) => setSearch(e.target.value)} />
-                    <button onClick={() => setSearch("")}>clear</button>
+
                 </div>
                 <div>
                     <Breadcrumbs crumbs={driversCrumbs} />
