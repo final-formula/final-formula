@@ -1,27 +1,26 @@
-.error-container{
+.error2-container {
     width: 100%;
-     min-height: 100vh;
+    min-height: 100vh;
     background-image: url("/General/Angel.png");
     background-position: center;
-      background-repeat: no-repeat;
-       background-size: cover;
-       background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-.error-container button{
-width: 20%;
-height: 5%;
-margin: 50px 40%;
-border-radius: 15px;
-opacity: 0.5;
-font-size: 1rem;
-color: darkblue;
+.error2-container button {
+    width: 20%;
+    height: 5%;
+    margin: 50px 40%;
+    border-radius: 15px;
+    opacity: 0.5;
+    font-size: 1rem;
+    color: darkblue;
 }
 
-.error-container h1{
+.error2-container h1 {
     font-size: 3rem;
     color: brown;
     text-align: center;
     margin-top: 30px;
 }
-

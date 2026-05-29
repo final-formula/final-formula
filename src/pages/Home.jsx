@@ -6,7 +6,7 @@ export default function Home() {
     const cards = [
         {
             title: "Drivers",
-            video: "/General/redcar.mov",
+            video: "/General/bckground.mp4",
             link: "/drivers"
         },
         {
